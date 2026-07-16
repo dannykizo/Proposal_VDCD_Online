@@ -1,0 +1,4 @@
+# Online media is hosted on Cloudflare R2.
+/_resources/intro/*.mp4
+/_resources/intro/*.mov
+/_resources/intro/*.webm
