@@ -112,26 +112,25 @@ body {
 .nav-logo {
   display: flex;
   align-items: center;
-  gap: 12px;
   text-decoration: none;
-  color: var(--text);
-  font-weight: 700;
-  font-size: 18px;
-  font-family: var(--font-heading);
+  width: 142px;
+  height: 100%;
 }
-.nav-logo-icon {
-  width: 40px; height: 40px;
-  background: linear-gradient(135deg, #312e81, #6366f1 62%, #22d3ee);
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 900;
-  font-size: 16px;
-  color: #fff;
-  border: 1px solid var(--border);
+.nav-logo-image {
+  display: block;
+  width: 142px;
+  height: 64px;
+  object-fit: contain;
+  object-position: left center;
+  filter: drop-shadow(0 5px 14px rgba(0,0,0,0.34));
+  transition: filter 0.25s ease, transform 0.25s ease;
 }
-.nav-logo span { color: var(--accent); }
+.nav-logo:hover .nav-logo-image,
+.nav-logo:focus-visible .nav-logo-image {
+  filter: drop-shadow(0 6px 18px rgba(239,68,68,0.26)) drop-shadow(0 0 14px rgba(255,255,255,0.13));
+  transform: translateY(-1px);
+}
+.nav-logo:focus-visible { outline: 2px solid var(--accent2); outline-offset: 3px; border-radius: 8px; }
 .nav-links {
   display: flex;
   gap: 8px;
@@ -364,28 +363,14 @@ body {
 .hero-wordmark-main {
   font-size: clamp(66px, 7.5vw, 108px);
   font-weight: 900;
-  display: inline-block;
-  letter-spacing: -0.055em;
-  filter: drop-shadow(0 15px 34px rgba(0,0,0,0.38)) drop-shadow(0 0 18px rgba(99,102,241,0.22));
-}
-.hero-wordmark-v,
-.hero-wordmark-rest {
-  display: inline-block;
   color: transparent;
-  -webkit-background-clip: text;
-  background-clip: text;
-}
-.hero-wordmark-v {
-  position: relative;
-  background: linear-gradient(108deg, #e53935 0%, #e53935 48%, #fff 49%, #c7d2fe 67%, #818cf8 100%);
-  -webkit-text-stroke: 1px rgba(255,255,255,0.18);
-  filter: drop-shadow(-4px 5px 13px rgba(229,57,53,0.28));
-}
-.hero-wordmark-rest {
   background: linear-gradient(112deg, #ffffff 0%, #c7d2fe 24%, #818cf8 38%, #22d3ee 48%, #f8fafc 57%, #a5b4fc 72%, #ffffff 100%);
   background-size: 260% 100%;
   background-position: 100% 50%;
+  -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-stroke: 1px rgba(255,255,255,0.24);
+  filter: drop-shadow(0 15px 34px rgba(0,0,0,0.38)) drop-shadow(0 0 18px rgba(99,102,241,0.22));
   animation: heroWordmarkChrome 8s ease-in-out infinite;
 }
 .hero-wordmark-group {
@@ -1848,12 +1833,11 @@ body.standby-active { overflow: hidden; }
   .scroll-mouse::after,
   .hero-wordmark,
   .hero-wordmark-main,
-  .hero-wordmark-rest,
   .hero-wordmark::after,
   .standby-screen::before,
   .standby-screen::after,
   .standby-vdcd { animation: none; }
-  .hero-wordmark-rest { background-position: 45% 50%; }
+  .hero-wordmark-main { background-position: 45% 50%; }
   :is(#nang-luc, .eco-section, #giai-phap, #du-an, .partners-section) .section-header h2::after {
     transition: none;
     transform: translateX(-50%) scaleX(1);
@@ -1891,9 +1875,8 @@ body.standby-active { overflow: hidden; }
 <!-- ═══════════ NAVIGATION ═══════════ -->
 <nav class="nav" id="navbar">
   <div class="nav-inner">
-    <a href="#" class="nav-logo">
-      <div class="nav-logo-icon">V</div>
-      VDCD <span>Group</span>
+    <a href="#home" class="nav-logo" aria-label="VDCD Group — về đầu trang">
+      <img src="_resources/images/brand/vdcd-group-logo-white.png" class="nav-logo-image" width="199" height="102" alt="VDCD Group">
     </a>
     <button class="nav-mobile-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')"><i class="fas fa-bars"></i></button>
     <ul class="nav-links">
@@ -1918,7 +1901,7 @@ body.standby-active { overflow: hidden; }
   <div class="hero-grid">
     <div class="hero-copy">
       <div class="hero-wordmark reveal visible" aria-label="VDCD Group">
-        <span class="hero-wordmark-main" aria-hidden="true"><span class="hero-wordmark-v">V</span><span class="hero-wordmark-rest">DCD</span></span>
+        <span class="hero-wordmark-main">VDCD</span>
         <span class="hero-wordmark-group">Group</span>
       </div>
       <div class="hero-badge reveal visible reveal-delay-1">Chi nhánh TP. Hồ Chí Minh</div>
