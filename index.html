@@ -990,10 +990,83 @@ body {
 .sol-link:hover i,
 .sol-link:focus-visible i { color: #fff; }
 
+.solution-paths {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 26px;
+}
+.solution-path {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  min-height: 118px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 24px 28px;
+  border: 1px solid var(--border-light);
+  border-radius: 18px;
+  color: var(--text);
+  background: var(--bg-card);
+  font: inherit;
+  text-align: left;
+  opacity: 1;
+  cursor: default;
+}
+.solution-path::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(115deg, transparent 40%, rgba(255,255,255,0.055), transparent 68%);
+}
+.solution-path-public {
+  background:
+    radial-gradient(circle at 92% 18%, rgba(229,57,53,0.18), transparent 36%),
+    var(--bg-card);
+  border-color: rgba(229,57,53,0.28);
+}
+.solution-path-business {
+  background:
+    radial-gradient(circle at 92% 18%, rgba(99,102,241,0.18), transparent 36%),
+    var(--bg-card);
+  border-color: rgba(99,102,241,0.28);
+}
+.solution-path-icon {
+  width: 50px;
+  height: 50px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  border-radius: 15px;
+  color: #fff;
+  font-size: 19px;
+  background: linear-gradient(135deg, #e53935, #991b1b);
+  box-shadow: 0 12px 28px rgba(185,28,28,0.18);
+}
+.solution-path-business .solution-path-icon {
+  background: linear-gradient(135deg, #6366f1, #4338ca);
+  box-shadow: 0 12px 28px rgba(67,56,202,0.18);
+}
+.solution-path-title {
+  position: relative;
+  z-index: 1;
+  max-width: 440px;
+  font-family: var(--font-heading);
+  font-size: clamp(18px, 1.65vw, 23px);
+  font-weight: 800;
+  line-height: 1.35;
+  letter-spacing: -0.02em;
+}
+
 @media (max-width: 700px) {
   .solutions-grid { grid-template-columns: 1fr; }
   .sol-card { min-height: 0; }
   .sol-card p { min-height: 0; }
+  .solution-paths { grid-template-columns: 1fr; }
+  .solution-path { min-height: 104px; padding: 21px 22px; }
 }
 
 /* ═══════════════════════════════════════
@@ -2148,6 +2221,16 @@ body.standby-active { overflow: hidden; }
       <div class="sol-tags"><span>Smart Industry</span><span>IoT Monitoring</span><span>Digital Twin</span></div>
       <div class="sol-links"><a class="sol-link" href="https://www.youtube.com/watch?v=YugKM0IW8OE" target="_blank" rel="noopener" aria-label="Xem video Khu công nghiệp thông minh"><i class="fab fa-youtube"></i> Xem video</a></div>
     </article>
+  </div>
+  <div class="solution-paths" aria-label="Danh mục giải pháp theo nhóm khách hàng">
+    <button class="solution-path solution-path-public reveal" type="button" disabled aria-label="Giải pháp sản phẩm VDCD Group cho Nhà nước — nội dung sẽ được cập nhật">
+      <span class="solution-path-icon" aria-hidden="true"><i class="fas fa-landmark"></i></span>
+      <span class="solution-path-title">Giải pháp sản phẩm VDCD Group cho Nhà nước</span>
+    </button>
+    <button class="solution-path solution-path-business reveal reveal-delay-1" type="button" disabled aria-label="Giải pháp dịch vụ VDCD Group cho Khách hàng Doanh nghiệp — nội dung sẽ được cập nhật">
+      <span class="solution-path-icon" aria-hidden="true"><i class="fas fa-building"></i></span>
+      <span class="solution-path-title">Giải pháp dịch vụ VDCD Group cho Khách hàng Doanh nghiệp</span>
+    </button>
   </div>
 </section>
 
