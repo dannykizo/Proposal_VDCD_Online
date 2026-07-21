@@ -350,6 +350,36 @@ body.presentation-content-active .nav:focus-within {
   text-transform: uppercase;
   margin-bottom: 24px;
 }
+.hero-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+.hero-meta .hero-badge { margin-bottom: 0; }
+.hero-founded {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  border: 1px solid rgba(229,57,53,0.34);
+  border-radius: 20px;
+  color: #fecaca;
+  background: rgba(185,28,28,0.16);
+  font-size: 12px;
+  font-weight: 750;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.hero-founded::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #ef4444;
+  box-shadow: 0 0 12px rgba(239,68,68,0.8);
+}
 .hero-wordmark {
   display: flex;
   align-items: flex-end;
@@ -710,7 +740,7 @@ body.video-modal-active { overflow: hidden; }
 .section h2,
 .eco-section h2 {
   font-family: var(--font-heading);
-  font-size: clamp(34px, 4vw, 52px);
+  font-size: clamp(38px, 4.5vw, 62px);
   font-weight: 800;
   line-height: 1.12;
   letter-spacing: -0.035em;
@@ -725,7 +755,7 @@ body.video-modal-active { overflow: hidden; }
 }
 .section-sub {
   color: var(--text-muted);
-  font-size: 16.5px;
+  font-size: clamp(17px, 1.18vw, 20px);
   line-height: 1.75;
   max-width: 720px;
   margin: 0 auto;
@@ -1913,6 +1943,566 @@ body.video-modal-active { overflow: hidden; }
 }
 
 /* ═══════════════════════════════════════
+   LEGAL, CONTENT MAP & CURRENT-STATE STORY
+   ═══════════════════════════════════════ */
+#phap-ly {
+  --section-accent: #dc2626;
+  --section-accent2: #f59e0b;
+  --section-rgb: 220, 38, 38;
+  background:
+    radial-gradient(circle at 90% 14%, rgba(220,38,38,0.10), transparent 32%),
+    var(--bg-primary);
+}
+#noi-dung {
+  --section-accent: #2563eb;
+  --section-accent2: #8b5cf6;
+  --section-rgb: 37, 99, 235;
+  width: 100%;
+  max-width: none;
+  min-height: 100svh;
+  padding: clamp(50px, 7vh, 86px) clamp(24px, 4vw, 72px);
+  scroll-margin-top: 0;
+  background:
+    radial-gradient(circle at 10% 16%, rgba(37,99,235,0.10), transparent 32%),
+    radial-gradient(circle at 88% 82%, rgba(139,92,246,0.09), transparent 34%),
+    var(--bg-secondary);
+}
+#thuc-trang {
+  --section-accent: #e53935;
+  --section-accent2: #f59e0b;
+  --section-rgb: 229, 57, 53;
+  background:
+    radial-gradient(circle at 88% 12%, rgba(229,57,53,0.11), transparent 33%),
+    var(--bg-primary);
+}
+[data-theme="light"] #phap-ly,
+[data-theme="light"] #thuc-trang {
+  --section-accent: #b91c1c;
+  --section-accent2: #b45309;
+  --section-rgb: 185, 28, 28;
+}
+[data-theme="light"] #noi-dung {
+  --section-accent: #1d4ed8;
+  --section-accent2: #6d28d9;
+  --section-rgb: 29, 78, 216;
+}
+:is(#phap-ly, #noi-dung, #thuc-trang) .section-tag {
+  border-color: rgba(var(--section-rgb), 0.34);
+  color: var(--section-accent);
+  background: rgba(var(--section-rgb), 0.10);
+}
+:is(#phap-ly, #noi-dung, #thuc-trang) h2 .highlight {
+  background: linear-gradient(120deg, var(--section-accent), var(--section-accent2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.content-overview-inner {
+  width: min(1680px, 100%);
+  margin: 0 auto;
+}
+.content-overview-inner .section-header {
+  max-width: 1080px;
+  margin: 0 auto clamp(34px, 5vh, 58px);
+}
+.content-overview-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(18px, 2vw, 28px);
+}
+.content-overview-card {
+  min-height: 240px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow: hidden;
+  padding: clamp(28px, 3vw, 44px);
+  border: 1px solid rgba(var(--section-rgb), 0.24);
+  border-radius: 24px;
+  color: var(--text);
+  text-decoration: none;
+  background:
+    linear-gradient(135deg, rgba(var(--section-rgb), 0.12), transparent 58%),
+    var(--bg-card);
+  box-shadow: 0 20px 54px rgba(8,10,28,0.10);
+  transition: transform 0.32s ease, border-color 0.32s ease, box-shadow 0.32s ease;
+}
+.content-overview-card:hover,
+.content-overview-card:focus-visible {
+  transform: translateY(-6px);
+  border-color: rgba(var(--section-rgb), 0.65);
+  box-shadow: 0 26px 70px rgba(var(--section-rgb), 0.16);
+  outline: none;
+}
+.content-overview-number {
+  position: absolute;
+  top: 18px;
+  right: 24px;
+  color: rgba(var(--section-rgb), 0.16);
+  font: 900 clamp(56px, 5vw, 84px)/1 var(--font-heading);
+}
+.content-overview-card i {
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 24px;
+  border-radius: 15px;
+  color: #fff;
+  background: linear-gradient(135deg, var(--section-accent), var(--section-accent2));
+  box-shadow: 0 12px 26px rgba(var(--section-rgb), 0.22);
+}
+.content-overview-card h3 {
+  position: relative;
+  margin-bottom: 10px;
+  font-family: var(--font-heading);
+  font-size: clamp(23px, 2vw, 31px);
+  line-height: 1.22;
+}
+.content-overview-card p {
+  position: relative;
+  color: var(--text-muted);
+  font-size: clamp(15px, 1vw, 17px);
+  line-height: 1.6;
+}
+
+.legal-slide,
+.issue-card {
+  min-height: inherit;
+  border: 1px solid rgba(var(--section-rgb), 0.27);
+  border-radius: 28px;
+  background:
+    linear-gradient(120deg, rgba(var(--section-rgb), 0.10), transparent 54%),
+    var(--bg-card);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+}
+.legal-summary-slide {
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(360px, 0.92fr);
+  align-items: center;
+  gap: clamp(34px, 5vw, 80px);
+  padding: clamp(42px, 5vw, 78px);
+}
+.legal-kicker,
+.issue-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin-bottom: 20px;
+  color: var(--section-accent);
+  font: 800 13px/1 var(--font-heading);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.legal-summary-slide h3,
+.legal-document-copy h3,
+.issue-card h3 {
+  margin-bottom: 20px;
+  font-family: var(--font-heading);
+  font-size: clamp(37px, 3.6vw, 58px);
+  font-weight: 850;
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+}
+.legal-summary-slide p,
+.legal-document-copy p,
+.issue-card p {
+  color: var(--text-muted);
+  font-size: clamp(18px, 1.35vw, 22px);
+  line-height: 1.65;
+}
+.legal-facts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+.legal-fact {
+  min-height: 132px;
+  padding: 22px;
+  border: 1px solid rgba(var(--section-rgb), 0.20);
+  border-radius: 18px;
+  background: rgba(var(--section-rgb), 0.07);
+}
+.legal-fact strong {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--section-accent);
+  font: 850 clamp(22px, 2vw, 30px)/1.15 var(--font-heading);
+}
+.legal-fact span {
+  color: var(--text-muted);
+  font-size: 14px;
+  line-height: 1.45;
+}
+.legal-document-slide {
+  display: grid;
+  grid-template-columns: minmax(320px, 0.76fr) minmax(520px, 1.24fr);
+  align-items: center;
+  gap: clamp(28px, 4vw, 62px);
+  padding: clamp(28px, 3.5vw, 54px);
+}
+.legal-document-copy { padding-left: clamp(8px, 2vw, 28px); }
+.legal-document-button {
+  width: 100%;
+  height: min(58vh, 590px);
+  min-height: 440px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  padding: 18px;
+  border: 1px solid rgba(var(--section-rgb), 0.26);
+  border-radius: 22px;
+  background: #f6f3e8;
+  cursor: zoom-in;
+  box-shadow: 0 20px 60px rgba(15,23,42,0.16);
+}
+.legal-document-button img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+}
+.legal-document-hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: 28px;
+  color: var(--section-accent);
+  font-size: 15px;
+  font-weight: 750;
+}
+
+.issue-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  overflow: hidden;
+  padding: clamp(46px, 5.5vw, 84px);
+}
+.issue-card > :is(.issue-kicker, h3, p, .issue-impact) { max-width: min(68%, 1000px); }
+.issue-icon {
+  position: absolute;
+  top: 50%;
+  right: clamp(70px, 10vw, 170px);
+  width: clamp(126px, 14vw, 200px);
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(var(--section-rgb), 0.32);
+  border-radius: 34%;
+  color: var(--section-accent);
+  background: rgba(var(--section-rgb), 0.10);
+  box-shadow: 0 24px 70px rgba(var(--section-rgb), 0.17);
+  transform: translateY(-50%) rotate(-4deg);
+}
+.issue-icon i { font-size: clamp(46px, 5vw, 76px); }
+.issue-impact {
+  margin-top: 30px;
+  padding: 13px 17px;
+  border-left: 3px solid var(--section-accent);
+  color: var(--text);
+  background: rgba(var(--section-rgb), 0.08);
+  font-size: clamp(15px, 1.1vw, 18px);
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+/* Per-section PowerPoint-style slide pane. */
+body.deck-pane-active { overflow: hidden; }
+.deck-controls.has-pane-toggle {
+  grid-template-columns: minmax(132px, 0.58fr) minmax(132px, 0.64fr) minmax(260px, 2.4fr) minmax(160px, 0.86fr);
+}
+.deck-pane-toggle i { color: var(--section-accent); }
+.deck-pane-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1440;
+  border: 0;
+  background: rgba(3,4,16,0.56);
+  backdrop-filter: blur(4px);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.28s ease, visibility 0.28s ease;
+}
+.deck-slide-pane {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1450;
+  width: min(410px, 92vw);
+  display: flex;
+  flex-direction: column;
+  color: #eef2ff;
+  background:
+    radial-gradient(circle at 18% 8%, rgba(var(--section-rgb), 0.22), transparent 30%),
+    #090b1b;
+  border-right: 1px solid rgba(255,255,255,0.12);
+  box-shadow: 24px 0 70px rgba(0,0,0,0.38);
+  transform: translateX(-105%);
+  transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.presentation-deck.pane-open .deck-pane-backdrop {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+.presentation-deck.pane-open .deck-slide-pane { transform: translateX(0); }
+.deck-pane-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 24px 22px 18px;
+  border-bottom: 1px solid rgba(255,255,255,0.10);
+}
+.deck-pane-header strong {
+  font: 800 18px/1.25 var(--font-heading);
+}
+.deck-pane-close {
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  border: 1px solid rgba(255,255,255,0.16);
+  border-radius: 50%;
+  color: #fff;
+  background: rgba(255,255,255,0.07);
+  cursor: pointer;
+}
+.deck-pane-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow-y: auto;
+  padding: 18px;
+}
+.deck-thumbnail {
+  display: grid;
+  grid-template-columns: 54px minmax(0, 1fr);
+  gap: 14px;
+  align-items: stretch;
+  min-height: 94px;
+  padding: 12px;
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 15px;
+  color: #e2e8f0;
+  text-align: left;
+  background: rgba(255,255,255,0.045);
+  cursor: pointer;
+  transition: transform 0.22s ease, border-color 0.22s ease, background 0.22s ease;
+}
+.deck-thumbnail:hover,
+.deck-thumbnail:focus-visible,
+.deck-thumbnail.is-active {
+  transform: translateX(4px);
+  border-color: rgba(var(--section-rgb), 0.72);
+  background: rgba(var(--section-rgb), 0.17);
+  outline: none;
+}
+.deck-thumbnail-number {
+  display: grid;
+  place-items: center;
+  border-radius: 11px;
+  color: #fff;
+  background: linear-gradient(145deg, var(--section-accent), var(--section-accent2));
+  font: 850 17px/1 var(--font-heading);
+}
+.deck-thumbnail-copy { align-self: center; min-width: 0; }
+.deck-thumbnail-copy strong {
+  display: block;
+  margin-bottom: 6px;
+  color: #f8fafc;
+  font: 750 15px/1.35 var(--font-heading);
+}
+.deck-thumbnail-copy span {
+  display: -webkit-box;
+  overflow: hidden;
+  color: #94a3b8;
+  font-size: 12px;
+  line-height: 1.4;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+/* Full-screen document and consultation overlays. */
+body.document-modal-active,
+body.consultation-modal-active { overflow: hidden; }
+.document-modal,
+.consultation-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1520;
+  display: grid;
+  place-items: center;
+  padding: clamp(16px, 3vw, 42px);
+  color: #f8fafc;
+  background: rgba(3,4,16,0.91);
+  backdrop-filter: blur(18px);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+.consultation-modal {
+  --section-accent: #818cf8;
+  --section-accent2: #22d3ee;
+  --section-rgb: 99, 102, 241;
+}
+.document-modal.active,
+.consultation-modal.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+.document-dialog,
+.consultation-dialog {
+  width: min(1160px, 100%);
+  max-height: calc(100vh - 32px);
+  display: flex;
+  flex-direction: column;
+  transform: translateY(16px) scale(0.985);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.document-modal.active .document-dialog,
+.consultation-modal.active .consultation-dialog { transform: translateY(0) scale(1); }
+.overlay-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 12px;
+}
+.overlay-toolbar h3 {
+  font-family: var(--font-heading);
+  font-size: clamp(18px, 1.7vw, 24px);
+}
+.overlay-close {
+  width: 46px;
+  height: 46px;
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  border: 1px solid rgba(255,255,255,0.20);
+  border-radius: 50%;
+  color: #fff;
+  background: rgba(255,255,255,0.08);
+  cursor: pointer;
+}
+.document-stage {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  place-items: center;
+  overflow: auto;
+  padding: 18px;
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: 20px;
+  background: #f5f2e8;
+}
+.document-stage img {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: calc(100vh - 130px);
+  object-fit: contain;
+}
+
+.contact-grid { grid-template-columns: minmax(0, 1.18fr) minmax(360px, 0.82fr); }
+.contact-action-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: clamp(30px, 4vw, 52px);
+  border: 1px solid rgba(var(--section-rgb), 0.25);
+  border-radius: 24px;
+  background:
+    radial-gradient(circle at 86% 16%, rgba(var(--section-rgb), 0.17), transparent 32%),
+    rgba(255,255,255,0.035);
+  box-shadow: 0 24px 70px rgba(8,10,28,0.18);
+}
+.contact-action-card i.contact-action-icon {
+  margin-bottom: 24px;
+  color: var(--section-accent);
+  font-size: 42px;
+}
+.contact-action-card h4 {
+  margin-bottom: 14px;
+  font-family: var(--font-heading);
+  font-size: clamp(26px, 2.4vw, 36px);
+}
+.contact-action-card p {
+  margin-bottom: 28px;
+  color: var(--text-muted);
+  font-size: 17px;
+  line-height: 1.65;
+}
+.consultation-dialog {
+  width: min(940px, 100%);
+  padding: clamp(24px, 3vw, 38px);
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: 24px;
+  background: #0b0e22;
+  box-shadow: 0 30px 100px rgba(0,0,0,0.54);
+}
+.consultation-dialog .contact-form {
+  overflow-y: auto;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+.consultation-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 18px;
+}
+.consultation-form-grid .form-group-full { grid-column: 1 / -1; }
+.consultation-dialog .form-group input,
+.consultation-dialog .form-group textarea {
+  color: #f8fafc;
+  background: rgba(255,255,255,0.06);
+  border-color: rgba(255,255,255,0.14);
+}
+
+@media (max-width: 980px) {
+  .content-overview-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .legal-summary-slide,
+  .legal-document-slide { grid-template-columns: 1fr; }
+  .legal-document-button { min-height: 520px; }
+  .contact-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 700px) {
+  .hero-meta { justify-content: center; }
+  .content-overview-grid { grid-template-columns: 1fr; }
+  .content-overview-card { min-height: 210px; }
+  .legal-summary-slide { padding: 32px 26px 38px; }
+  .legal-facts { grid-template-columns: 1fr; }
+  .legal-document-slide { padding: 22px; }
+  .legal-document-copy { padding: 0; }
+  .legal-document-button { min-height: 440px; height: 55vh; }
+  .issue-card { padding: 110px 26px 42px; }
+  .issue-card > :is(.issue-kicker, h3, p, .issue-impact) { max-width: 100%; }
+  .issue-icon { top: 22px; right: 24px; width: 76px; transform: rotate(-4deg); }
+  .issue-icon i { font-size: 30px; }
+  .deck-controls.has-pane-toggle { grid-template-columns: 1fr 1fr 1fr; }
+  .deck-controls.has-pane-toggle .deck-status { grid-column: 1 / -1; grid-row: 1; }
+  .deck-controls.has-pane-toggle .deck-pane-toggle { grid-column: 1; grid-row: 2; }
+  .deck-controls.has-pane-toggle .deck-prev { grid-column: 2; grid-row: 2; }
+  .deck-controls.has-pane-toggle .deck-next { grid-column: 3; grid-row: 2; }
+  .consultation-form-grid { grid-template-columns: 1fr; }
+  .consultation-form-grid .form-group-full { grid-column: auto; }
+}
+
+/* ═══════════════════════════════════════
    BROWSER PRESENTATION DECKS
    ═══════════════════════════════════════ */
 .presentation-section,
@@ -2512,8 +3102,192 @@ body.standby-active { overflow: hidden; }
   50% { opacity: 0.9; transform: scale(1.03); }
 }
 
+/* Presentation polish: larger contents map and an always-reachable slide pane. */
+#noi-dung {
+  padding: clamp(36px, 4.5vh, 56px) clamp(20px, 3vw, 56px);
+}
+.content-overview-inner {
+  width: min(1760px, 100%);
+}
+.content-overview-inner .section-header {
+  max-width: 1320px;
+  margin-bottom: clamp(28px, 3.6vh, 42px);
+}
+#noi-dung .section-header h2 {
+  font-size: clamp(46px, 5vw, 76px);
+}
+#noi-dung .section-sub {
+  max-width: 1100px;
+  margin-inline: auto;
+  font-size: clamp(19px, 1.3vw, 23px);
+  line-height: 1.55;
+}
+.content-overview-grid {
+  gap: clamp(20px, 1.7vw, 28px);
+}
+.content-overview-card {
+  min-height: clamp(250px, 26vh, 300px);
+  padding: clamp(32px, 2.7vw, 50px);
+}
+.content-overview-number {
+  top: 16px;
+  right: 22px;
+  font-size: clamp(72px, 6vw, 106px);
+}
+.content-overview-card i {
+  width: clamp(54px, 3.5vw, 64px);
+  height: clamp(54px, 3.5vw, 64px);
+  margin-bottom: clamp(22px, 2.2vh, 30px);
+  font-size: clamp(18px, 1.35vw, 24px);
+}
+.content-overview-card h3 {
+  margin-bottom: 12px;
+  font-size: clamp(27px, 2.15vw, 38px);
+}
+.content-overview-card p {
+  max-width: 92%;
+  font-size: clamp(17px, 1.18vw, 21px);
+  line-height: 1.55;
+}
+
+.deck-pane-toggle {
+  position: absolute;
+  top: clamp(16px, 1.7vw, 26px);
+  right: clamp(16px, 1.7vw, 26px);
+  z-index: 30;
+  width: 50px;
+  height: 50px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 1px solid rgba(var(--section-rgb), 0.38);
+  border-radius: 15px;
+  color: var(--section-accent);
+  background: color-mix(in srgb, var(--bg-card) 88%, transparent);
+  box-shadow: 0 12px 34px rgba(8,10,28,0.16), inset 0 1px 0 rgba(255,255,255,0.12);
+  backdrop-filter: blur(12px);
+  cursor: pointer;
+  transition: color 0.22s ease, background 0.22s ease, border-color 0.22s ease, transform 0.22s ease, box-shadow 0.22s ease;
+}
+.deck-pane-toggle i { font-size: 18px; }
+.deck-pane-toggle::after {
+  content: "Ngăn slide";
+  position: absolute;
+  top: calc(100% + 9px);
+  right: 0;
+  width: max-content;
+  padding: 8px 11px;
+  border-radius: 9px;
+  color: #fff;
+  background: rgba(9,11,27,0.94);
+  box-shadow: 0 10px 28px rgba(0,0,0,0.24);
+  font: 750 12px/1 var(--font-heading);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-4px);
+  pointer-events: none;
+  transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease;
+}
+.deck-pane-toggle:hover,
+.deck-pane-toggle:focus-visible,
+.deck-pane-toggle[aria-expanded="true"] {
+  color: #fff;
+  border-color: var(--section-accent);
+  background: linear-gradient(135deg, var(--section-accent), var(--section-accent2));
+  box-shadow: 0 14px 34px rgba(var(--section-rgb),0.28);
+  transform: translateY(-2px);
+  outline: none;
+}
+.deck-pane-toggle:hover::after,
+.deck-pane-toggle:focus-visible::after {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.presentation-deck > .deck-pane-toggle + .deck-viewport {
+  position: relative;
+}
+
+/* Current-state section: subtle motion that supports, rather than competes with, the message. */
+#thuc-trang {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+#thuc-trang::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  top: 7%;
+  right: -8%;
+  width: clamp(320px, 34vw, 660px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(var(--section-rgb),0.17), rgba(var(--section-rgb),0.04) 48%, transparent 70%);
+  filter: blur(10px);
+  animation: issueAura 9s ease-in-out infinite;
+  pointer-events: none;
+}
+#thuc-trang > * {
+  position: relative;
+  z-index: 1;
+}
+#thuc-trang > .section-header {
+  max-width: 1500px;
+}
+#thuc-trang .section-header h2 .highlight {
+  background-size: 220% 100%;
+  animation: issueHeadlineFlow 6s ease-in-out infinite;
+}
+#thuc-trang .issue-card::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  inset: 0 auto 0 -24%;
+  width: 34%;
+  background: linear-gradient(100deg, transparent, rgba(var(--section-rgb),0.10), rgba(255,255,255,0.13), transparent);
+  transform: skewX(-16deg) translateX(-170%);
+  pointer-events: none;
+}
+#thuc-trang .issue-card > :is(.issue-kicker, h3, p, .issue-impact) {
+  position: relative;
+  z-index: 1;
+}
+#thuc-trang .issue-icon { z-index: 1; }
+#thuc-trang .deck-slide.is-active::before {
+  animation: issueCardSweep 1.25s cubic-bezier(0.22,1,0.36,1) both;
+}
+#thuc-trang .deck-slide.is-active .issue-icon {
+  animation: issueIconFloat 4.8s ease-in-out infinite;
+}
+#thuc-trang .deck-slide.is-active .issue-impact {
+  animation: issueImpactGlow 3.8s ease-in-out infinite;
+}
+@keyframes issueHeadlineFlow {
+  0%, 100% { background-position: 0% 50%; filter: saturate(0.95); }
+  50% { background-position: 100% 50%; filter: saturate(1.2); }
+}
+@keyframes issueAura {
+  0%, 100% { opacity: 0.55; transform: translate3d(0,0,0) scale(0.96); }
+  50% { opacity: 0.9; transform: translate3d(-5%,4%,0) scale(1.06); }
+}
+@keyframes issueCardSweep {
+  from { transform: skewX(-16deg) translateX(-170%); }
+  to { transform: skewX(-16deg) translateX(470%); }
+}
+@keyframes issueIconFloat {
+  0%, 100% { transform: translateY(-50%) rotate(-4deg); box-shadow: 0 24px 70px rgba(var(--section-rgb),0.17); }
+  50% { transform: translateY(calc(-50% - 8px)) rotate(2deg); box-shadow: 0 30px 82px rgba(var(--section-rgb),0.26); }
+}
+@keyframes issueImpactGlow {
+  0%, 100% { box-shadow: 0 0 0 rgba(var(--section-rgb),0); }
+  50% { box-shadow: 0 12px 34px rgba(var(--section-rgb),0.12); }
+}
+
 @media (max-width: 800px) {
   .hero-scroll-indicator { display: none; }
+  .content-overview-card p { max-width: 100%; }
+  .deck-pane-toggle { width: 44px; height: 44px; border-radius: 13px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .reveal,
@@ -2548,6 +3322,345 @@ body.standby-active { overflow: hidden; }
   .eco-card,
   .sol-card,
   .case-card { transition: none; }
+  #thuc-trang::before,
+  #thuc-trang .section-header h2 .highlight,
+  #thuc-trang .deck-slide.is-active::before,
+  #thuc-trang .deck-slide.is-active .issue-icon,
+  #thuc-trang .deck-slide.is-active .issue-impact { animation: none; }
+}
+
+/* ═══════════════════════════════════════
+   FULL-SCREEN PRESENTATION STORY
+   ═══════════════════════════════════════ */
+.presentation-section.has-deck-cover,
+.eco-section.has-deck-cover {
+  padding-top: clamp(24px, 3vh, 38px);
+  padding-bottom: clamp(30px, 4vh, 48px);
+}
+.presentation-section.has-deck-cover > .section-header,
+.eco-section.has-deck-cover .eco-intro {
+  display: none;
+}
+.has-deck-cover .deck-viewport {
+  min-height: clamp(590px, 82vh, 900px);
+}
+.deck-intro-slide {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  overflow: hidden;
+  padding: clamp(54px, 7vw, 112px);
+  border: 1px solid rgba(var(--section-rgb), 0.34);
+  border-radius: 28px;
+  background:
+    linear-gradient(105deg, rgba(var(--section-rgb), 0.16), transparent 58%),
+    radial-gradient(circle at 83% 50%, rgba(var(--section-rgb), 0.24), transparent 27%),
+    var(--bg-card);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
+}
+.deck-intro-slide::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: -28%;
+  right: -4%;
+  width: min(52vw, 760px);
+  aspect-ratio: 1;
+  border: 1px solid rgba(var(--section-rgb), 0.20);
+  border-radius: 42% 58% 55% 45%;
+  background: radial-gradient(circle at 38% 40%, rgba(var(--section-rgb),0.18), transparent 60%);
+  transform: rotate(-9deg);
+}
+.deck-intro-slide::after {
+  content: "VDCD GROUP";
+  position: absolute;
+  z-index: -1;
+  right: clamp(48px, 7vw, 118px);
+  bottom: clamp(44px, 6vh, 76px);
+  color: rgba(var(--section-rgb), 0.10);
+  font: 900 clamp(62px, 7vw, 124px)/0.9 var(--font-heading);
+  letter-spacing: -0.07em;
+  white-space: nowrap;
+}
+.deck-intro-kicker {
+  margin-bottom: clamp(24px, 3vh, 36px);
+  color: var(--section-accent);
+  font: 850 clamp(15px, 1.1vw, 19px)/1 var(--font-heading);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+.deck-intro-slide h3 {
+  max-width: min(74%, 1180px);
+  margin: 0 0 clamp(24px, 3vh, 34px);
+  color: var(--text);
+  font: 900 clamp(56px, 6.1vw, 96px)/1.02 var(--font-heading);
+  letter-spacing: -0.06em;
+}
+.deck-intro-slide h3 span {
+  color: var(--section-accent);
+  background: linear-gradient(120deg, var(--section-accent), var(--section-accent2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.deck-intro-slide p {
+  max-width: min(69%, 1040px);
+  margin: 0;
+  color: var(--text-muted);
+  font-size: clamp(22px, 1.65vw, 29px);
+  font-weight: 560;
+  line-height: 1.58;
+}
+.deck-intro-note {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: clamp(34px, 5vh, 54px);
+  padding: 13px 18px;
+  border: 1px solid rgba(var(--section-rgb), 0.30);
+  border-radius: 999px;
+  color: var(--section-accent);
+  background: rgba(var(--section-rgb), 0.08);
+  font-size: clamp(15px, 1vw, 18px);
+  font-weight: 750;
+}
+
+/* Nội dung slide ưu tiên vùng trái; nửa phải được dành sẵn cho ảnh minh họa sau này. */
+.has-deck-cover .presentation-deck :is(.cap-card, .eco-card, .sol-card, .issue-card) {
+  justify-content: flex-start;
+  padding: clamp(72px, 7vh, 100px) clamp(52px, 6vw, 96px);
+}
+.has-deck-cover .presentation-deck :is(.cap-card, .eco-card, .sol-card, .issue-card) > :is(h3, h4, p, .cap-tags, .sol-tags, .sol-links, .eco-link, .issue-kicker, .issue-impact) {
+  max-width: min(60%, 980px);
+}
+.has-deck-cover .presentation-deck :is(.cap-card, .eco-card, .sol-card, .issue-card) :is(h3, h4) {
+  color: color-mix(in srgb, var(--section-accent) 82%, var(--text) 18%);
+  font-size: clamp(54px, 4.8vw, 82px);
+  font-weight: 900;
+  line-height: 1.04;
+  letter-spacing: -0.05em;
+}
+.has-deck-cover .presentation-deck :is(.cap-card, .eco-card, .sol-card, .issue-card):hover :is(h3, h4) {
+  color: color-mix(in srgb, var(--section-accent) 82%, var(--text) 18%);
+}
+.has-deck-cover .presentation-deck :is(.cap-card, .eco-card, .sol-card, .issue-card) p {
+  color: color-mix(in srgb, var(--text-muted) 88%, var(--text) 12%);
+  font-size: clamp(23px, 1.82vw, 31px);
+  font-weight: 590;
+  line-height: 1.54;
+}
+.has-deck-cover .presentation-deck .cap-index,
+.has-deck-cover .presentation-deck .eco-number,
+.has-deck-cover .presentation-deck .issue-kicker {
+  color: var(--section-accent);
+  font-size: clamp(16px, 1.18vw, 20px);
+  font-weight: 850;
+  opacity: 1;
+}
+.has-deck-cover .presentation-deck .sol-number {
+  position: relative;
+  top: auto;
+  right: auto;
+  left: auto;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  width: auto;
+  margin: 0 0 clamp(22px, 2.5vh, 30px);
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  color: var(--section-accent);
+  background: none;
+  box-shadow: none;
+  font: 850 clamp(18px, 1.25vw, 22px)/1 var(--font-heading);
+  letter-spacing: 0.18em;
+  opacity: 1;
+  transform: none !important;
+}
+.has-deck-cover .presentation-deck .sol-number::after {
+  content: "";
+  width: clamp(46px, 4vw, 70px);
+  height: 3px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--section-accent), var(--section-accent2));
+}
+#giai-phap.has-deck-cover .presentation-deck .sol-number {
+  color: var(--section-accent);
+  text-shadow: none;
+}
+.has-deck-cover .presentation-deck .sol-card h4 {
+  margin-top: 0;
+}
+#phap-ly .legal-document-button {
+  height: min(68vh, 690px);
+  min-height: 520px;
+}
+.has-deck-cover .presentation-deck .issue-impact {
+  margin-top: clamp(28px, 4vh, 46px);
+  padding: 18px 22px;
+  font-size: clamp(19px, 1.4vw, 24px);
+  font-weight: 760;
+}
+.has-deck-cover .presentation-deck .cap-tags span,
+.has-deck-cover .presentation-deck .sol-tags span,
+.has-deck-cover .presentation-deck .eco-link,
+.has-deck-cover .presentation-deck .sol-link {
+  font-size: clamp(16px, 1.12vw, 19px);
+  font-weight: 750;
+}
+
+/* Ngăn slide lớn và dễ đọc trên màn chiếu. */
+.deck-slide-pane {
+  width: min(540px, 94vw);
+}
+.deck-pane-header {
+  padding: 30px 28px 22px;
+}
+.deck-pane-header strong {
+  color: color-mix(in srgb, var(--section-accent) 72%, #fff 28%);
+  font: 850 clamp(20px, 1.4vw, 24px)/1.25 var(--font-heading);
+}
+.deck-pane-close {
+  width: 46px;
+  height: 46px;
+}
+.deck-pane-list {
+  gap: 15px;
+  padding: 22px;
+}
+.deck-thumbnail {
+  grid-template-columns: 72px minmax(0, 1fr);
+  gap: 17px;
+  min-height: 118px;
+  padding: 15px;
+  border-radius: 18px;
+}
+.deck-thumbnail-number {
+  font-size: 20px;
+}
+.deck-thumbnail-copy strong {
+  margin-bottom: 8px;
+  color: color-mix(in srgb, var(--section-accent) 74%, #fff 26%);
+  font: 820 clamp(17px, 1.1vw, 20px)/1.32 var(--font-heading);
+}
+.deck-thumbnail-copy span {
+  font-size: 14px;
+  line-height: 1.48;
+  -webkit-line-clamp: 3;
+}
+
+/* Bản đồ nội dung chỉ còn bốn nhóm trọng tâm. */
+#noi-dung {
+  min-height: 100svh;
+  display: grid;
+  align-items: center;
+}
+.content-overview-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.content-overview-card {
+  min-height: clamp(270px, 30vh, 340px);
+}
+
+/* Liên hệ tập trung ở giữa; biểu mẫu chỉ mở khi người xem chủ động bấm nút. */
+.contact-grid {
+  width: min(1420px, 100%);
+  grid-template-columns: 1fr;
+  gap: 0;
+  padding: clamp(72px, 9vh, 110px) clamp(24px, 4vw, 64px);
+}
+.contact-info {
+  text-align: center;
+}
+.contact-info h3 {
+  margin-bottom: 20px;
+  font-size: clamp(46px, 5vw, 76px);
+  line-height: 1.05;
+}
+.contact-info > p {
+  max-width: 980px;
+  margin: 0 auto clamp(40px, 5vh, 60px);
+  font-size: clamp(20px, 1.4vw, 25px);
+  font-weight: 540;
+  line-height: 1.62;
+}
+.contact-details {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  width: 100%;
+  margin: 0 auto;
+}
+.contact-row {
+  align-items: center;
+  min-height: 106px;
+  padding: 20px;
+  border: 1px solid rgba(var(--section-rgb), 0.18);
+  border-radius: 18px;
+  text-align: left;
+  background: rgba(var(--section-rgb), 0.055);
+}
+.contact-row .label {
+  margin-bottom: 5px;
+  font-size: 13px;
+  font-weight: 750;
+}
+.contact-row .value {
+  font-size: clamp(16px, 1.05vw, 19px);
+  line-height: 1.45;
+}
+.contact-consultation-action {
+  display: flex;
+  justify-content: center;
+  margin-top: clamp(34px, 5vh, 54px);
+}
+.contact-consultation-button {
+  min-height: 60px;
+  padding: 17px 28px;
+  border-radius: 14px;
+  font-family: var(--font-heading);
+  font-size: clamp(17px, 1.15vw, 20px);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  text-rendering: optimizeLegibility;
+}
+
+@media (max-width: 900px) {
+  .deck-intro-slide h3,
+  .deck-intro-slide p,
+  .has-deck-cover .presentation-deck :is(.cap-card, .eco-card, .sol-card, .issue-card) > :is(h3, h4, p, .cap-tags, .sol-tags, .sol-links, .eco-link, .issue-kicker, .issue-impact) {
+    max-width: 78%;
+  }
+  .contact-details { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 700px) {
+  .has-deck-cover .deck-viewport { min-height: 610px; }
+  .deck-intro-slide { padding: 72px 28px 48px; }
+  .deck-intro-slide h3,
+  .deck-intro-slide p,
+  .has-deck-cover .presentation-deck :is(.cap-card, .eco-card, .sol-card, .issue-card) > :is(h3, h4, p, .cap-tags, .sol-tags, .sol-links, .eco-link, .issue-kicker, .issue-impact) {
+    max-width: 100%;
+  }
+  .deck-intro-slide::after { display: none; }
+  .has-deck-cover .presentation-deck :is(.cap-card, .eco-card, .sol-card, .issue-card) {
+    padding: 100px 28px 44px;
+  }
+  .has-deck-cover .presentation-deck :is(.cap-icon, .eco-icon, .sol-card .icon, .issue-icon) {
+    top: 24px;
+    right: 76px;
+    width: 64px;
+    transform: none;
+  }
+  .has-deck-cover .presentation-deck .sol-number { left: 28px; top: 32px; }
+  .content-overview-grid,
+  .contact-details { grid-template-columns: 1fr; }
+  .content-overview-card { min-height: 230px; }
 }
 </style>
 </head>
@@ -2598,7 +3711,9 @@ body.standby-active { overflow: hidden; }
         <span class="hero-wordmark-main">VDCD</span>
         <span class="hero-wordmark-group">Group</span>
       </div>
-      <div class="hero-badge reveal visible reveal-delay-1">Chi nhánh TP. Hồ Chí Minh</div>
+      <div class="hero-meta reveal visible reveal-delay-1">
+        <div class="hero-badge">Chi nhánh TP. Hồ Chí Minh</div>
+      </div>
       <h1 class="hero-tagline reveal visible reveal-delay-2">
         Đối tác công nghệ <span class="highlight">toàn diện</span> cho doanh nghiệp
       </h1>
@@ -2606,14 +3721,14 @@ body.standby-active { overflow: hidden; }
         VDCD Group kết nối <strong>BIM &amp; GIS, UAV/AI và Digital Twin</strong> thành một hệ sinh thái thống nhất — từ dữ liệu hiện trường đến nền tảng vận hành số cho doanh nghiệp và cơ quan quản lý.
       </p>
       <div class="hero-buttons reveal visible reveal-delay-4">
-        <a href="#nang-luc" class="btn btn-primary"><i class="fas fa-arrow-right"></i> Khám phá năng lực</a>
+        <a href="#noi-dung" class="btn btn-primary"><i class="fas fa-list-check"></i> Xem nội dung chính</a>
         <button class="btn btn-outline hero-video-trigger" id="heroVideoTrigger" type="button"><i class="fas fa-circle-play" aria-hidden="true"></i> Xem video giới thiệu</button>
       </div>
     </div>
   </div>
-  <a class="hero-scroll-indicator" href="#nang-luc" aria-label="Cuộn đến phần Năng lực">
+  <a class="hero-scroll-indicator" href="#phap-ly" aria-label="Bắt đầu nội dung trình bày VDCD Group">
     <span class="scroll-mouse" aria-hidden="true"></span>
-    <span>Khám phá</span>
+    <span>Bắt đầu</span>
   </a>
 </section>
 
@@ -2635,11 +3750,11 @@ body.standby-active { overflow: hidden; }
 <!-- ═══════════ STATS ═══════════ -->
 <section class="stats-section">
   <div class="stats-grid">
-    <div class="stat-item"><div class="num" data-count="500">500+</div><div class="label">Dự án hoàn thành</div></div>
-    <div class="stat-item"><div class="num" data-count="250">250+</div><div class="label">Khách hàng</div></div>
-    <div class="stat-item"><div class="num" data-count="20">20</div><div class="label">Năm phát triển</div></div>
+    <div class="stat-item"><div class="num">2006</div><div class="label">Năm thành lập</div></div>
     <div class="stat-item"><div class="num" data-count="12">12</div><div class="label">Trung tâm công nghệ</div></div>
     <div class="stat-item"><div class="num" data-count="7">7</div><div class="label">Thương hiệu hệ sinh thái</div></div>
+    <div class="stat-item"><div class="num" data-count="250">250+</div><div class="label">Khách hàng</div></div>
+    <div class="stat-item"><div class="num" data-count="500">500+</div><div class="label">Dự án hoàn thành</div></div>
   </div>
 </section>
 
@@ -2650,16 +3765,125 @@ body.standby-active { overflow: hidden; }
   </div>
 </div>
 
-<!-- ═══════════ NĂNG LỰC LÕI ═══════════ -->
-<section class="section presentation-section" id="nang-luc">
+<!-- ═══════════ PHÁP LÝ DOANH NGHIỆP ═══════════ -->
+<section class="section presentation-section has-deck-cover" id="phap-ly">
   <div class="section-header section-header-left reveal">
-    <div class="section-tag">01 · Core Capabilities</div>
+    <div class="section-tag">01 · Corporate Legal</div>
+    <h2>Nền tảng <span class="highlight">pháp lý minh bạch</span></h2>
+    <p class="section-sub">Hồ sơ đăng ký doanh nghiệp rõ ràng là nền tảng để VDCD Group đồng hành cùng cơ quan nhà nước, doanh nghiệp và các dự án quy mô lớn.</p>
+  </div>
+  <div class="presentation-deck legal-deck" data-deck data-next-section="#noi-dung" data-next-label="Sang Nội dung chính" aria-label="Trình chiếu pháp lý doanh nghiệp">
+    <div class="deck-viewport">
+      <div class="deck-track legal-track">
+        <article class="deck-intro-slide reveal">
+          <div class="deck-intro-kicker">01 · Corporate Legal</div>
+          <h3>Nền tảng <span>pháp lý minh bạch</span></h3>
+          <p>Hồ sơ đăng ký doanh nghiệp rõ ràng cùng định hướng dữ liệu quốc gia là nền tảng để VDCD Group đồng hành với cơ quan nhà nước, doanh nghiệp và các dự án quy mô lớn.</p>
+          <div class="deck-intro-note"><i class="fas fa-arrow-right" aria-hidden="true"></i> Bấm tiếp để xem hồ sơ và tài liệu pháp lý</div>
+        </article>
+        <article class="legal-slide legal-summary-slide reveal">
+          <div>
+            <div class="legal-kicker"><i class="fas fa-shield-halved" aria-hidden="true"></i> Hồ sơ doanh nghiệp</div>
+            <h3>Công ty CP Tổng công ty Công nghệ Thiết kế Xây dựng Việt Nam</h3>
+            <p>VDCD Group hoạt động trên nền tảng pháp lý minh bạch, định hướng phát triển hệ sinh thái công nghệ phục vụ chuyển đổi số, dữ liệu không gian và quản trị vận hành.</p>
+          </div>
+          <div class="legal-facts">
+            <div class="legal-fact"><strong>2700338327</strong><span>Mã số doanh nghiệp</span></div>
+            <div class="legal-fact"><strong>26.12.2006</strong><span>Ngày đăng ký lần đầu</span></div>
+            <div class="legal-fact"><strong>Ninh Bình</strong><span>Nơi đăng ký doanh nghiệp</span></div>
+            <div class="legal-fact"><strong>VDCD Group</strong><span>Tên giao dịch và nhận diện hệ sinh thái</span></div>
+          </div>
+        </article>
+        <article class="legal-slide legal-document-slide reveal">
+          <div class="legal-document-copy">
+            <div class="legal-kicker"><i class="fas fa-file-shield" aria-hidden="true"></i> 01 / 02</div>
+            <h3>Giấy chứng nhận đăng ký doanh nghiệp</h3>
+            <p>Mặt trước thể hiện thông tin đăng ký, mã số doanh nghiệp, vốn điều lệ và người đại diện theo pháp luật.</p>
+            <span class="legal-document-hint"><i class="fas fa-magnifying-glass-plus" aria-hidden="true"></i> Bấm vào tài liệu để phóng lớn</span>
+          </div>
+          <button class="legal-document-button" type="button" data-document-src="_resources/images/legal/gcn-dang-ky-doanh-nghiep-mat-truoc.png" data-document-title="Giấy chứng nhận đăng ký doanh nghiệp · Mặt trước" aria-label="Phóng lớn giấy chứng nhận đăng ký doanh nghiệp mặt trước">
+            <img src="_resources/images/legal/gcn-dang-ky-doanh-nghiep-mat-truoc.png" alt="Giấy chứng nhận đăng ký doanh nghiệp VDCD Group, mặt trước">
+          </button>
+        </article>
+        <article class="legal-slide legal-document-slide reveal">
+          <div class="legal-document-copy">
+            <div class="legal-kicker"><i class="fas fa-stamp" aria-hidden="true"></i> 02 / 02</div>
+            <h3>Thông tin xác nhận và chứng thực</h3>
+            <p>Mặt sau hoàn thiện hồ sơ chứng nhận với thông tin người đại diện, dấu xác nhận và cơ quan đăng ký kinh doanh.</p>
+            <span class="legal-document-hint"><i class="fas fa-magnifying-glass-plus" aria-hidden="true"></i> Bấm vào tài liệu để phóng lớn</span>
+          </div>
+          <button class="legal-document-button" type="button" data-document-src="_resources/images/legal/gcn-dang-ky-doanh-nghiep-mat-sau.png" data-document-title="Giấy chứng nhận đăng ký doanh nghiệp · Mặt sau" aria-label="Phóng lớn giấy chứng nhận đăng ký doanh nghiệp mặt sau">
+            <img src="_resources/images/legal/gcn-dang-ky-doanh-nghiep-mat-sau.png" alt="Giấy chứng nhận đăng ký doanh nghiệp VDCD Group, mặt sau">
+          </button>
+        </article>
+        <article class="legal-slide legal-document-slide reveal">
+          <div class="legal-document-copy">
+            <div class="legal-kicker"><i class="fas fa-landmark" aria-hidden="true"></i> Định hướng quốc gia</div>
+            <h3>Chiến lược dữ liệu quốc gia 2026 – 2030</h3>
+            <p>Quyết định số 1308/QĐ-TTg ngày 18/07/2026 phê duyệt Chiến lược dữ liệu quốc gia giai đoạn 2026 – 2030, tầm nhìn đến năm 2045.</p>
+            <span class="legal-document-hint"><i class="fas fa-magnifying-glass-plus" aria-hidden="true"></i> Bấm vào tài liệu để phóng lớn</span>
+          </div>
+          <button class="legal-document-button" type="button" data-document-src="_resources/images/legal/quyet-dinh-1308-chien-luoc-du-lieu-quoc-gia.png" data-document-title="Quyết định 1308/QĐ-TTg · Chiến lược dữ liệu quốc gia" aria-label="Phóng lớn Quyết định 1308 về Chiến lược dữ liệu quốc gia">
+            <img src="_resources/images/legal/quyet-dinh-1308-chien-luoc-du-lieu-quoc-gia.png" alt="Quyết định 1308/QĐ-TTg phê duyệt Chiến lược dữ liệu quốc gia giai đoạn 2026 đến 2030">
+          </button>
+        </article>
+      </div>
+    </div>
+    <div class="deck-controls">
+      <button class="deck-nav deck-prev" type="button" aria-label="Xem slide trước"><i class="fas fa-arrow-left"></i><span>Trước</span></button>
+      <div class="deck-status" aria-live="polite">
+        <span class="deck-counter"><strong data-deck-current>01</strong><span>/</span><span data-deck-total>05</span></span>
+        <span class="deck-progress-track" aria-hidden="true"><span data-deck-progress></span></span>
+        <span class="deck-key-hint">← → đổi slide · ↑ ↓ đổi hạng mục</span>
+      </div>
+      <button class="deck-nav deck-next" type="button" aria-label="Xem slide tiếp theo"><span data-deck-next-text>Tiếp theo</span><i class="fas fa-arrow-right"></i></button>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ NỘI DUNG TRÌNH BÀY CHÍNH ═══════════ -->
+<section class="section content-overview-section" id="noi-dung">
+  <div class="content-overview-inner">
+    <div class="section-header reveal">
+      <div class="section-tag">02 · Presentation Map</div>
+      <h2>Nội dung <span class="highlight">trình bày chính</span></h2>
+      <p class="section-sub">Bốn nội dung trọng tâm giúp người xem chuyển nhanh đến phần cần trình bày hoặc tiếp tục cuộn để theo dõi toàn bộ câu chuyện.</p>
+    </div>
+    <div class="content-overview-grid">
+      <a class="content-overview-card reveal" href="#nang-luc"><span class="content-overview-number">01</span><i class="fas fa-microchip" aria-hidden="true"></i><h3>Năng lực công nghệ lõi</h3><p>BIM, GIS, UAV, AI, Digital Twin và các nền tảng phần mềm chuyên biệt.</p></a>
+      <a class="content-overview-card reveal" href="#he-sinh-thai"><span class="content-overview-number">02</span><i class="fas fa-diagram-project" aria-hidden="true"></i><h3>Hệ sinh thái thương hiệu</h3><p>Bảy thương hiệu chuyên sâu cùng vận hành trên một nền tảng năng lực thống nhất.</p></a>
+      <a class="content-overview-card reveal" href="#thuc-trang"><span class="content-overview-number">03</span><i class="fas fa-triangle-exclamation" aria-hidden="true"></i><h3>Thực trạng chuyển đổi số</h3><p>Một số rào cản cốt lõi đang làm giảm hiệu quả đầu tư và vận hành tại nhiều đơn vị.</p></a>
+      <a class="content-overview-card reveal" href="#giai-phap"><span class="content-overview-number">04</span><i class="fas fa-lightbulb" aria-hidden="true"></i><h3>Giải pháp theo lĩnh vực</h3><p>Những hướng triển khai phù hợp với bài toán thực tế của từng ngành và đơn vị.</p></a>
+    </div>
+  </div>
+</section>
+
+<section class="document-modal" id="documentModal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="documentModalTitle">
+  <div class="document-dialog">
+    <div class="overlay-toolbar">
+      <h3 id="documentModalTitle">Tài liệu pháp lý VDCD Group</h3>
+      <button class="overlay-close" id="documentModalClose" type="button" aria-label="Đóng tài liệu"><i class="fas fa-xmark" aria-hidden="true"></i></button>
+    </div>
+    <div class="document-stage"><img id="documentModalImage" alt=""></div>
+  </div>
+</section>
+
+<!-- ═══════════ NĂNG LỰC LÕI ═══════════ -->
+<section class="section presentation-section has-deck-cover" id="nang-luc">
+  <div class="section-header section-header-left reveal">
+    <div class="section-tag">03 · Core Capabilities</div>
     <h2>Năng lực <span class="highlight">công nghệ lõi</span></h2>
     <p class="section-sub">Làm chủ chuỗi công nghệ từ thu thập dữ liệu hiện trường, mô hình hóa không gian đến phân tích AI và vận hành trên nền tảng số.</p>
   </div>
   <div class="presentation-deck" data-deck data-next-section="#he-sinh-thai" data-next-label="Sang Hệ sinh thái" aria-label="Trình chiếu năng lực công nghệ lõi">
     <div class="deck-viewport">
       <div class="caps-grid deck-track">
+    <article class="deck-intro-slide reveal">
+      <div class="deck-intro-kicker">03 · Core Capabilities</div>
+      <h3>Năng lực <span>công nghệ lõi</span></h3>
+      <p>Làm chủ chuỗi công nghệ từ thu thập dữ liệu hiện trường, mô hình hóa không gian đến phân tích AI và vận hành trên nền tảng số.</p>
+      <div class="deck-intro-note"><i class="fas fa-arrow-right" aria-hidden="true"></i> Bấm tiếp để khám phá 6 nhóm năng lực</div>
+    </article>
     <article class="cap-card cap-card-featured reveal reveal-delay-1">
       <span class="cap-watermark" aria-hidden="true">BIM + GIS</span>
       <div class="cap-card-top"><span class="cap-index">01 / 06</span><div class="cap-icon"><i class="fas fa-cubes"></i></div></div>
@@ -2702,7 +3926,7 @@ body.standby-active { overflow: hidden; }
     <div class="deck-controls">
       <button class="deck-nav deck-prev" type="button" aria-label="Xem slide trước"><i class="fas fa-arrow-left"></i><span>Trước</span></button>
       <div class="deck-status" aria-live="polite">
-        <span class="deck-counter"><strong data-deck-current>01</strong><span>/</span><span data-deck-total>06</span></span>
+        <span class="deck-counter"><strong data-deck-current>01</strong><span>/</span><span data-deck-total>07</span></span>
         <span class="deck-progress-track" aria-hidden="true"><span data-deck-progress></span></span>
         <span class="deck-key-hint">← → đổi slide · ↑ ↓ đổi hạng mục</span>
       </div>
@@ -2712,18 +3936,24 @@ body.standby-active { overflow: hidden; }
 </section>
 
 <!-- ═══════════ HỆ SINH THÁI ═══════════ -->
-<section class="eco-section" id="he-sinh-thai">
+<section class="eco-section has-deck-cover" id="he-sinh-thai">
   <div class="eco-layout">
     <div class="eco-intro reveal">
       <div class="section-header section-header-left">
-        <div class="section-tag">02 · Ecosystem</div>
+        <div class="section-tag">04 · Ecosystem</div>
         <h2>Hệ sinh thái <span class="highlight">7 thương hiệu</span></h2>
         <p class="section-sub">Mỗi thương hiệu giải quyết một mắt xích chuyên sâu, cùng vận hành trên nền tảng dữ liệu, đội ngũ và năng lực công nghệ thống nhất của VDCD Group.</p>
       </div>
     </div>
-    <div class="presentation-deck" data-deck data-next-section="#giai-phap" data-next-label="Sang Giải pháp" aria-label="Trình chiếu hệ sinh thái thương hiệu">
+    <div class="presentation-deck" data-deck data-next-section="#thuc-trang" data-next-label="Sang Thực trạng" aria-label="Trình chiếu hệ sinh thái thương hiệu">
       <div class="deck-viewport">
         <div class="eco-grid deck-track">
+      <article class="deck-intro-slide reveal">
+        <div class="deck-intro-kicker">04 · Ecosystem</div>
+        <h3>Hệ sinh thái <span>7 thương hiệu</span></h3>
+        <p>Mỗi thương hiệu giải quyết một mắt xích chuyên sâu, cùng vận hành trên nền tảng dữ liệu, đội ngũ và năng lực công nghệ thống nhất của VDCD Group.</p>
+        <div class="deck-intro-note"><i class="fas fa-arrow-right" aria-hidden="true"></i> Bấm tiếp để xem từng thương hiệu</div>
+      </article>
       <article class="eco-card reveal reveal-delay-2">
         <div class="eco-card-head"><span class="eco-icon"><i class="fas fa-camera"></i></span><span class="eco-number">01</span></div>
         <h4>Auto Timelapse</h4><p>Giám sát công trình liên tục và tự động hóa quy trình sản xuất nội dung timelapse.</p>
@@ -2764,7 +3994,7 @@ body.standby-active { overflow: hidden; }
       <div class="deck-controls">
         <button class="deck-nav deck-prev" type="button" aria-label="Xem slide trước"><i class="fas fa-arrow-left"></i><span>Trước</span></button>
         <div class="deck-status" aria-live="polite">
-          <span class="deck-counter"><strong data-deck-current>01</strong><span>/</span><span data-deck-total>07</span></span>
+          <span class="deck-counter"><strong data-deck-current>01</strong><span>/</span><span data-deck-total>08</span></span>
           <span class="deck-progress-track" aria-hidden="true"><span data-deck-progress></span></span>
           <span class="deck-key-hint">← → đổi slide · ↑ ↓ đổi hạng mục</span>
         </div>
@@ -2774,16 +4004,76 @@ body.standby-active { overflow: hidden; }
   </div>
 </section>
 
-<!-- ═══════════ GIẢI PHÁP ═══════════ -->
-<section class="section presentation-section" id="giai-phap">
+<!-- ═══════════ THỰC TRẠNG CHUYỂN ĐỔI SỐ ═══════════ -->
+<section class="section presentation-section has-deck-cover" id="thuc-trang">
   <div class="section-header section-header-left reveal">
-    <div class="section-tag">03 · Industry Solutions</div>
+    <div class="section-tag">05 · Current State</div>
+    <h2>Một số rào cản trong <span class="highlight">chuyển đổi số hiện nay</span></h2>
+    <p class="section-sub">Từ thực tiễn triển khai, VDCD nhận thấy nhiều đơn vị chưa đạt hiệu quả tối ưu vì quy trình, dữ liệu, đầu tư và chiến lược chưa được kết nối thành một tổng thể.</p>
+  </div>
+  <div class="presentation-deck" data-deck data-next-section="#giai-phap" data-next-label="Sang Giải pháp" aria-label="Trình chiếu thực trạng chuyển đổi số">
+    <div class="deck-viewport">
+      <div class="deck-track issues-track">
+        <article class="deck-intro-slide reveal">
+          <div class="deck-intro-kicker">05 · Current State</div>
+          <h3>Một số rào cản trong <span>chuyển đổi số hiện nay</span></h3>
+          <p>Từ thực tiễn triển khai, VDCD nhận thấy nhiều đơn vị chưa đạt hiệu quả tối ưu vì quy trình, dữ liệu, đầu tư và chiến lược chưa được kết nối thành một tổng thể.</p>
+          <div class="deck-intro-note"><i class="fas fa-arrow-right" aria-hidden="true"></i> Bấm tiếp để nhận diện từng rào cản</div>
+        </article>
+        <article class="issue-card reveal">
+          <div class="issue-kicker">01 · Quy trình</div><span class="issue-icon"><i class="fas fa-file-pen" aria-hidden="true"></i></span>
+          <h3>Vận hành thủ công</h3>
+          <p>Nhiều khâu phê duyệt và xử lý vẫn phụ thuộc vào văn bản, giấy tờ; dữ liệu giữa các phòng ban thiếu liên thông và đồng bộ.</p>
+          <div class="issue-impact">Hệ quả: thời gian xử lý kéo dài, khó kiểm soát tiến độ và phát sinh nhiều thao tác lặp lại.</div>
+        </article>
+        <article class="issue-card reveal">
+          <div class="issue-kicker">02 · Dữ liệu</div><span class="issue-icon"><i class="fas fa-sitemap" aria-hidden="true"></i></span>
+          <h3>Dữ liệu rời rạc</h3>
+          <p>Thông tin bị phân mảnh trên Excel, hồ sơ giấy và nhiều nền tảng lưu trữ khác nhau, gây khó khăn trong tra cứu, đối soát và tổng hợp báo cáo.</p>
+          <div class="issue-impact">Hệ quả: quyết định thiếu dữ liệu xuyên suốt và khó hình thành một nguồn thông tin dùng chung.</div>
+        </article>
+        <article class="issue-card reveal">
+          <div class="issue-kicker">03 · Đầu tư</div><span class="issue-icon"><i class="fas fa-chart-pie" aria-hidden="true"></i></span>
+          <h3>Đầu tư thiếu tập trung</h3>
+          <p>Nguồn lực được phân bổ dàn trải cho các phần mềm đơn lẻ, thiếu khả năng kết nối và chưa tạo thành một hệ sinh thái số xuyên suốt.</p>
+          <div class="issue-impact">Hệ quả: chi phí tăng nhưng hiệu quả khai thác thấp, khó mở rộng khi nhu cầu thay đổi.</div>
+        </article>
+        <article class="issue-card reveal">
+          <div class="issue-kicker">04 · Chiến lược</div><span class="issue-icon"><i class="fas fa-map-location-dot" aria-hidden="true"></i></span>
+          <h3>Thiếu chiến lược tổng thể</h3>
+          <p>Đơn vị chưa có lộ trình chuyển đổi số bài bản, bám sát quy mô, nguồn lực và đặc thù vận hành của chính mình.</p>
+          <div class="issue-impact">Hệ quả: các sáng kiến khó đo lường, thiếu thứ tự ưu tiên và không tạo được thay đổi bền vững.</div>
+        </article>
+      </div>
+    </div>
+    <div class="deck-controls">
+      <button class="deck-nav deck-prev" type="button" aria-label="Xem slide trước"><i class="fas fa-arrow-left"></i><span>Trước</span></button>
+      <div class="deck-status" aria-live="polite">
+        <span class="deck-counter"><strong data-deck-current>01</strong><span>/</span><span data-deck-total>05</span></span>
+        <span class="deck-progress-track" aria-hidden="true"><span data-deck-progress></span></span>
+        <span class="deck-key-hint">← → đổi slide · ↑ ↓ đổi hạng mục</span>
+      </div>
+      <button class="deck-nav deck-next" type="button" aria-label="Xem slide tiếp theo"><span data-deck-next-text>Tiếp theo</span><i class="fas fa-arrow-right"></i></button>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ GIẢI PHÁP ═══════════ -->
+<section class="section presentation-section has-deck-cover" id="giai-phap">
+  <div class="section-header section-header-left reveal">
+    <div class="section-tag">06 · Industry Solutions</div>
     <h2>Giải pháp theo <span class="highlight">lĩnh vực</span></h2>
-    <p class="section-sub">Chuyển năng lực công nghệ thành giải pháp theo từng bài toán ngành — đo lường được hiệu quả, dễ mở rộng và sẵn sàng tích hợp.</p>
+    <p class="section-sub">“Chúng tôi mong muốn được lắng nghe những khó khăn, nhu cầu và mục tiêu thực tế của Quý đơn vị. Khi hiểu đúng vấn đề, VDCD sẽ đề xuất giải pháp phù hợp và hiệu quả nhất.”</p>
   </div>
   <div class="presentation-deck" data-deck data-next-section="#du-an" data-next-label="Sang Dự án" aria-label="Trình chiếu giải pháp theo lĩnh vực">
     <div class="deck-viewport">
       <div class="solutions-grid deck-track">
+    <article class="deck-intro-slide reveal">
+      <div class="deck-intro-kicker">06 · Industry Solutions</div>
+      <h3>Giải pháp theo <span>lĩnh vực</span></h3>
+      <p>“Chúng tôi mong muốn được lắng nghe những khó khăn, nhu cầu và mục tiêu thực tế của Quý đơn vị. Khi hiểu đúng vấn đề, VDCD sẽ đề xuất giải pháp phù hợp và hiệu quả nhất.”</p>
+      <div class="deck-intro-note"><i class="fas fa-arrow-right" aria-hidden="true"></i> Bấm tiếp để xem giải pháp theo từng ngành</div>
+    </article>
     <article class="sol-card reveal">
       <span class="sol-number">01</span><span class="icon"><i class="fas fa-leaf"></i></span>
       <h4>Nông nghiệp &amp; Lâm nghiệp</h4><p>Số hóa hiện trạng bằng UAV/GIS, giám sát mùa vụ, kiểm kê rừng và kết nối dữ liệu truy xuất phục vụ quản lý tập trung.</p>
@@ -2862,7 +4152,7 @@ body.standby-active { overflow: hidden; }
     <div class="deck-controls">
       <button class="deck-nav deck-prev" type="button" aria-label="Xem slide trước"><i class="fas fa-arrow-left"></i><span>Trước</span></button>
       <div class="deck-status" aria-live="polite">
-        <span class="deck-counter"><strong data-deck-current>01</strong><span>/</span><span data-deck-total>11</span></span>
+        <span class="deck-counter"><strong data-deck-current>01</strong><span>/</span><span data-deck-total>12</span></span>
         <span class="deck-progress-track" aria-hidden="true"><span data-deck-progress></span></span>
         <span class="deck-key-hint">← → đổi slide · ↑ ↓ đổi hạng mục</span>
       </div>
@@ -2874,7 +4164,7 @@ body.standby-active { overflow: hidden; }
 <!-- ═══════════ CASE STUDIES ═══════════ -->
 <section class="section" id="du-an">
   <div class="section-header reveal">
-    <div class="section-tag">Case Studies</div>
+    <div class="section-tag">07 · Case Studies</div>
     <h2>Dự án <span class="highlight">tiêu biểu</span></h2>
     <p class="section-sub">Hơn 500 dự án hoàn thành trên khắp cả nước — từ quy hoạch đô thị, chuyển đổi số đến bảo tồn di sản.</p>
   </div>
@@ -3164,31 +4454,46 @@ body.standby-active { overflow: hidden; }
         </div>
 
       </div>
+      <div class="contact-consultation-action">
+        <button class="btn btn-primary contact-consultation-button" id="consultationTrigger" type="button"><i class="fas fa-paper-plane" aria-hidden="true"></i> Gửi yêu cầu tư vấn</button>
+      </div>
     </div>
+  </div>
+</section>
 
-    <form class="contact-form reveal reveal-delay-2" onsubmit="event.preventDefault(); alert('Cảm ơn bạn đã quan tâm! VDCD Group sẽ liên hệ lại trong thời gian sớm nhất.');">
-      <h4>Gửi yêu cầu tư vấn</h4>
-      <div class="form-group">
-        <label>Họ và tên</label>
-        <input type="text" placeholder="Nguyễn Văn A" required>
+<section class="consultation-modal" id="consultationModal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="consultationModalTitle">
+  <div class="consultation-dialog">
+    <div class="overlay-toolbar">
+      <div>
+        <div class="section-tag" style="margin-bottom:8px;">Kết nối cùng VDCD</div>
+        <h3 id="consultationModalTitle">Gửi yêu cầu tư vấn</h3>
       </div>
-      <div class="form-group">
-        <label>Email</label>
-        <input type="email" placeholder="email@example.com" required>
+      <button class="overlay-close" id="consultationClose" type="button" aria-label="Đóng biểu mẫu tư vấn"><i class="fas fa-xmark" aria-hidden="true"></i></button>
+    </div>
+    <form class="contact-form" id="consultationForm">
+      <div class="consultation-form-grid">
+        <div class="form-group">
+          <label for="consultationName">Họ và tên</label>
+          <input id="consultationName" type="text" placeholder="Nguyễn Văn A" required>
+        </div>
+        <div class="form-group">
+          <label for="consultationEmail">Email</label>
+          <input id="consultationEmail" type="email" placeholder="email@example.com" required>
+        </div>
+        <div class="form-group">
+          <label for="consultationPhone">Số điện thoại</label>
+          <input id="consultationPhone" type="tel" placeholder="090 123 4567">
+        </div>
+        <div class="form-group">
+          <label for="consultationField">Lĩnh vực quan tâm</label>
+          <input id="consultationField" type="text" placeholder="BIM & GIS, UAV/AI, Chuyển đổi số...">
+        </div>
+        <div class="form-group form-group-full">
+          <label for="consultationMessage">Nội dung</label>
+          <textarea id="consultationMessage" placeholder="Quý đơn vị đang gặp khó khăn gì và mong muốn đạt được kết quả nào?" rows="4"></textarea>
+        </div>
       </div>
-      <div class="form-group">
-        <label>Số điện thoại</label>
-        <input type="tel" placeholder="090 123 4567">
-      </div>
-      <div class="form-group">
-        <label>Lĩnh vực quan tâm</label>
-        <input type="text" placeholder="BIM & GIS, UAV/AI, Chuyển đổi số...">
-      </div>
-      <div class="form-group">
-        <label>Nội dung</label>
-        <textarea placeholder="VDCD Group quan tâm đến dự án của chúng tôi..." rows="4"></textarea>
-      </div>
-      <button type="submit" class="form-submit"><i class="fas fa-paper-plane"></i> Gửi yêu cầu</button>
+      <button type="submit" class="form-submit"><i class="fas fa-paper-plane" aria-hidden="true"></i> Gửi yêu cầu</button>
     </form>
   </div>
 </section>
@@ -3247,6 +4552,7 @@ presentationDecks.forEach((deck, deckIndex) => {
   let currentIndex = 0;
   let touchStartX = 0;
   let touchStartY = 0;
+  let paneItems = [];
 
   deck.setAttribute('role', 'region');
   deck.setAttribute('aria-roledescription', 'carousel');
@@ -3259,6 +4565,95 @@ presentationDecks.forEach((deck, deckIndex) => {
     slide.setAttribute('aria-roledescription', 'slide');
     slide.setAttribute('aria-label', `${index + 1} / ${slides.length}${slideTitle ? ` · ${slideTitle}` : ''}`);
   });
+
+  const sectionTitle = deck.closest('section')?.querySelector('h2')?.textContent?.trim() || `Hạng mục ${deckIndex + 1}`;
+  const controls = deck.querySelector('.deck-controls');
+  const paneToggle = document.createElement('button');
+  paneToggle.className = 'deck-pane-toggle';
+  paneToggle.type = 'button';
+  paneToggle.setAttribute('aria-expanded', 'false');
+  paneToggle.setAttribute('aria-label', `Mở ngăn slide ${sectionTitle}`);
+  paneToggle.title = 'Ngăn slide';
+  paneToggle.innerHTML = '<i class="fas fa-table-list" aria-hidden="true"></i>';
+  deck.insertBefore(paneToggle, deck.firstChild);
+
+  const paneBackdrop = document.createElement('button');
+  paneBackdrop.className = 'deck-pane-backdrop';
+  paneBackdrop.type = 'button';
+  paneBackdrop.setAttribute('aria-label', 'Đóng ngăn slide');
+
+  const pane = document.createElement('aside');
+  pane.className = 'deck-slide-pane';
+  pane.setAttribute('aria-label', `Danh sách slide · ${sectionTitle}`);
+  const paneHeader = document.createElement('div');
+  paneHeader.className = 'deck-pane-header';
+  const paneHeading = document.createElement('strong');
+  paneHeading.textContent = sectionTitle;
+  const paneClose = document.createElement('button');
+  paneClose.className = 'deck-pane-close';
+  paneClose.type = 'button';
+  paneClose.setAttribute('aria-label', 'Đóng ngăn slide');
+  paneClose.innerHTML = '<i class="fas fa-xmark" aria-hidden="true"></i>';
+  paneHeader.append(paneHeading, paneClose);
+
+  const paneList = document.createElement('div');
+  paneList.className = 'deck-pane-list';
+  paneItems = slides.map((slide, index) => {
+    const title = slide.querySelector('h3, h4, .solution-path-title')?.textContent?.trim() || `Slide ${index + 1}`;
+    const description = slide.querySelector('p')?.textContent?.trim() || 'Chọn để chuyển nhanh đến nội dung này.';
+    const thumbnail = document.createElement('button');
+    thumbnail.className = 'deck-thumbnail';
+    thumbnail.type = 'button';
+    thumbnail.setAttribute('aria-label', `Mở slide ${index + 1}: ${title}`);
+    const number = document.createElement('span');
+    number.className = 'deck-thumbnail-number';
+    number.textContent = String(index + 1).padStart(2, '0');
+    const copy = document.createElement('span');
+    copy.className = 'deck-thumbnail-copy';
+    const name = document.createElement('strong');
+    name.textContent = title;
+    const summary = document.createElement('span');
+    summary.textContent = description;
+    copy.append(name, summary);
+    thumbnail.append(number, copy);
+    paneList.append(thumbnail);
+    return thumbnail;
+  });
+  pane.append(paneHeader, paneList);
+  deck.append(paneBackdrop, pane);
+
+  function closePane(restoreFocus = true) {
+    if (!deck.classList.contains('pane-open')) return;
+    deck.classList.remove('pane-open');
+    document.body.classList.remove('deck-pane-active');
+    paneToggle.setAttribute('aria-expanded', 'false');
+    if (restoreFocus) paneToggle.focus({ preventScroll: true });
+  }
+
+  function openPane() {
+    document.querySelectorAll('[data-deck].pane-open').forEach(openDeck => {
+      if (openDeck !== deck) openDeck.closeSlidePane?.(false);
+    });
+    deck.classList.add('pane-open');
+    document.body.classList.add('deck-pane-active');
+    paneToggle.setAttribute('aria-expanded', 'true');
+    paneItems[currentIndex]?.focus({ preventScroll: true });
+  }
+
+  paneToggle.addEventListener('click', () => deck.classList.contains('pane-open') ? closePane() : openPane());
+  paneClose.addEventListener('click', () => closePane());
+  paneBackdrop.addEventListener('click', () => closePane());
+  paneItems.forEach((item, index) => {
+    item.addEventListener('click', () => {
+      renderSlide(index);
+      closePane(false);
+      deck.focus({ preventScroll: true });
+    });
+  });
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && deck.classList.contains('pane-open')) closePane();
+  });
+  deck.closeSlidePane = closePane;
 
   function renderSlide(nextIndex) {
     currentIndex = Math.max(0, Math.min(nextIndex, slides.length - 1));
@@ -3285,6 +4680,11 @@ presentationDecks.forEach((deck, deckIndex) => {
     if (totalLabel) totalLabel.textContent = String(slides.length).padStart(2, '0');
     if (progress) progress.style.transform = `scaleX(${(currentIndex + 1) / slides.length})`;
     if (nextText) nextText.textContent = isFinalSlide ? deck.dataset.nextLabel : 'Tiếp theo';
+    paneItems.forEach((item, index) => {
+      item.classList.toggle('is-active', index === currentIndex);
+      if (index === currentIndex) item.setAttribute('aria-current', 'true');
+      else item.removeAttribute('aria-current');
+    });
   }
 
   function goNext() {
@@ -3317,7 +4717,7 @@ presentationDecks.forEach((deck, deckIndex) => {
     deltaX < 0 ? goNext() : goPrevious();
   }, { passive: true });
 
-  deck.presentationControls = { goNext, goPrevious };
+  deck.presentationControls = { goNext, goPrevious, goToSlide: renderSlide };
   renderSlide(0);
 });
 
@@ -3341,7 +4741,7 @@ function getPresentationDeckInView() {
     })[0] || null;
 }
 
-const presentationSections = ['nang-luc', 'he-sinh-thai', 'giai-phap', 'du-an']
+const presentationSections = ['phap-ly', 'noi-dung', 'nang-luc', 'he-sinh-thai', 'thuc-trang', 'giai-phap', 'du-an']
   .map(id => document.getElementById(id))
   .filter(Boolean);
 
@@ -3377,7 +4777,13 @@ function moveBetweenPresentationSections(direction) {
 }
 
 document.addEventListener('keydown', event => {
-  if (document.body.classList.contains('standby-active') || document.body.classList.contains('video-modal-active')) return;
+  if (
+    document.body.classList.contains('standby-active') ||
+    document.body.classList.contains('video-modal-active') ||
+    document.body.classList.contains('document-modal-active') ||
+    document.body.classList.contains('consultation-modal-active') ||
+    document.body.classList.contains('deck-pane-active')
+  ) return;
   if (event.target instanceof HTMLElement && (event.target.matches('input, textarea, select') || event.target.isContentEditable)) return;
   if (!['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(event.key)) return;
 
@@ -3634,6 +5040,90 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   });
   document.addEventListener('keydown', event => {
     if (event.key === 'Escape' && videoModalActive) closeVideoModal();
+  });
+})();
+
+/* ═══════════════════════════════════════
+   LEGAL DOCUMENT VIEWER
+   ═══════════════════════════════════════ */
+(function() {
+  const modal = document.getElementById('documentModal');
+  const modalImage = document.getElementById('documentModalImage');
+  const modalTitle = document.getElementById('documentModalTitle');
+  const closeButton = document.getElementById('documentModalClose');
+  const triggers = [...document.querySelectorAll('[data-document-src]')];
+  if (!modal || !modalImage || !modalTitle || !closeButton || !triggers.length) return;
+
+  let activeTrigger = null;
+
+  function openDocument(trigger) {
+    activeTrigger = trigger;
+    modalImage.src = trigger.dataset.documentSrc;
+    modalImage.alt = trigger.dataset.documentTitle || 'Tài liệu pháp lý VDCD Group';
+    modalTitle.textContent = trigger.dataset.documentTitle || 'Tài liệu pháp lý VDCD Group';
+    document.body.classList.add('document-modal-active');
+    modal.classList.add('active');
+    modal.setAttribute('aria-hidden', 'false');
+    requestAnimationFrame(() => closeButton.focus({ preventScroll: true }));
+  }
+
+  function closeDocument() {
+    if (!modal.classList.contains('active')) return;
+    modal.classList.remove('active');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('document-modal-active');
+    modalImage.removeAttribute('src');
+    activeTrigger?.focus({ preventScroll: true });
+    activeTrigger = null;
+  }
+
+  triggers.forEach(trigger => trigger.addEventListener('click', () => openDocument(trigger)));
+  closeButton.addEventListener('click', closeDocument);
+  modal.addEventListener('pointerdown', event => {
+    if (event.target === modal) closeDocument();
+  });
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && modal.classList.contains('active')) closeDocument();
+  });
+})();
+
+/* ═══════════════════════════════════════
+   CONSULTATION FORM OVERLAY
+   ═══════════════════════════════════════ */
+(function() {
+  const trigger = document.getElementById('consultationTrigger');
+  const modal = document.getElementById('consultationModal');
+  const closeButton = document.getElementById('consultationClose');
+  const form = document.getElementById('consultationForm');
+  if (!trigger || !modal || !closeButton || !form) return;
+
+  function openConsultation() {
+    document.body.classList.add('consultation-modal-active');
+    modal.classList.add('active');
+    modal.setAttribute('aria-hidden', 'false');
+    requestAnimationFrame(() => closeButton.focus({ preventScroll: true }));
+  }
+
+  function closeConsultation() {
+    if (!modal.classList.contains('active')) return;
+    modal.classList.remove('active');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('consultation-modal-active');
+    trigger.focus({ preventScroll: true });
+  }
+
+  trigger.addEventListener('click', openConsultation);
+  closeButton.addEventListener('click', closeConsultation);
+  modal.addEventListener('pointerdown', event => {
+    if (event.target === modal) closeConsultation();
+  });
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && modal.classList.contains('active')) closeConsultation();
+  });
+  form.addEventListener('submit', event => {
+    event.preventDefault();
+    alert('Cảm ơn bạn đã quan tâm! VDCD Group sẽ liên hệ lại trong thời gian sớm nhất.');
+    closeConsultation();
   });
 })();
 
