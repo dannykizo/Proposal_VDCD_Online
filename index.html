@@ -5997,16 +5997,20 @@ presentationDecks.forEach((deck, deckIndex) => {
 
   const paneList = document.createElement('div');
   paneList.className = 'deck-pane-list';
-  paneItems = slides.map((slide, index) => {
-    const title = slide.dataset.slideTitle || slide.querySelector('h3, h4, .solution-path-title')?.textContent?.trim() || `Slide ${index + 1}`;
+  const paneSlides = slides
+    .map((slide, slideIndex) => ({ slide, slideIndex }))
+    .filter(({ slide }) => !slide.classList.contains('deck-intro-slide'));
+
+  paneItems = paneSlides.map(({ slide, slideIndex }, paneIndex) => {
+    const title = slide.dataset.slideTitle || slide.querySelector('h3, h4, .solution-path-title')?.textContent?.trim() || `Nội dung ${paneIndex + 1}`;
     const description = slide.querySelector('p')?.textContent?.trim() || 'Chọn để chuyển nhanh đến nội dung này.';
     const thumbnail = document.createElement('button');
     thumbnail.className = 'deck-thumbnail';
     thumbnail.type = 'button';
-    thumbnail.setAttribute('aria-label', `Mở slide ${index + 1}: ${title}`);
+    thumbnail.setAttribute('aria-label', `Mở nội dung ${paneIndex + 1}: ${title}`);
     const number = document.createElement('span');
     number.className = 'deck-thumbnail-number';
-    number.textContent = String(index + 1).padStart(2, '0');
+    number.textContent = String(paneIndex + 1).padStart(2, '0');
     const copy = document.createElement('span');
     copy.className = 'deck-thumbnail-copy';
     const name = document.createElement('strong');
@@ -6016,7 +6020,7 @@ presentationDecks.forEach((deck, deckIndex) => {
     copy.append(name, summary);
     thumbnail.append(number, copy);
     paneList.append(thumbnail);
-    return thumbnail;
+    return { element: thumbnail, slideIndex };
   });
   pane.append(paneHeader, paneList);
   deck.append(pane);
@@ -6035,9 +6039,9 @@ presentationDecks.forEach((deck, deckIndex) => {
   edgeNext.innerHTML = '<i class="fas fa-chevron-right" aria-hidden="true"></i>';
   viewport?.append(edgePrevious, edgeNext);
 
-  paneItems.forEach((item, index) => {
-    item.addEventListener('click', () => {
-      renderSlide(index);
+  paneItems.forEach(({ element, slideIndex }) => {
+    element.addEventListener('click', () => {
+      renderSlide(slideIndex);
       deck.focus({ preventScroll: true });
     });
   });
@@ -6070,10 +6074,10 @@ presentationDecks.forEach((deck, deckIndex) => {
     if (totalLabel) totalLabel.textContent = String(slides.length).padStart(2, '0');
     if (progress) progress.style.transform = `scaleX(${(currentIndex + 1) / slides.length})`;
     if (nextText) nextText.textContent = isFinalSlide ? deck.dataset.nextLabel : 'Tiếp theo';
-    paneItems.forEach((item, index) => {
-      item.classList.toggle('is-active', index === currentIndex);
-      if (index === currentIndex) item.setAttribute('aria-current', 'true');
-      else item.removeAttribute('aria-current');
+    paneItems.forEach(({ element, slideIndex }) => {
+      element.classList.toggle('is-active', slideIndex === currentIndex);
+      if (slideIndex === currentIndex) element.setAttribute('aria-current', 'true');
+      else element.removeAttribute('aria-current');
     });
   }
 
