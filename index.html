@@ -4587,7 +4587,12 @@ body.solution-explorer-active { overflow: hidden; }
   background: linear-gradient(90deg, var(--solution-accent), var(--solution-accent2));
   box-shadow: 0 0 16px rgba(var(--solution-rgb), 0.22);
 }
-.solution-explorer-value-grid,
+.solution-explorer-value-grid {
+  width: min(100%, 1160px);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(20px, 2.8vh, 34px);
+}
 .solution-explorer-chip-grid {
   width: 100%;
   display: grid;
@@ -4595,17 +4600,28 @@ body.solution-explorer-active { overflow: hidden; }
   gap: clamp(12px, 1.2vw, 18px);
 }
 .solution-explorer-value {
-  min-height: 132px;
-  display: flex;
-  align-items: center;
-  padding: clamp(22px, 2vw, 30px);
-  border: 1px solid rgba(var(--solution-rgb), 0.28);
-  border-left: 5px solid var(--solution-accent);
-  border-radius: 18px;
+  position: relative;
+  min-height: 0;
+  margin: 0;
+  padding: 0 0 0 clamp(28px, 2.2vw, 38px);
+  border: 0;
+  border-radius: 0;
   color: #182235;
-  background: rgba(255,255,255,0.72);
-  box-shadow: 0 16px 36px rgba(var(--solution-rgb), 0.08);
-  font: 780 clamp(19px, 1.4vw, 26px)/1.48 var(--font-heading);
+  background: transparent;
+  box-shadow: none;
+  font: 820 clamp(28px, 2.25vw, 42px)/1.3 var(--font-heading);
+  letter-spacing: -0.025em;
+}
+.solution-explorer-value::before {
+  content: '';
+  position: absolute;
+  top: 0.16em;
+  bottom: 0.16em;
+  left: 0;
+  width: 5px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, var(--solution-accent), var(--solution-accent2));
+  box-shadow: 0 0 18px rgba(var(--solution-rgb), 0.22);
 }
 .solution-explorer-chip {
   min-height: 92px;
@@ -4837,8 +4853,12 @@ body.solution-explorer-active { overflow: hidden; }
   .solution-explorer-counter { display: none; }
   .solution-explorer-list,
   .solution-explorer-pane-list,
-  .solution-explorer-value-grid,
   .solution-explorer-chip-grid { grid-template-columns: 1fr; }
+  .solution-explorer-value-grid { gap: 18px; }
+  .solution-explorer-value {
+    padding-left: 24px;
+    font-size: clamp(23px, 7vw, 30px);
+  }
   .solution-explorer-catalog { padding: 28px 20px; }
   .solution-explorer-card { min-height: 160px; }
   .solution-explorer-slide { padding: 78px 48px 48px; }
@@ -5772,7 +5792,7 @@ body.solution-explorer-active { overflow: hidden; }
           <i class="fas fa-map-marker-alt"></i>
           <div>
             <div class="label">Văn phòng TP.HCM</div>
-            <div class="value">Chi nhánh VDCD Group tại TP. Hồ Chí Minh</div>
+            <div class="value">75 D12 Khu vườn Bason, KDC Đông Tăng Long, Phường Long Trường, Thành phố Hồ Chí Minh</div>
           </div>
         </div>
 
@@ -6543,7 +6563,11 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
             'Theo dõi biến động đất đai, hiện trạng xây dựng theo thời gian.',
             'Cung cấp dữ liệu, bản đồ và hệ thống tra cứu cho cơ quan quản lý và người dân.'
           ],
-          value: ['Hình thành nguồn dữ liệu đất đai – không gian số chính xác, tập trung và thống nhất phục vụ quản lý nhà nước.'],
+          value: [
+            'Hình thành nguồn dữ liệu đất đai',
+            'Không gian số chính xác',
+            'Tập trung và thống nhất phục vụ quản lý nhà nước'
+          ],
           benefits: ['Minh bạch hóa thông tin đất đai', 'Giảm sai lệch và chồng chéo hồ sơ', 'Rút ngắn thời gian xử lý thủ tục'],
           customers: ['UBND tỉnh, huyện', 'Sở Nông nghiệp và Môi trường', 'Văn phòng đăng ký đất đai', 'Xúc tiến Thương mại và Đầu tư']
         },
@@ -6902,7 +6926,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     if (slide.type === 'bullets') {
       body = `<ul class="solution-explorer-bullets">${slide.items.map(item => `<li>${escapeHTML(item)}</li>`).join('')}</ul>`;
     } else if (slide.type === 'value') {
-      body = `<div class="solution-explorer-value-grid">${slide.items.map(item => `<div class="solution-explorer-value">${escapeHTML(item)}</div>`).join('')}</div>`;
+      body = `<div class="solution-explorer-value-grid">${slide.items.map(item => `<p class="solution-explorer-value">${escapeHTML(item)}</p>`).join('')}</div>`;
     } else {
       body = `<div class="solution-explorer-chip-grid">${slide.items.map(item => `<div class="solution-explorer-chip"><i class="fas ${escapeHTML(slide.itemIcon)}" aria-hidden="true"></i><span>${escapeHTML(item)}</span></div>`).join('')}</div>`;
     }
