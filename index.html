@@ -4947,7 +4947,7 @@ body.solution-explorer-active { overflow: hidden; }
 <section class="section presentation-section has-deck-cover" id="thuc-trang">
   <div class="section-header section-header-left reveal">
     <div class="section-tag">05 · Current State</div>
-    <h2>Bức tranh <span class="highlight">thực trạng chuyển đổi số</span></h2>
+    <h2>Thực trạng công tác <span class="highlight">chuyển đổi số hiện nay chưa được tập trung</span></h2>
     <p class="section-sub">Chuyển đổi số đang mở ra nhiều cơ hội, đồng thời đặt ra nhu cầu kết nối quy trình, dữ liệu, nguồn lực và chiến lược thành một hệ thống thống nhất.</p>
   </div>
   <div class="presentation-deck" data-deck data-next-section="#giai-phap" data-next-label="Sang Giải pháp" aria-label="Trình chiếu thực trạng chuyển đổi số">
@@ -4955,7 +4955,7 @@ body.solution-explorer-active { overflow: hidden; }
       <div class="deck-track issues-track">
         <article class="deck-intro-slide reveal">
           <div class="deck-intro-kicker">05 · Current State</div>
-          <h3>Bức tranh <span>thực trạng chuyển đổi số</span></h3>
+          <h3>Thực trạng công tác <span>chuyển đổi số hiện nay chưa được tập trung</span></h3>
           <p>Nhận diện đúng thực trạng là bước đầu để lựa chọn giải pháp đúng, phù hợp với nhu cầu, nguồn lực và mục tiêu của từng đơn vị.</p>
           <div class="deck-intro-note"><i class="fas fa-arrow-right" aria-hidden="true"></i> Bấm cánh phải slide để khám phá 4 phương diện thực trạng</div>
         </article>
@@ -5076,7 +5076,7 @@ body.solution-explorer-active { overflow: hidden; }
       <div class="sol-tags"><span>Smart Industry</span><span>IoT Monitoring</span><span>Digital Twin</span></div>
       <div class="sol-links"><a class="sol-link" href="https://www.youtube.com/watch?v=YugKM0IW8OE" target="_blank" rel="noopener" aria-label="Xem video Khu công nghiệp thông minh"><i class="fab fa-youtube"></i> Xem video</a></div>
     </article>
-        <div class="solution-paths" aria-label="Danh mục giải pháp theo nhóm khách hàng">
+        <div class="solution-paths" data-slide-title="Giải pháp theo nhóm khách hàng" aria-label="Danh mục giải pháp theo nhóm khách hàng">
           <button class="solution-path solution-path-public" type="button" data-solution-catalog="government" aria-label="Mở 7 giải pháp dành cho quản lý nhà nước">
             <span class="solution-path-icon" aria-hidden="true"><i class="fas fa-landmark"></i></span>
             <span class="solution-path-title">Giải pháp dành cho Quản lý Nhà nước</span>
@@ -5533,7 +5533,7 @@ presentationDecks.forEach((deck, deckIndex) => {
   deck.setAttribute('tabindex', '0');
 
   slides.forEach((slide, index) => {
-    const slideTitle = slide.querySelector('h3, h4, .solution-path-title')?.textContent?.trim();
+    const slideTitle = slide.dataset.slideTitle || slide.querySelector('h3, h4, .solution-path-title')?.textContent?.trim();
     slide.classList.add('deck-slide');
     slide.setAttribute('role', 'group');
     slide.setAttribute('aria-roledescription', 'slide');
@@ -5554,7 +5554,7 @@ presentationDecks.forEach((deck, deckIndex) => {
   const paneList = document.createElement('div');
   paneList.className = 'deck-pane-list';
   paneItems = slides.map((slide, index) => {
-    const title = slide.querySelector('h3, h4, .solution-path-title')?.textContent?.trim() || `Slide ${index + 1}`;
+    const title = slide.dataset.slideTitle || slide.querySelector('h3, h4, .solution-path-title')?.textContent?.trim() || `Slide ${index + 1}`;
     const description = slide.querySelector('p')?.textContent?.trim() || 'Chọn để chuyển nhanh đến nội dung này.';
     const thumbnail = document.createElement('button');
     thumbnail.className = 'deck-thumbnail';
@@ -6121,7 +6121,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
           ],
           value: ['Hình thành nguồn dữ liệu đất đai – không gian số chính xác, tập trung và thống nhất phục vụ quản lý nhà nước.'],
           benefits: ['Minh bạch hóa thông tin đất đai', 'Giảm sai lệch và chồng chéo hồ sơ', 'Rút ngắn thời gian xử lý thủ tục'],
-          customers: ['UBND tỉnh, huyện', 'Sở Nông nghiệp và Môi trường', 'Văn phòng đăng ký đất đai']
+          customers: ['UBND tỉnh, huyện', 'Sở Nông nghiệp và Môi trường', 'Văn phòng đăng ký đất đai', 'Xúc tiến Thương mại và Đầu tư']
         },
         {
           title: 'BIM & Quản lý dự án xây dựng',
