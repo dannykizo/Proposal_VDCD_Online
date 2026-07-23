@@ -2208,6 +2208,36 @@ body.video-modal-active { overflow: hidden; }
   font-size: 15px;
   font-weight: 750;
 }
+.legal-document-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 18px;
+  margin-top: 28px;
+}
+.legal-document-actions .legal-document-hint { margin-top: 0; }
+.legal-document-source {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 42px;
+  padding: 10px 15px;
+  border: 1px solid rgba(var(--section-rgb), 0.30);
+  border-radius: 12px;
+  color: var(--section-accent);
+  background: rgba(var(--section-rgb), 0.08);
+  font-size: 14px;
+  font-weight: 780;
+  text-decoration: none;
+  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+.legal-document-source:hover,
+.legal-document-source:focus-visible {
+  transform: translateY(-2px);
+  border-color: rgba(var(--section-rgb), 0.55);
+  background: rgba(var(--section-rgb), 0.14);
+  outline: none;
+}
 
 .issue-card {
   position: relative;
@@ -4987,7 +5017,7 @@ body.solution-explorer-active { overflow: hidden; }
   <div class="section-header section-header-left reveal">
     <div class="section-tag">01 · Corporate Legal</div>
     <h2>Nền tảng <span class="highlight">pháp lý minh bạch</span></h2>
-    <p class="section-sub">Hồ sơ đăng ký doanh nghiệp rõ ràng là nền tảng để VDCD Group đồng hành cùng cơ quan nhà nước, doanh nghiệp và các dự án quy mô lớn.</p>
+    <p class="section-sub">Hồ sơ doanh nghiệp rõ ràng cùng các định hướng, chỉ đạo quốc gia về dữ liệu là nền tảng để VDCD Group đồng hành với cơ quan nhà nước, doanh nghiệp và các dự án quy mô lớn.</p>
   </div>
   <div class="presentation-deck legal-deck" data-deck data-next-section="#trung-tam-cong-nghe" data-next-label="Sang Trung tâm công nghệ" aria-label="Trình chiếu pháp lý doanh nghiệp">
     <div class="deck-viewport">
@@ -4995,7 +5025,7 @@ body.solution-explorer-active { overflow: hidden; }
         <article class="deck-intro-slide reveal">
           <div class="deck-intro-kicker">01 · Corporate Legal</div>
           <h3>Nền tảng <span>pháp lý minh bạch</span></h3>
-          <p>Hồ sơ đăng ký doanh nghiệp rõ ràng cùng định hướng dữ liệu quốc gia là nền tảng để VDCD Group đồng hành với cơ quan nhà nước, doanh nghiệp và các dự án quy mô lớn.</p>
+          <p>Hồ sơ doanh nghiệp rõ ràng cùng các định hướng, chỉ đạo quốc gia về dữ liệu là nền tảng để VDCD Group đồng hành với cơ quan nhà nước, doanh nghiệp và các dự án quy mô lớn.</p>
           <div class="deck-intro-note"><i class="fas fa-arrow-right" aria-hidden="true"></i> Bấm cánh phải slide để xem hồ sơ và tài liệu pháp lý</div>
         </article>
         <article class="legal-slide legal-summary-slide reveal">
@@ -5044,12 +5074,26 @@ body.solution-explorer-active { overflow: hidden; }
             <img src="_resources/images/legal/quyet-dinh-1308-chien-luoc-du-lieu-quoc-gia.png" alt="Quyết định 1308/QĐ-TTg phê duyệt Chiến lược dữ liệu quốc gia giai đoạn 2026 đến 2030">
           </button>
         </article>
+        <article class="legal-slide legal-document-slide reveal" data-slide-title="Chỉ thị 05/CT-TTg về dữ liệu đất đai">
+          <div class="legal-document-copy">
+            <div class="legal-kicker"><i class="fas fa-map-location-dot" aria-hidden="true"></i> Chỉ đạo của Thủ tướng Chính phủ</div>
+            <h3>Đẩy nhanh xây dựng cơ sở dữ liệu quốc gia về đất đai</h3>
+            <p>Chỉ thị số 05/CT-TTg ngày 13/02/2026 yêu cầu khẩn trương tập trung nguồn lực đẩy nhanh đo đạc, lập bản đồ địa chính, đăng ký đất đai, lập hồ sơ địa chính và xây dựng cơ sở dữ liệu quốc gia về đất đai.</p>
+            <div class="legal-document-actions">
+              <span class="legal-document-hint"><i class="fas fa-magnifying-glass-plus" aria-hidden="true"></i> Bấm vào tài liệu để phóng lớn</span>
+              <a class="legal-document-source" href="https://datafiles.chinhphu.vn/cpp/files/vbpq/2026/02/05ct.signed.pdf" target="_blank" rel="noopener noreferrer"><i class="fas fa-file-pdf" aria-hidden="true"></i> Xem văn bản chính thức</a>
+            </div>
+          </div>
+          <button class="legal-document-button" type="button" data-document-src="_resources/images/legal/chi-thi-05-ct-ttg-du-lieu-dat-dai.png" data-document-title="Chỉ thị 05/CT-TTg · Cơ sở dữ liệu quốc gia về đất đai" aria-label="Phóng lớn Chỉ thị 05/CT-TTg về xây dựng cơ sở dữ liệu quốc gia về đất đai">
+            <img src="_resources/images/legal/chi-thi-05-ct-ttg-du-lieu-dat-dai.png" alt="Trang đầu Chỉ thị 05/CT-TTg ngày 13 tháng 02 năm 2026 của Thủ tướng Chính phủ về cơ sở dữ liệu quốc gia về đất đai">
+          </button>
+        </article>
       </div>
     </div>
     <div class="deck-controls">
       <button class="deck-nav deck-prev" type="button" aria-label="Xem slide trước"><i class="fas fa-arrow-left"></i><span>Trước</span></button>
       <div class="deck-status" aria-live="polite">
-        <span class="deck-counter"><strong data-deck-current>01</strong><span>/</span><span data-deck-total>05</span></span>
+        <span class="deck-counter"><strong data-deck-current>01</strong><span>/</span><span data-deck-total>06</span></span>
         <span class="deck-progress-track" aria-hidden="true"><span data-deck-progress></span></span>
         <span class="deck-key-hint">← → đổi slide · ↑ ↓ đổi hạng mục</span>
       </div>
