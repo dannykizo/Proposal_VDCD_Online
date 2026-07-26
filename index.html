@@ -267,15 +267,15 @@ body.presentation-content-active .nav:focus-within {
   will-change: opacity, transform;
 }
 .hero-background-slide:nth-child(1) {
-  background-image: url('_resources/images/Banners/Artboard-1-1-1.webp');
+  background-image: url('_resources/images/Banners/hero-honeycomb-construction.webp');
   animation-delay: 0s;
 }
 .hero-background-slide:nth-child(2) {
-  background-image: url('_resources/images/Banners/Artboard-2-1.webp');
+  background-image: url('_resources/images/Banners/hero-honeycomb-energy.webp');
   animation-delay: 4s;
 }
 .hero-background-slide:nth-child(3) {
-  background-image: url('_resources/images/Banners/Artboard-3-1.webp');
+  background-image: url('_resources/images/Banners/hero-honeycomb-tourism.webp');
   animation-delay: 8s;
 }
 @keyframes heroBannerFade {
@@ -4572,6 +4572,49 @@ body.solution-explorer-active { overflow: hidden; }
   z-index: 2;
   width: min(78%, 1160px);
 }
+.solution-explorer-slide.has-application-image {
+  isolation: isolate;
+}
+.solution-explorer-slide.has-application-image .solution-explorer-slide-copy {
+  width: min(58%, 900px);
+}
+.solution-explorer-slide.has-application-image .solution-explorer-bullets {
+  max-width: 860px;
+}
+.solution-explorer-application-media {
+  position: absolute;
+  z-index: 0;
+  inset: 0 0 0 44%;
+  overflow: hidden;
+  margin: 0;
+  pointer-events: none;
+}
+.solution-explorer-application-media::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      90deg,
+      #f8fafc 0%,
+      rgba(248,250,252,0.97) 10%,
+      rgba(248,250,252,0.78) 27%,
+      rgba(248,250,252,0.28) 54%,
+      rgba(248,250,252,0.06) 76%,
+      transparent 100%
+    ),
+    linear-gradient(0deg, rgba(248,250,252,0.12), rgba(248,250,252,0.02) 48%, rgba(248,250,252,0.12));
+}
+.solution-explorer-application-media img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+  filter: saturate(0.94) contrast(0.96);
+  transform: scale(1.015);
+  animation: solutionExplorerImageReveal 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
 .solution-explorer-title {
   margin-bottom: clamp(18px, 2.3vh, 28px);
   font-size: clamp(44px, 4.25vw, 76px);
@@ -4866,6 +4909,10 @@ body.solution-explorer-active { overflow: hidden; }
   from { opacity: 0; transform: translateX(24px); }
   to { opacity: 1; transform: translateX(0); }
 }
+@keyframes solutionExplorerImageReveal {
+  from { opacity: 0; transform: scale(1.07); }
+  to { opacity: 1; transform: scale(1.015); }
+}
 @media (max-width: 1200px) {
   .solution-explorer-layout { grid-template-columns: minmax(0, 1fr) 240px; }
   .solution-explorer-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -4883,6 +4930,14 @@ body.solution-explorer-active { overflow: hidden; }
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
   .solution-explorer-slide-copy { width: 100%; }
+  .solution-explorer-slide.has-application-image .solution-explorer-slide-copy { width: 100%; }
+  .solution-explorer-slide.has-application-image .solution-explorer-application-media {
+    inset: 0;
+    opacity: 0.18;
+  }
+  .solution-explorer-slide.has-application-image .solution-explorer-application-media::after {
+    background: rgba(248,250,252,0.38);
+  }
   .solution-explorer-slide-visual { opacity: 0.12; }
 }
 @media (max-width: 560px) {
@@ -4914,6 +4969,7 @@ body.solution-explorer-active { overflow: hidden; }
   .solution-explorer-shell,
   .solution-explorer-catalog,
   .solution-explorer-slide,
+  .solution-explorer-application-media img,
   .solution-explorer-card,
   .solution-explorer-pane-item { animation: none; transition: none; }
 }
@@ -5350,7 +5406,8 @@ html {
 .deck-home-button {
   position: absolute;
   z-index: 24;
-  left: clamp(78px, 7vw, 132px);
+  right: clamp(20px, 1.8vw, 34px);
+  left: auto;
   bottom: clamp(24px, 3vh, 38px);
   display: inline-flex;
   align-items: center;
@@ -5374,6 +5431,9 @@ html {
   background: var(--section-accent);
   transform: translateY(-2px);
   outline: none;
+}
+.deck-home-button[hidden] {
+  display: none;
 }
 .deck-home-button i { font-size: 0.9em; }
 
@@ -5426,7 +5486,8 @@ html {
     border-width: 1px 0 0;
   }
   .deck-home-button {
-    left: 68px;
+    right: 18px;
+    left: auto;
     bottom: 18px;
   }
 }
@@ -6602,23 +6663,21 @@ presentationDecks.forEach((deck, deckIndex) => {
     slide.setAttribute('role', 'group');
     slide.setAttribute('aria-roledescription', 'slide');
     slide.setAttribute('aria-label', `${index + 1} / ${slides.length}${slideTitle ? ` · ${slideTitle}` : ''}`);
-    if (index > 0) {
-      const homeButton = document.createElement('button');
-      homeButton.className = 'deck-home-button';
-      homeButton.type = 'button';
-      homeButton.setAttribute('aria-label', `Trở về slide giới thiệu của ${deck.getAttribute('aria-label') || 'hạng mục'}`);
-      homeButton.innerHTML = '<i class="fas fa-rotate-left" aria-hidden="true"></i><span>Về slide đầu</span>';
-      homeButton.addEventListener('click', event => {
-        event.stopPropagation();
-        renderSlide(0);
-        deck.focus({ preventScroll: true });
-      });
-      slide.append(homeButton);
-    }
   });
 
   const sectionTitle = deck.closest('section')?.querySelector('h2')?.textContent?.trim() || `Hạng mục ${deckIndex + 1}`;
   const viewport = deck.querySelector('.deck-viewport');
+  const homeButton = document.createElement('button');
+  homeButton.className = 'deck-home-button';
+  homeButton.type = 'button';
+  homeButton.hidden = true;
+  homeButton.setAttribute('aria-label', `Trở về slide giới thiệu của ${sectionTitle}`);
+  homeButton.innerHTML = '<i class="fas fa-rotate-left" aria-hidden="true"></i><span>Về slide đầu</span>';
+  homeButton.addEventListener('click', event => {
+    event.stopPropagation();
+    renderSlide(0);
+    deck.focus({ preventScroll: true });
+  });
   const pane = document.createElement('aside');
   pane.className = 'deck-slide-pane';
   pane.setAttribute('aria-label', `Danh sách slide · ${sectionTitle}`);
@@ -6670,7 +6729,7 @@ presentationDecks.forEach((deck, deckIndex) => {
   edgeNext.setAttribute('aria-label', 'Xem slide tiếp theo');
   edgeNext.title = 'Slide tiếp theo';
   edgeNext.innerHTML = '<i class="fas fa-chevron-right" aria-hidden="true"></i>';
-  viewport?.append(edgePrevious, edgeNext);
+  viewport?.append(edgePrevious, edgeNext, homeButton);
 
   paneItems.forEach(({ element, slideIndex }) => {
     element.addEventListener('click', () => {
@@ -6695,6 +6754,7 @@ presentationDecks.forEach((deck, deckIndex) => {
         }
       });
     });
+    homeButton.hidden = currentIndex === 0;
 
     const isFinalSlide = currentIndex === slides.length - 1;
     previousButton.disabled = currentIndex === 0;
@@ -7405,6 +7465,8 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
           title: 'Dữ liệu không gian & Bản đồ số',
           summary: 'Hợp nhất dữ liệu đất đai, công trình và hạ tầng trên nền UAV – GIS – AI để phục vụ quản lý, quy hoạch và tra cứu.',
           icon: 'fa-map-location-dot',
+          applicationImage: '_resources/images/applications/application-gov-spatial.webp',
+          applicationImageAlt: 'Dữ liệu khảo sát hiện trạng được tích hợp trên nền bản đồ số',
           technologies: ['UAV & xử lý dữ liệu', 'GIS – Bản đồ số', 'Data Center', 'AI'],
           content: [
             'Xây dựng cơ sở dữ liệu không gian 2D, 3D chuyên ngành về đất đai, công trình và hạ tầng trên nền tảng UAV – GIS – AI.',
@@ -7431,6 +7493,8 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
           title: 'BIM & Quản lý dự án xây dựng',
           summary: 'Chuẩn hóa dữ liệu thiết kế, thi công và giám sát để các bên phối hợp trên một nguồn thông tin thống nhất.',
           icon: 'fa-cubes-stacked',
+          applicationImage: '_resources/images/applications/application-gov-bim.webp',
+          applicationImageAlt: 'Toàn cảnh công trường phục vụ giám sát và quản lý dự án xây dựng',
           technologies: ['BIM', 'UAV & Auto Timelapse', 'Nền tảng đám mây', 'AI'],
           content: [
             'Khảo sát, phân tích hiện trạng; tư vấn ý tưởng thiết kế và lập quy hoạch phân khu, quy hoạch chi tiết.',
@@ -7453,6 +7517,8 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
           title: 'Kiểm kê rừng, cây trồng & Tài nguyên sinh thái',
           summary: 'Số hóa hiện trạng, định lượng biến động và tăng khả năng giám sát tài nguyên rừng bằng dữ liệu đa thời gian.',
           icon: 'fa-tree',
+          applicationImage: '_resources/images/applications/application-gov-forest.webp',
+          applicationImageAlt: 'Thiết bị quan trắc tại khu vực đồi núi phục vụ giám sát tài nguyên sinh thái',
           technologies: ['UAV', 'GIS – Bản đồ số', 'AI sinh thái', 'Giám sát thông minh'],
           content: [
             'Bay quét UAV lập bản đồ rừng 2D, 3D và bản đồ địa hình – cao độ phục vụ quản lý, quy hoạch rừng.',
@@ -7477,6 +7543,8 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
           title: 'Giám sát thiên tai & Sạt lở',
           summary: 'Tạo chuỗi dữ liệu khảo sát – mô phỏng – cảnh báo để chủ động đánh giá và giảm thiểu rủi ro thiên tai.',
           icon: 'fa-cloud-bolt',
+          applicationImage: '_resources/images/applications/application-gov-disaster.webp',
+          applicationImageAlt: 'Hiện tượng thời tiết cực đoan tại đô thị phục vụ minh họa giám sát rủi ro thiên tai',
           technologies: ['UAV địa hình', 'GIS rủi ro', 'Mô phỏng', 'AI cảnh báo sớm'],
           content: [
             'Khảo sát địa hình khu vực rủi ro bằng UAV 2D, 3D đối với sạt lở, ngập lụt và lũ quét.',
@@ -7504,6 +7572,8 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
           title: 'Auto Timelapse & Giám sát công trình',
           summary: 'Biến hình ảnh thi công liên tục thành dữ liệu đối soát tiến độ, chất lượng và minh bạch dự án.',
           icon: 'fa-camera-retro',
+          applicationImage: '_resources/images/applications/application-gov-timelapse.webp',
+          applicationImageAlt: 'Công trình trên địa hình phức tạp được theo dõi bằng Auto Timelapse',
           technologies: ['Auto Timelapse 24/7', 'Phân tích tiến độ', 'AI cảnh báo', 'Data Center'],
           content: [
             'Giám sát trực tuyến 24/7 tiến độ và hiện trạng thi công bằng hệ thống Auto Timelapse.',
@@ -7528,6 +7598,8 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
           title: 'Hạ tầng dữ liệu & Nền tảng điều hành cấp tỉnh',
           summary: 'Kết nối dữ liệu đa ngành trên hạ tầng tập trung, hỗ trợ lãnh đạo giám sát và ra quyết định dựa trên dữ liệu.',
           icon: 'fa-server',
+          applicationImage: '_resources/images/applications/application-gov-data-platform.webp',
+          applicationImageAlt: 'Hệ thống phân tích dữ liệu giao thông phục vụ giám sát và điều hành',
           technologies: ['Software', 'Data Center', 'IOC', 'AI hỗ trợ quyết định'],
           content: [
             'Quy hoạch, thiết kế và triển khai Data Center cùng hạ tầng lưu trữ, sao lưu, bảo mật dữ liệu cấp tỉnh, ngành.',
@@ -7557,6 +7629,8 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
           title: 'Đề án chuyển đổi số cấp tỉnh',
           summary: 'Chuẩn bị dữ liệu nền và danh mục đề án ưu tiên để địa phương triển khai chuyển đổi số theo lộ trình có căn cứ.',
           icon: 'fa-building-shield',
+          applicationImage: '_resources/images/applications/application-gov-digital-transformation.webp',
+          applicationImageAlt: 'Các sản phẩm công nghệ được giới thiệu trong hoạt động hợp tác và chuyển đổi số',
           technologies: ['Dữ liệu nền', 'Khảo sát tiền khả thi', 'Kiến trúc tích hợp'],
           content: [
             'Đề án đô thị thông minh gắn với dữ liệu và nhu cầu điều hành của địa phương.',
@@ -7585,6 +7659,8 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
           title: 'Số hóa không gian & Dữ liệu dự án',
           summary: 'Tạo nguồn dữ liệu hiện trạng thống nhất cho đầu tư, định giá, pháp lý và quản lý vòng đời dự án.',
           icon: 'fa-map',
+          applicationImage: '_resources/images/applications/application-business-spatial.webp',
+          applicationImageAlt: 'Khảo sát toàn cảnh quỹ đất và hạ tầng dự án bằng dữ liệu không gian',
           technologies: ['UAV', 'Trắc địa số', 'GIS', 'Cơ sở dữ liệu không gian'],
           content: [
             'Khảo sát địa hình 2D, 3D phục vụ đầu tư, mua bán bất động sản bằng trắc địa số.',
@@ -7602,6 +7678,8 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
           title: 'Giám sát tiến độ & Hiện trạng 24/7',
           summary: 'Theo dõi công trường liên tục, phát hiện bất thường và tạo bằng chứng trực quan cho báo cáo, nghiệm thu, đối soát.',
           icon: 'fa-clock-rotate-left',
+          applicationImage: '_resources/images/applications/application-business-progress.webp',
+          applicationImageAlt: 'Chuỗi hình ảnh thể hiện tiến độ thi công của dự án theo thời gian',
           technologies: ['Auto Timelapse', 'AI cảnh báo', 'Báo cáo số'],
           content: [
             'Theo dõi, giám sát tiến độ công trình bằng Auto Timelapse.',
@@ -7620,6 +7698,8 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
           title: 'BIM & Phối hợp quản lý dự án',
           summary: 'Thiết lập một nguồn dữ liệu thống nhất để chủ đầu tư, nhà thầu và tư vấn phối hợp xuyên suốt dự án.',
           icon: 'fa-cube',
+          applicationImage: '_resources/images/applications/application-business-bim.webp',
+          applicationImageAlt: 'Công trường xây dựng quy mô lớn phục vụ phối hợp quản lý dự án',
           technologies: ['BIM', 'Nền tảng đám mây', 'UAV', 'Auto Timelapse'],
           content: [
             'Tư vấn, thiết lập quy chuẩn BIM cho dự án và doanh nghiệp.',
@@ -7637,6 +7717,8 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
           title: 'Mô hình số & Truyền thông dự án',
           summary: 'Chuyển dữ liệu kỹ thuật thành hình ảnh, mô hình và câu chuyện trực quan để tăng hiệu quả thuyết trình, truyền thông, bán hàng.',
           icon: 'fa-film',
+          applicationImage: '_resources/images/applications/application-business-digital-model.webp',
+          applicationImageAlt: 'Đội ngũ triển khai mô hình trực quan phục vụ trình bày và truyền thông dự án',
           technologies: ['3D & VR360', 'UAV', 'Sa bàn ảo', 'Truyền thông số'],
           content: [
             'Truyền thông tiến độ bằng dữ liệu thực tế và xây dựng những thước phim lịch sử về dự án.',
@@ -7653,6 +7735,8 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
           title: 'Nền tảng dữ liệu & Điều hành doanh nghiệp',
           summary: 'Chuyển từ quản lý dự án rời rạc sang quản trị tập trung, phân tích và hỗ trợ quyết định ở cấp doanh nghiệp, tập đoàn.',
           icon: 'fa-chart-line',
+          applicationImage: '_resources/images/applications/application-business-data-platform.webp',
+          applicationImageAlt: 'Dashboard phân tích dữ liệu phục vụ theo dõi và điều hành doanh nghiệp',
           technologies: ['Data Center', 'Dashboard', 'Tích hợp dữ liệu', 'AI'],
           content: [
             'Xây dựng kho dữ liệu tập trung Data Center.',
@@ -7707,7 +7791,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
       icon: solution.icon
     }));
     slides.push(
-      { type: 'bullets', navLabel: 'Ứng dụng', eyebrow: 'Ứng dụng thực tế', title: 'Ứng dụng trong vận hành', lead: '', technologies: [], items: solution.applications, icon: 'fa-diagram-project' },
+      { type: 'bullets', navLabel: 'Ứng dụng', eyebrow: 'Ứng dụng thực tế', title: 'Ứng dụng trong vận hành', lead: '', technologies: [], items: solution.applications, icon: 'fa-diagram-project', image: solution.applicationImage, imageAlt: solution.applicationImageAlt },
       { type: 'value', navLabel: 'Giá trị', eyebrow: 'Giá trị cốt lõi', title: 'Giá trị mang lại', items: solution.value, icon: 'fa-gem' },
       { type: 'chips', navLabel: 'Lợi ích', eyebrow: 'Hiệu quả triển khai', title: 'Lợi ích nổi bật', items: solution.benefits, icon: 'fa-arrow-trend-up', itemIcon: 'fa-check' },
       { type: 'chips', navLabel: 'Đơn vị phù hợp', eyebrow: 'Đối tượng triển khai', title: 'Đơn vị phù hợp', items: solution.customers, icon: 'fa-handshake', itemIcon: 'fa-building' }
@@ -7787,14 +7871,20 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
       body = `<div class="solution-explorer-chip-grid">${slide.items.map(item => `<div class="solution-explorer-chip"><i class="fas ${escapeHTML(slide.itemIcon)}" aria-hidden="true"></i><span>${escapeHTML(item)}</span></div>`).join('')}</div>`;
     }
     const returnButton = isFinal ? `<button class="solution-explorer-return" type="button" data-solution-action="back-to-list"><i class="fas fa-list" aria-hidden="true"></i> Quay lại danh sách giải pháp</button>` : '';
+    const hasImage = Boolean(slide.image);
+    const applicationMedia = hasImage ? `<figure class="solution-explorer-application-media">
+      <img src="${escapeHTML(slide.image)}" alt="${escapeHTML(slide.imageAlt || '')}" decoding="async">
+    </figure>` : '';
+    const decorativeVisual = hasImage ? '' : `<span class="solution-explorer-slide-visual" aria-hidden="true"><i class="fas ${escapeHTML(slide.icon)}"></i></span>`;
 
-    content.innerHTML = `<article class="solution-explorer-slide" aria-label="${escapeHTML(slide.navLabel)}">
+    content.innerHTML = `<article class="solution-explorer-slide${hasImage ? ' has-application-image' : ''}" aria-label="${escapeHTML(slide.navLabel)}">
+      ${applicationMedia}
       <div class="solution-explorer-slide-copy">
         <span class="solution-explorer-eyebrow">${escapeHTML(slide.eyebrow)}</span>
         <h2 class="solution-explorer-title">${escapeHTML(slide.title)}</h2>
         ${lead}${technologies}${body}${returnButton}
       </div>
-      <span class="solution-explorer-slide-visual" aria-hidden="true"><i class="fas ${escapeHTML(slide.icon)}"></i></span>
+      ${decorativeVisual}
     </article>`;
     paneList.innerHTML = state.slides.map((item, index) => renderPaneItem(index, item.navLabel, 'data-explorer-slide', index === state.slideIndex)).join('');
     previousButton.disabled = state.slideIndex === 0;
