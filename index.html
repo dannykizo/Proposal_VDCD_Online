@@ -6548,6 +6548,1314 @@ body.beyond-hero .nav-links.open { display: none !important; }
     animation: none !important;
   }
 }
+
+/* ═══════════════════════════════════════════════════════════
+   INTERACTIVE TECHNOLOGY HERO · 2026-07-29
+   Logo nguyên bản, danh mục và cụm ảnh tương tác hai chiều.
+   ═══════════════════════════════════════════════════════════ */
+.hero.hero-minimal {
+  --hero-gold: #b99154;
+  --hero-gold-soft: #d8bc88;
+  --hero-red: #e5252a;
+  --hero-blue: #28a2c0;
+  --hero-blue-soft: #85d4e6;
+  min-height: 100svh;
+  padding-top: var(--nav-height);
+  background:
+    radial-gradient(circle at 81% 44%, rgba(40,162,192,0.13), transparent 34%),
+    radial-gradient(circle at 18% 76%, rgba(229,37,42,0.09), transparent 31%),
+    radial-gradient(circle at 64% 52%, rgba(185,145,84,0.065), transparent 28%),
+    linear-gradient(118deg, #020406 0%, #080c10 52%, #10181d 100%);
+}
+.hero.hero-minimal::before,
+.hero.hero-minimal::after {
+  display: none;
+}
+.hero-tech-backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(0,0,0,0.985) 0%, rgba(2,5,8,0.88) 39%, rgba(2,9,13,0.24) 72%, rgba(0,0,0,0.03) 100%),
+    radial-gradient(ellipse at 78% 43%, rgba(40,162,192,0.12), transparent 43%),
+    radial-gradient(ellipse at 64% 58%, rgba(185,145,84,0.055), transparent 31%);
+}
+.hero-tech-backdrop::before {
+  content: "";
+  position: absolute;
+  width: min(78vw, 1320px);
+  aspect-ratio: 1.45;
+  top: 50%;
+  right: -12%;
+  transform: translateY(-50%) rotate(-7deg);
+  opacity: 0.42;
+  background:
+    linear-gradient(90deg, transparent 49.4%, rgba(40,162,192,0.18) 50%, transparent 50.6%),
+    linear-gradient(30deg, transparent 49.4%, rgba(229,37,42,0.13) 50%, transparent 50.6%),
+    linear-gradient(150deg, transparent 49.4%, rgba(185,145,84,0.10) 50%, transparent 50.6%);
+  background-size: 180px 312px;
+  mask-image: radial-gradient(ellipse at center, #000 0%, rgba(0,0,0,0.72) 56%, transparent 82%);
+}
+.hero-tech-backdrop::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(0,0,0,0.18), transparent 22%, transparent 78%, rgba(0,0,0,0.64)),
+    radial-gradient(circle at 42% 108%, rgba(229,37,42,0.11), transparent 29%),
+    radial-gradient(circle at 86% 44%, rgba(40,162,192,0.10), transparent 33%);
+}
+.hero-tech-shell {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: minmax(360px, 0.84fr) minmax(620px, 1.36fr);
+  align-items: center;
+  gap: clamp(28px, 3vw, 62px);
+  width: min(1780px, calc(100% - clamp(44px, 6vw, 116px)));
+  min-height: calc(100svh - var(--nav-height));
+  margin: 0 auto;
+  padding: clamp(44px, 6vh, 82px) 0 clamp(68px, 7vh, 92px);
+}
+.hero-tech-copy {
+  position: relative;
+  z-index: 4;
+  min-width: 0;
+  padding-left: clamp(4px, 1vw, 18px);
+}
+.hero-brand-lockup {
+  position: relative;
+  display: grid;
+  justify-items: start;
+  width: fit-content;
+  margin-bottom: clamp(28px, 4vh, 52px);
+  padding: 4px 0 18px;
+}
+.hero-brand-lockup::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 112%;
+  height: 1px;
+  background: linear-gradient(90deg, var(--hero-red), rgba(229,37,42,0.48) 48%, transparent);
+  box-shadow: 0 0 14px rgba(229,37,42,0.30);
+}
+.hero-brand-lockup img {
+  display: block;
+  width: clamp(214px, 17vw, 310px);
+  height: auto;
+  object-fit: contain;
+  object-position: left center;
+  filter:
+    drop-shadow(0 16px 24px rgba(0,0,0,0.46))
+    drop-shadow(0 0 17px rgba(229,37,42,0.13));
+}
+.hero-brand-lockup span {
+  margin-top: -11px;
+  color: rgba(255,255,255,0.58);
+  font-family: var(--font-heading);
+  font-size: clamp(11px, 0.78vw, 14px);
+  font-weight: 650;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+.hero-service-menu {
+  display: grid;
+  gap: 4px;
+  width: min(100%, 620px);
+}
+.hero-service-item {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  grid-template-columns: 38px minmax(0, 1fr);
+  align-items: center;
+  gap: 14px;
+  min-height: clamp(53px, 6.2vh, 72px);
+  padding: 9px 14px 9px 0;
+  overflow: visible;
+  border: 0;
+  color: rgba(255,255,255,0.48);
+  background: transparent;
+  font-family: var(--font-heading);
+  text-align: left;
+  cursor: pointer;
+  transition:
+    color 0.48s ease,
+    transform 0.48s cubic-bezier(0.2,0.72,0.2,1),
+    background 0.48s ease;
+}
+.hero-service-item::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 4px;
+  height: 28px;
+  border-radius: 999px;
+  background: var(--hero-red);
+  box-shadow: 0 0 17px rgba(229,37,42,0.60);
+  opacity: 0.22;
+  transform: translateY(-50%) scaleY(0.58);
+  transition: opacity 0.45s ease, transform 0.45s ease;
+}
+.hero-service-item::after {
+  content: "";
+  position: absolute;
+  inset: 4px 0;
+  z-index: -1;
+  border-radius: 8px;
+  opacity: 0;
+  background: linear-gradient(90deg, rgba(229,37,42,0.11), rgba(40,162,192,0.055) 54%, transparent);
+  transform: translateX(-18px);
+  transition: opacity 0.45s ease, transform 0.45s ease;
+}
+.hero-service-index {
+  color: rgba(133,212,230,0.43);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-align: right;
+  transition: color 0.45s ease, transform 0.45s ease;
+}
+.hero-service-name {
+  position: relative;
+  display: block;
+  font-size: clamp(22px, 2vw, 35px);
+  font-weight: 560;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  transition:
+    color 0.45s ease,
+    text-shadow 0.45s ease,
+    transform 0.45s ease;
+}
+.hero-service-name::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: calc(100% + 18px);
+  width: 30px;
+  height: 2px;
+  border-radius: 999px;
+  pointer-events: none;
+  opacity: 0;
+  background:
+    linear-gradient(
+      90deg,
+      var(--hero-red) 0%,
+      var(--hero-blue) 68%,
+      transparent 100%
+    );
+  box-shadow:
+    0 0 10px rgba(229,37,42,0.32),
+    0 0 18px rgba(40,162,192,0.20);
+  transform: translateY(-50%) scaleX(0);
+  transform-origin: left center;
+  transition:
+    opacity 0.22s ease,
+    transform 0.36s cubic-bezier(0.16,1,0.3,1);
+}
+.hero-service-connector {
+  --connector-length: 0px;
+  position: absolute;
+  z-index: 3;
+  width: 0;
+  height: 2px;
+  border-radius: 999px;
+  pointer-events: none;
+  opacity: 0;
+  background:
+    linear-gradient(
+      90deg,
+      var(--hero-red) 0%,
+      var(--hero-blue) 72%,
+      rgba(40,162,192,0.12) 100%
+    );
+  box-shadow:
+    0 0 9px rgba(229,37,42,0.34),
+    0 0 18px rgba(40,162,192,0.22);
+  transform-origin: left center;
+  transition:
+    width 0.42s cubic-bezier(0.16,1,0.3,1),
+    opacity 0.18s ease;
+}
+.hero-service-connector::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: -4px;
+  width: 8px;
+  height: 8px;
+  border: 2px solid rgba(133,212,230,0.92);
+  border-radius: 50%;
+  background: #071015;
+  box-shadow:
+    0 0 0 4px rgba(40,162,192,0.10),
+    0 0 18px rgba(40,162,192,0.54);
+  transform: translateY(-50%);
+}
+.hero-service-connector.is-visible {
+  width: var(--connector-length);
+  opacity: 0.88;
+}
+.hero-service-item:hover,
+.hero-service-item:focus-visible,
+.hero-service-item.is-active {
+  color: #fff;
+  transform: translateX(9px);
+  outline: none;
+}
+.hero-service-item:hover::before,
+.hero-service-item:focus-visible::before,
+.hero-service-item.is-active::before {
+  opacity: 1;
+  transform: translateY(-50%) scaleY(1);
+}
+.hero-service-item:hover::after,
+.hero-service-item:focus-visible::after,
+.hero-service-item.is-active::after {
+  opacity: 1;
+  transform: translateX(0);
+}
+.hero-service-item:hover .hero-service-index,
+.hero-service-item:focus-visible .hero-service-index,
+.hero-service-item.is-active .hero-service-index {
+  color: #ff6669;
+  transform: translateX(2px);
+}
+.hero-service-item:hover .hero-service-name,
+.hero-service-item:focus-visible .hero-service-name,
+.hero-service-item.is-active .hero-service-name {
+  color: #fff;
+  text-shadow:
+    0 0 24px rgba(229,37,42,0.20),
+    0 0 36px rgba(40,162,192,0.11);
+}
+.hero-service-item:hover .hero-service-name::after,
+.hero-service-item:focus-visible .hero-service-name::after,
+.hero-service-item.is-active .hero-service-name::after {
+  opacity: 1;
+  transform: translateY(-50%) scaleX(1);
+}
+.hero-service-visuals {
+  position: relative;
+  justify-self: stretch;
+  min-width: 0;
+  height: min(73vh, 760px);
+  min-height: 550px;
+  filter: drop-shadow(0 34px 60px rgba(0,0,0,0.48));
+}
+.hero-service-visuals::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 9% 6%;
+  border-radius: 50%;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 34% 42%, rgba(229,37,42,0.12), transparent 35%),
+    radial-gradient(circle at 69% 48%, rgba(40,162,192,0.16), transparent 40%);
+}
+.hero-service-panel {
+  --panel-cut: polygon(24% 0, 76% 0, 100% 50%, 76% 100%, 24% 100%, 0 50%);
+  position: absolute;
+  display: block;
+  width: 40%;
+  aspect-ratio: 1.3;
+  padding: 0;
+  border: 0;
+  clip-path: var(--panel-cut);
+  overflow: hidden;
+  isolation: isolate;
+  color: #fff;
+  background: #090e12;
+  cursor: pointer;
+  opacity: 0.50;
+  filter: grayscale(1) brightness(0.47) contrast(1.16) saturate(0.12);
+  transform: translateZ(0) scale(0.94);
+  transform-origin: center;
+  transition:
+    opacity 0.62s ease,
+    filter 0.62s ease,
+    transform 0.68s cubic-bezier(0.16,1,0.3,1);
+  will-change: transform, filter, opacity;
+}
+.hero-service-panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background:
+    linear-gradient(145deg, rgba(255,255,255,0.10), transparent 34%),
+    linear-gradient(0deg, rgba(0,0,0,0.76), transparent 50%);
+  transition: background 0.55s ease, opacity 0.55s ease;
+}
+.hero-service-panel::after {
+  content: "";
+  position: absolute;
+  inset: 3px;
+  z-index: 4;
+  pointer-events: none;
+  clip-path: var(--panel-cut);
+  border: 1px solid rgba(40,162,192,0.30);
+  opacity: 0.48;
+  transition: border-color 0.55s ease, box-shadow 0.55s ease, opacity 0.55s ease;
+}
+.hero-service-panel img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transform: scale(1.035);
+  transition: transform 0.72s cubic-bezier(0.16,1,0.3,1);
+}
+.hero-service-panel span {
+  position: absolute;
+  z-index: 3;
+  left: 23%;
+  right: 16%;
+  bottom: 13%;
+  color: rgba(255,255,255,0.72);
+  font-family: var(--font-heading);
+  font-size: clamp(10px, 0.82vw, 14px);
+  font-weight: 760;
+  letter-spacing: 0.06em;
+  line-height: 1.3;
+  text-align: center;
+  text-transform: uppercase;
+  opacity: 0.70;
+  transform: translateY(7px);
+  transition: opacity 0.5s ease, transform 0.5s ease, color 0.5s ease;
+}
+.hero-service-panel:hover,
+.hero-service-panel:focus-visible,
+.hero-service-panel.is-active {
+  z-index: 8;
+  opacity: 1;
+  filter: grayscale(0) brightness(1.03) contrast(1.04) saturate(1.12);
+  transform: translateZ(0) scale(1.085);
+  transition-delay: 0.07s;
+  outline: none;
+}
+.hero-service-panel:hover::before,
+.hero-service-panel:focus-visible::before,
+.hero-service-panel.is-active::before {
+  background:
+    linear-gradient(145deg, rgba(255,255,255,0.13), transparent 34%),
+    linear-gradient(0deg, rgba(0,0,0,0.57), transparent 55%);
+}
+.hero-service-panel:hover::after,
+.hero-service-panel:focus-visible::after,
+.hero-service-panel.is-active::after {
+  border-color: rgba(95,207,230,0.88);
+  box-shadow:
+    inset 0 0 22px rgba(40,162,192,0.20),
+    0 0 0 1px rgba(229,37,42,0.28),
+    0 0 30px rgba(40,162,192,0.16);
+  opacity: 1;
+}
+.hero-service-panel:hover img,
+.hero-service-panel:focus-visible img,
+.hero-service-panel.is-active img {
+  transform: scale(1.115);
+}
+.hero-service-panel:hover span,
+.hero-service-panel:focus-visible span,
+.hero-service-panel.is-active span {
+  color: #fff;
+  opacity: 1;
+  transform: translateY(0);
+  text-shadow: 0 2px 18px rgba(0,0,0,0.74);
+}
+.hero-service-panel-uav {
+  top: 4%;
+  left: 4%;
+  width: 38%;
+}
+.hero-service-panel-ai {
+  top: 0;
+  right: 2%;
+  width: 37%;
+}
+.hero-service-panel-twin {
+  top: 28%;
+  left: 27%;
+  width: 46%;
+}
+.hero-service-panel-platform {
+  bottom: 3%;
+  left: 0;
+  width: 39%;
+}
+.hero-service-panel-bim {
+  right: 0;
+  bottom: 0;
+  width: 41%;
+}
+.hero-service-panel-uav img { object-position: 58% 54%; }
+.hero-service-panel-ai img { object-position: 58% 50%; }
+.hero-service-panel-twin img { object-position: 52% 56%; }
+.hero-service-panel-platform img { object-position: 50% 50%; }
+.hero-service-panel-bim img { object-position: 52% 52%; }
+.hero.hero-minimal .hero-scroll-indicator {
+  z-index: 10;
+  color: rgba(255,255,255,0.62);
+}
+
+@media (max-width: 1180px) {
+  .hero-tech-shell {
+    grid-template-columns: minmax(330px, 0.82fr) minmax(500px, 1.18fr);
+    width: min(1120px, calc(100% - 44px));
+    gap: 20px;
+  }
+  .hero-service-visuals {
+    height: min(65vh, 650px);
+    min-height: 500px;
+  }
+  .hero-service-name { font-size: clamp(20px, 2.15vw, 29px); }
+}
+
+@media (max-width: 900px) {
+  .hero-service-name::after,
+  .hero-service-connector {
+    display: none;
+  }
+  .hero.hero-minimal {
+    min-height: 100svh;
+    padding-top: var(--nav-height);
+  }
+  .hero-tech-backdrop {
+    background:
+      linear-gradient(180deg, rgba(0,0,0,0.94) 0%, rgba(0,0,0,0.78) 48%, rgba(0,0,0,0.38) 100%),
+      radial-gradient(ellipse at 55% 66%, rgba(198,154,85,0.16), transparent 45%);
+  }
+  .hero-tech-shell {
+    grid-template-columns: 1fr;
+    align-content: center;
+    gap: 22px;
+    width: min(760px, calc(100% - 32px));
+    min-height: calc(100svh - var(--nav-height));
+    padding: 28px 0 68px;
+  }
+  .hero-tech-copy {
+    display: grid;
+    justify-items: center;
+    padding: 0;
+  }
+  .hero-brand-lockup {
+    justify-items: center;
+    margin-bottom: 20px;
+  }
+  .hero-brand-lockup::after {
+    left: 50%;
+    width: 125%;
+    transform: translateX(-50%);
+    background: linear-gradient(90deg, transparent, var(--hero-red) 50%, transparent);
+  }
+  .hero-brand-lockup img {
+    width: clamp(190px, 36vw, 270px);
+    object-position: center;
+  }
+  .hero-brand-lockup span { text-align: center; }
+  .hero-service-menu {
+    grid-template-columns: repeat(5, minmax(150px, 1fr));
+    width: 100%;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scroll-snap-type: x proximity;
+    scrollbar-width: thin;
+    padding: 0 2px 9px;
+  }
+  .hero-service-item {
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    min-height: 60px;
+    padding: 9px 12px;
+    border: 1px solid rgba(233,203,151,0.13);
+    border-radius: 10px;
+    background: rgba(255,255,255,0.025);
+    scroll-snap-align: center;
+    transform: none;
+  }
+  .hero-service-item::before { display: none; }
+  .hero-service-item::after {
+    inset: 0;
+    border-radius: 9px;
+    background: linear-gradient(135deg, rgba(229,37,42,0.17), rgba(198,154,85,0.08));
+  }
+  .hero-service-item:hover,
+  .hero-service-item:focus-visible,
+  .hero-service-item.is-active {
+    border-color: rgba(229,37,42,0.50);
+    transform: none;
+  }
+  .hero-service-index { text-align: left; }
+  .hero-service-name {
+    font-size: 16px;
+    letter-spacing: -0.01em;
+  }
+  .hero-service-visuals {
+    justify-self: center;
+    width: min(100%, 720px);
+    height: min(48vh, 470px);
+    min-height: 340px;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-tech-shell {
+    width: min(100% - 24px, 520px);
+    gap: 17px;
+    padding-top: 20px;
+  }
+  .hero-brand-lockup {
+    margin-bottom: 14px;
+    padding-bottom: 12px;
+  }
+  .hero-brand-lockup img { width: clamp(170px, 48vw, 225px); }
+  .hero-brand-lockup span {
+    margin-top: -8px;
+    font-size: 9px;
+    letter-spacing: 0.18em;
+  }
+  .hero-service-menu {
+    grid-template-columns: repeat(5, minmax(138px, 1fr));
+  }
+  .hero-service-item { min-height: 54px; }
+  .hero-service-name { font-size: 14px; }
+  .hero-service-visuals {
+    width: 100%;
+    height: min(42vh, 390px);
+    min-height: 270px;
+    overflow: hidden;
+    border-radius: 18px;
+    background: #090807;
+  }
+  .hero-service-panel,
+  .hero-service-panel-uav,
+  .hero-service-panel-ai,
+  .hero-service-panel-twin,
+  .hero-service-panel-platform,
+  .hero-service-panel-bim {
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: auto;
+    clip-path: polygon(7% 0, 93% 0, 100% 15%, 100% 85%, 93% 100%, 7% 100%, 0 85%, 0 15%);
+    pointer-events: none;
+    opacity: 0;
+    transform: scale(1.03);
+  }
+  .hero-service-panel::after {
+    clip-path: polygon(7% 0, 93% 0, 100% 15%, 100% 85%, 93% 100%, 7% 100%, 0 85%, 0 15%);
+  }
+  .hero-service-panel.is-active {
+    pointer-events: auto;
+    opacity: 1;
+    transform: scale(1);
+  }
+  .hero-service-panel span {
+    left: 10%;
+    right: 10%;
+    bottom: 10%;
+    font-size: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-service-item,
+  .hero-service-item::before,
+  .hero-service-item::after,
+  .hero-service-index,
+  .hero-service-name,
+  .hero-service-panel,
+  .hero-service-panel::before,
+  .hero-service-panel::after,
+  .hero-service-panel img,
+  .hero-service-panel span,
+  .hero-service-connector {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   VDCD PRESENTATION PALETTE · LIGHT / DARK · PROJECTOR READY
+   Một hệ màu chức năng xuyên suốt, tăng tương phản cho màn chiếu.
+   ═══════════════════════════════════════════════════════════ */
+:root {
+  --vdcd-red: #ef4b50;
+  --vdcd-red-strong: #dc262d;
+  --vdcd-red-rgb: 239, 75, 80;
+  --vdcd-blue: #39a6c2;
+  --vdcd-blue-strong: #1684a2;
+  --vdcd-blue-rgb: 57, 166, 194;
+  --vdcd-gold: #d2aa68;
+  --vdcd-gold-rgb: 210, 170, 104;
+  --projector-number: rgba(239, 75, 80, 0.46);
+  --projector-watermark: rgba(57, 166, 194, 0.34);
+  --section-wash: 0.14;
+  --section-wash-soft: 0.10;
+  --slide-overlay-rgb: 8, 13, 20;
+
+  --bg-primary: #080d14;
+  --bg-secondary: #0d1520;
+  --bg-card: #121d29;
+  --bg-card-hover: #172534;
+  --border: #33485b;
+  --border-light: #4b6277;
+  --accent: var(--vdcd-red);
+  --accent2: var(--vdcd-blue);
+  --accent-glow: rgba(239,75,80,0.25);
+  --text: #f8fafc;
+  --text-muted: #cbd5e1;
+  --text-dim: #a9b7c7;
+  --gradient-hero: linear-gradient(135deg, #080d14 0%, #101b27 55%, #192b39 100%);
+  --gradient-card: linear-gradient(135deg, rgba(239,75,80,0.075), rgba(57,166,194,0.075));
+}
+
+[data-theme="light"] {
+  --vdcd-red: #c81e24;
+  --vdcd-red-strong: #a9151a;
+  --vdcd-red-rgb: 200, 30, 36;
+  --vdcd-blue: #075e7e;
+  --vdcd-blue-strong: #064b65;
+  --vdcd-blue-rgb: 7, 94, 126;
+  --vdcd-gold: #9b7134;
+  --vdcd-gold-rgb: 155, 113, 52;
+  --projector-number: rgba(200, 30, 36, 0.48);
+  --projector-watermark: rgba(7, 94, 126, 0.32);
+  --section-wash: 0.075;
+  --section-wash-soft: 0.052;
+  --slide-overlay-rgb: 242, 245, 248;
+
+  --bg-primary: #f2f5f8;
+  --bg-secondary: #e9eef3;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f8fafc;
+  --border: #bcc9d4;
+  --border-light: #9fb0bf;
+  --accent: var(--vdcd-red);
+  --accent2: var(--vdcd-blue);
+  --accent-glow: rgba(200,30,36,0.18);
+  --text: #0b1320;
+  --text-muted: #34445a;
+  --text-dim: #526377;
+  --gradient-hero: linear-gradient(135deg, #edf2f6 0%, #dce6ec 55%, #cbd9e2 100%);
+  --gradient-card: linear-gradient(135deg, rgba(200,30,36,0.045), rgba(7,94,126,0.055));
+}
+
+/* Header giữ nền tối ở cả hai chế độ nhưng dùng đúng nhận diện VDCD. */
+.nav {
+  --accent: #ef4b50;
+  --accent2: #d2aa68;
+  --accent-glow: rgba(239,75,80,0.24);
+  background: rgba(5,8,13,0.88);
+  border-bottom-color: rgba(210,170,104,0.18);
+}
+.nav.scrolled { background: rgba(5,8,13,0.96); }
+.nav-cta {
+  background: linear-gradient(135deg, #e53b41, #b91c22);
+  box-shadow: 0 9px 24px rgba(185,28,34,0.22);
+}
+.nav-cta:hover {
+  background: linear-gradient(135deg, #ef4b50, #a9151a) !important;
+}
+.scroll-progress-bar {
+  background: linear-gradient(90deg, var(--vdcd-red), var(--vdcd-gold), var(--vdcd-blue));
+}
+
+/* Tất cả hạng mục dùng chung một chữ ký đỏ VDCD + xanh công nghệ. */
+:is(
+  .company-overview,
+  #phap-ly,
+  #trung-tam-cong-nghe,
+  #noi-dung,
+  #nang-luc,
+  #he-sinh-thai,
+  #thuc-trang,
+  #giai-phap,
+  #du-an,
+  .partners-section,
+  .contact-section
+) {
+  --section-accent: var(--vdcd-red);
+  --section-accent2: var(--vdcd-blue);
+  --section-rgb: var(--vdcd-red-rgb);
+}
+
+:is(
+  .company-overview,
+  #phap-ly,
+  #nang-luc,
+  #thuc-trang,
+  #giai-phap,
+  .contact-section
+) {
+  background:
+    radial-gradient(circle at 92% 10%, rgba(var(--vdcd-blue-rgb), var(--section-wash)), transparent 32%),
+    radial-gradient(circle at 7% 92%, rgba(var(--vdcd-red-rgb), var(--section-wash-soft)), transparent 29%),
+    var(--bg-primary);
+}
+
+:is(
+  #trung-tam-cong-nghe,
+  #noi-dung,
+  #he-sinh-thai,
+  #du-an,
+  .partners-section
+) {
+  background:
+    radial-gradient(circle at 8% 12%, rgba(var(--vdcd-red-rgb), var(--section-wash-soft)), transparent 30%),
+    radial-gradient(circle at 91% 88%, rgba(var(--vdcd-blue-rgb), var(--section-wash)), transparent 34%),
+    var(--bg-secondary);
+}
+
+/* Card, slide và ngăn slide có bề mặt nhất quán trong cả hai theme. */
+.has-deck-cover .presentation-deck :is(.cap-card, .eco-card, .sol-card, .issue-card),
+.has-deck-cover .presentation-deck .deck-intro-slide,
+.legal-summary-slide,
+.legal-document-slide,
+.tech-centers-intro,
+.tech-center-slide {
+  border-color: rgba(var(--vdcd-blue-rgb), 0.32);
+  background-color: var(--bg-card);
+  box-shadow:
+    0 28px 70px rgba(2,8,18,0.20),
+    inset 0 1px 0 rgba(255,255,255,0.045);
+}
+[data-theme="light"] .has-deck-cover .presentation-deck :is(.cap-card, .eco-card, .sol-card, .issue-card),
+[data-theme="light"] .has-deck-cover .presentation-deck .deck-intro-slide,
+[data-theme="light"] .legal-summary-slide,
+[data-theme="light"] .legal-document-slide,
+[data-theme="light"] .tech-centers-intro,
+[data-theme="light"] .tech-center-slide {
+  box-shadow:
+    0 28px 64px rgba(15,23,42,0.13),
+    inset 0 1px 0 rgba(255,255,255,0.86);
+}
+
+.presentation-deck > .deck-slide-pane {
+  border-color: rgba(var(--vdcd-blue-rgb), 0.28);
+  background:
+    linear-gradient(180deg, rgba(var(--vdcd-red-rgb), 0.09), transparent 25%),
+    var(--bg-card);
+  box-shadow: -15px 0 40px rgba(2,8,18,0.14);
+}
+.presentation-deck .deck-pane-header {
+  border-bottom-color: rgba(var(--vdcd-blue-rgb), 0.24);
+}
+.presentation-deck .deck-pane-header::before {
+  color: var(--vdcd-red);
+}
+.presentation-deck .deck-pane-header strong,
+.presentation-deck .deck-thumbnail-copy strong {
+  color: var(--text);
+}
+.presentation-deck .deck-thumbnail {
+  color: var(--text);
+}
+.presentation-deck .deck-thumbnail:hover,
+.presentation-deck .deck-thumbnail:focus-visible {
+  border-color: rgba(var(--vdcd-blue-rgb), 0.35);
+  background: rgba(var(--vdcd-blue-rgb), 0.10);
+}
+.presentation-deck .deck-thumbnail.is-active {
+  border-color: rgba(var(--vdcd-red-rgb), 0.45);
+  background: linear-gradient(90deg, rgba(var(--vdcd-red-rgb), 0.18), rgba(var(--vdcd-blue-rgb), 0.10));
+  box-shadow: inset 4px 0 0 var(--vdcd-red);
+}
+
+/* Tăng độ rõ cho máy chiếu: chữ phụ, số, nhãn và watermark không còn quá nhạt. */
+.presentation-section .section-sub,
+.eco-section .section-sub,
+.company-overview-lead,
+.content-overview-card p,
+.has-deck-cover .presentation-deck :is(.cap-card, .eco-card, .sol-card, .issue-card) > p,
+.deck-intro-slide > p,
+.tech-center-slide p {
+  color: var(--text-muted);
+  font-weight: 620;
+}
+.deck-intro-kicker,
+.legal-kicker,
+.tech-center-index,
+.cap-index,
+.eco-number,
+.issue-kicker,
+.sol-number {
+  color: var(--section-accent) !important;
+  opacity: 1 !important;
+  font-weight: 850;
+  text-shadow: none;
+}
+.content-overview-number {
+  color: var(--projector-number);
+  opacity: 1;
+  text-shadow: 0 12px 28px rgba(var(--vdcd-red-rgb),0.16);
+}
+.presentation-deck .cap-watermark {
+  color: var(--projector-watermark);
+  opacity: 1 !important;
+}
+.presentation-deck :is(.cap-icon, .eco-icon, .sol-card .icon, .issue-icon) {
+  opacity: 0.30;
+}
+.presentation-deck .deck-thumbnail-number {
+  border-color: rgba(var(--vdcd-blue-rgb),0.38);
+  color: var(--vdcd-blue);
+  background: rgba(var(--vdcd-blue-rgb),0.13);
+  font-weight: 900;
+}
+.presentation-deck .deck-thumbnail.is-active .deck-thumbnail-number {
+  color: #fff;
+  background: linear-gradient(145deg, var(--vdcd-red), var(--vdcd-red-strong));
+}
+.solution-explorer-card-index {
+  color: rgba(var(--solution-rgb), 0.34);
+}
+.stat-item .num,
+.company-overview .stat-item .num {
+  color: var(--vdcd-blue);
+  filter: drop-shadow(0 0 11px rgba(var(--vdcd-blue-rgb),0.16));
+}
+
+/* Bản đồ nội dung cũng quay về hai màu nhận diện thay vì đỏ / tím rời rạc. */
+.content-overview-card {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(var(--vdcd-red-rgb),0.15) 0 29%,
+      rgba(var(--vdcd-blue-rgb),0.09) 29% 100%
+    ),
+    var(--bg-card);
+  border-color: rgba(var(--vdcd-blue-rgb),0.34);
+}
+.content-overview-card::after {
+  background: linear-gradient(180deg, transparent, rgba(var(--vdcd-red-rgb),0.48), transparent);
+}
+.content-overview-card h3 {
+  color: color-mix(in srgb, var(--vdcd-blue) 78%, var(--text) 22%);
+}
+
+/* Lớp ảnh có màu phủ tương ứng từng theme để phần chữ luôn rõ trên máy chiếu. */
+:is(#nang-luc, #he-sinh-thai, #thuc-trang, #giai-phap)
+.presentation-deck .deck-slide.has-slide-image::after {
+  background-image:
+    linear-gradient(
+      90deg,
+      rgba(var(--slide-overlay-rgb),1) 0%,
+      rgba(var(--slide-overlay-rgb),0.98) 20%,
+      rgba(var(--slide-overlay-rgb),0.82) 47%,
+      rgba(var(--slide-overlay-rgb),0.30) 78%,
+      transparent 100%
+    ),
+    var(--slide-image);
+}
+
+/* Chuyên đề khách hàng vẫn phân biệt đối tượng nhưng chỉ dùng màu trong palette VDCD. */
+.solution-explorer {
+  --solution-accent: #ef4b50;
+  --solution-accent2: #d2aa68;
+  --solution-rgb: 239, 75, 80;
+}
+.solution-explorer[data-catalog="business"] {
+  --solution-accent: #39a6c2;
+  --solution-accent2: #ef4b50;
+  --solution-rgb: 57, 166, 194;
+}
+[data-theme="light"] .solution-explorer {
+  --solution-accent: #c81e24;
+  --solution-accent2: #9b7134;
+  --solution-rgb: 200, 30, 36;
+}
+[data-theme="light"] .solution-explorer[data-catalog="business"] {
+  --solution-accent: #075e7e;
+  --solution-accent2: #c81e24;
+  --solution-rgb: 7, 94, 126;
+}
+
+/* Mobile: vuốt dọc chuyển hạng mục, vuốt ngang vẫn đổi slide. */
+@media (max-width: 900px) {
+  html {
+    scroll-snap-type: y proximity;
+    overscroll-behavior-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .has-deck-cover .presentation-deck,
+  .has-deck-cover .presentation-deck > .deck-viewport,
+  .has-deck-cover .presentation-deck .deck-slide {
+    touch-action: pan-y pinch-zoom;
+  }
+  .has-deck-cover .presentation-deck .deck-slide {
+    overscroll-behavior-x: contain;
+    overscroll-behavior-y: auto !important;
+    -webkit-overflow-scrolling: touch;
+  }
+  .presentation-deck .deck-pane-list {
+    touch-action: pan-x pan-y;
+    overscroll-behavior: auto;
+  }
+  :is(#nang-luc, #he-sinh-thai, #thuc-trang, #giai-phap)
+  .presentation-deck .deck-slide.has-slide-image::after {
+    background-image:
+      linear-gradient(
+        90deg,
+        rgba(var(--slide-overlay-rgb),0.94),
+        rgba(var(--slide-overlay-rgb),0.82)
+      ),
+      var(--slide-image);
+  }
+}
+
+/* ═══════════════════════════════════════
+   DESKTOP FLOW + LIGHT THEME REFINEMENT
+   Giữ nhịp chuyển hạng mục dứt khoát nhưng loại bỏ cú snap bù ở cuối,
+   đồng thời khóa Light mode vào đúng bộ nhận diện đỏ VDCD + xanh công nghệ.
+   ═══════════════════════════════════════ */
+@media (min-width: 901px) {
+  html {
+    scroll-snap-type: none;
+    scroll-behavior: smooth;
+  }
+  [data-scroll-chapter] {
+    scroll-snap-align: none;
+    scroll-snap-stop: normal;
+  }
+}
+
+/* Blur trên khối lớn làm máy chiếu/trình duyệt rớt khung hình khi đổi màn. */
+.reveal {
+  filter: none;
+  transform: translate3d(0, 18px, 0);
+  transition-duration: 0.58s;
+  will-change: opacity, transform;
+}
+.reveal.visible {
+  transform: translate3d(0, 0, 0);
+  will-change: auto;
+}
+
+[data-theme="light"] :is(
+  .company-overview,
+  #phap-ly,
+  #trung-tam-cong-nghe,
+  #noi-dung,
+  #nang-luc,
+  #he-sinh-thai,
+  #thuc-trang,
+  #giai-phap,
+  #du-an,
+  .partners-section,
+  .contact-section
+) {
+  --section-accent: var(--vdcd-red);
+  --section-accent2: var(--vdcd-blue);
+  --section-rgb: var(--vdcd-red-rgb);
+  background:
+    radial-gradient(circle at 91% 9%, rgba(var(--vdcd-blue-rgb), 0.070), transparent 32%),
+    radial-gradient(circle at 7% 91%, rgba(var(--vdcd-red-rgb), 0.052), transparent 30%),
+    linear-gradient(135deg, #f7f9fa 0%, #f2f5f7 52%, #edf2f5 100%);
+}
+
+[data-theme="light"] :is(
+  #trung-tam-cong-nghe,
+  #noi-dung,
+  #he-sinh-thai,
+  #du-an,
+  .partners-section
+) {
+  background:
+    radial-gradient(circle at 8% 10%, rgba(var(--vdcd-red-rgb), 0.050), transparent 30%),
+    radial-gradient(circle at 92% 89%, rgba(var(--vdcd-blue-rgb), 0.072), transparent 34%),
+    linear-gradient(135deg, #eef3f6 0%, #f4f6f8 48%, #f8fafb 100%);
+}
+
+[data-theme="light"] .deck-intro-slide,
+[data-theme="light"] :is(.legal-slide, .tech-centers-intro, .tech-center-slide),
+[data-theme="light"] .has-deck-cover .presentation-deck :is(.cap-card, .eco-card, .sol-card, .issue-card) {
+  background-color: #f9fafb;
+  background-image:
+    linear-gradient(112deg, rgba(var(--vdcd-red-rgb), 0.075), transparent 48%),
+    radial-gradient(circle at 86% 24%, rgba(var(--vdcd-blue-rgb), 0.095), transparent 31%);
+  border-color: rgba(var(--vdcd-blue-rgb), 0.27);
+}
+
+[data-theme="light"] .presentation-deck > .deck-slide-pane {
+  background:
+    linear-gradient(180deg, rgba(var(--vdcd-red-rgb), 0.060), transparent 24%),
+    #f8fafb;
+  border-color: rgba(var(--vdcd-blue-rgb), 0.25);
+}
+
+/* Header ẩn vẫn có thể gọi lại bằng cách rê chuột vào dải trên cùng. */
+@media (min-width: 901px) {
+  body.beyond-hero.presentation-nav-peek .nav,
+  body.beyond-hero .nav:hover,
+  body.beyond-hero .nav:focus-within {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    transform: translateY(0) !important;
+  }
+}
+
+/* ═══════════════════════════════════════
+   SECTION VISUAL SIGNATURES
+   Mỗi chương có một dấu ấn riêng nhưng vẫn dùng cùng hệ đỏ · xanh · vàng VDCD.
+   ═══════════════════════════════════════ */
+#phap-ly,
+[data-theme="light"] #phap-ly {
+  --section-accent: var(--vdcd-red);
+  --section-accent2: var(--vdcd-gold);
+  --section-rgb: var(--vdcd-red-rgb);
+  --signature-rgb: var(--vdcd-red-rgb);
+  --signature-rgb-2: var(--vdcd-gold-rgb);
+  --signature-code: "01";
+  --signature-label: "PHÁP LÝ";
+}
+#trung-tam-cong-nghe,
+[data-theme="light"] #trung-tam-cong-nghe {
+  --section-accent: var(--vdcd-blue);
+  --section-accent2: var(--vdcd-gold);
+  --section-rgb: var(--vdcd-blue-rgb);
+  --signature-rgb: var(--vdcd-blue-rgb);
+  --signature-rgb-2: var(--vdcd-gold-rgb);
+  --signature-code: "02";
+  --signature-label: "TRUNG TÂM CÔNG NGHỆ";
+}
+#he-sinh-thai,
+[data-theme="light"] #he-sinh-thai {
+  --section-accent: var(--vdcd-blue);
+  --section-accent2: var(--vdcd-red);
+  --section-rgb: var(--vdcd-blue-rgb);
+  --signature-rgb: var(--vdcd-blue-rgb);
+  --signature-rgb-2: var(--vdcd-red-rgb);
+  --signature-code: "03";
+  --signature-label: "HỆ SINH THÁI";
+}
+#noi-dung,
+[data-theme="light"] #noi-dung {
+  --section-accent: var(--vdcd-red);
+  --section-accent2: var(--vdcd-blue);
+  --section-rgb: var(--vdcd-red-rgb);
+  --signature-rgb: var(--vdcd-red-rgb);
+  --signature-rgb-2: var(--vdcd-blue-rgb);
+}
+#nang-luc,
+[data-theme="light"] #nang-luc {
+  --section-accent: var(--vdcd-blue);
+  --section-accent2: var(--vdcd-red);
+  --section-rgb: var(--vdcd-blue-rgb);
+  --signature-rgb: var(--vdcd-blue-rgb);
+  --signature-rgb-2: var(--vdcd-red-rgb);
+  --signature-code: "05";
+  --signature-label: "NĂNG LỰC LÕI";
+}
+#thuc-trang,
+[data-theme="light"] #thuc-trang {
+  --section-accent: var(--vdcd-blue);
+  --section-accent2: var(--vdcd-gold);
+  --section-rgb: var(--vdcd-blue-rgb);
+  --signature-rgb: var(--vdcd-blue-rgb);
+  --signature-rgb-2: var(--vdcd-gold-rgb);
+  --signature-code: "06";
+  --signature-label: "THỰC TRẠNG";
+}
+#giai-phap,
+[data-theme="light"] #giai-phap {
+  --section-accent: var(--vdcd-red);
+  --section-accent2: var(--vdcd-blue);
+  --section-rgb: var(--vdcd-red-rgb);
+  --signature-rgb: var(--vdcd-red-rgb);
+  --signature-rgb-2: var(--vdcd-blue-rgb);
+  --signature-code: "07";
+  --signature-label: "GIẢI PHÁP";
+}
+#du-an,
+[data-theme="light"] #du-an {
+  --section-accent: var(--vdcd-gold);
+  --section-accent2: var(--vdcd-red);
+  --section-rgb: var(--vdcd-gold-rgb);
+  --signature-rgb: var(--vdcd-gold-rgb);
+  --signature-rgb-2: var(--vdcd-red-rgb);
+}
+#doi-tac,
+[data-theme="light"] #doi-tac {
+  --section-accent: var(--vdcd-blue);
+  --section-accent2: var(--vdcd-red);
+  --section-rgb: var(--vdcd-blue-rgb);
+  --signature-rgb: var(--vdcd-blue-rgb);
+  --signature-rgb-2: var(--vdcd-red-rgb);
+}
+#lien-he,
+[data-theme="light"] #lien-he {
+  --section-accent: var(--vdcd-red);
+  --section-accent2: var(--vdcd-blue);
+  --section-rgb: var(--vdcd-red-rgb);
+  --signature-rgb: var(--vdcd-red-rgb);
+  --signature-rgb-2: var(--vdcd-blue-rgb);
+}
+
+/* Thanh chương và nhãn góc giúp người xem nhận ra ngay mình đang ở câu chuyện nào. */
+.has-deck-cover .presentation-deck > .deck-viewport::before {
+  content: "";
+  position: absolute;
+  z-index: 18;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      90deg,
+      rgb(var(--signature-rgb)) 0 34%,
+      rgb(var(--signature-rgb-2)) 34% 58%,
+      transparent 92%
+    );
+  box-shadow: 0 4px 18px rgba(var(--signature-rgb), 0.20);
+}
+.has-deck-cover .presentation-deck > .deck-viewport::after {
+  content: var(--signature-code) " · " var(--signature-label);
+  position: absolute;
+  z-index: 18;
+  top: clamp(22px, 3vh, 34px);
+  right: clamp(24px, 2.5vw, 42px);
+  max-width: 42%;
+  padding: 9px 14px;
+  border: 1px solid rgba(var(--signature-rgb), 0.26);
+  border-radius: 999px;
+  color: color-mix(in srgb, rgb(var(--signature-rgb)) 82%, var(--text) 18%);
+  background: color-mix(in srgb, var(--bg-card) 91%, transparent);
+  box-shadow: 0 10px 28px rgba(2, 8, 18, 0.10);
+  font: 850 clamp(11px, 0.76vw, 13px)/1 var(--font-heading);
+  letter-spacing: 0.13em;
+  text-align: right;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+/* Pháp lý: nhịp đường văn bản và quầng vàng của hồ sơ/chứng nhận. */
+#phap-ly .presentation-deck .deck-slide {
+  background-color: var(--bg-card);
+  background-image:
+    radial-gradient(circle at 88% 15%, rgba(var(--vdcd-gold-rgb), 0.16), transparent 27%),
+    repeating-linear-gradient(0deg, transparent 0 53px, rgba(var(--vdcd-red-rgb), 0.042) 54px 55px),
+    linear-gradient(112deg, rgba(var(--vdcd-red-rgb), 0.10), transparent 48%);
+}
+
+/* Trung tâm công nghệ: lưới kỹ thuật có chiều sâu. */
+#trung-tam-cong-nghe .presentation-deck .deck-slide {
+  background-color: var(--bg-card);
+  background-image:
+    linear-gradient(rgba(var(--vdcd-blue-rgb), 0.050) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(var(--vdcd-blue-rgb), 0.050) 1px, transparent 1px),
+    radial-gradient(circle at 84% 18%, rgba(var(--vdcd-gold-rgb), 0.14), transparent 28%);
+  background-size: 46px 46px, 46px 46px, auto;
+}
+
+/* Hệ sinh thái: trường điểm liên kết, gợi cảm giác mạng lưới thương hiệu. */
+#he-sinh-thai .presentation-deck .deck-slide {
+  background-color: var(--bg-card);
+  background-image:
+    radial-gradient(circle, rgba(var(--vdcd-blue-rgb), 0.13) 1.5px, transparent 1.7px),
+    radial-gradient(circle at 88% 22%, rgba(var(--vdcd-red-rgb), 0.14), transparent 29%),
+    linear-gradient(110deg, rgba(var(--vdcd-blue-rgb), 0.09), transparent 51%);
+  background-size: 34px 34px, auto, auto;
+}
+
+/* Năng lực lõi: lưới dữ liệu rộng và vòng quét công nghệ. */
+#nang-luc .presentation-deck .deck-slide {
+  background-color: var(--bg-card);
+  background-image:
+    radial-gradient(circle at 82% 16%, transparent 0 15%, rgba(var(--vdcd-blue-rgb), 0.12) 15.2% 15.45%, transparent 15.7% 27%, rgba(var(--vdcd-red-rgb), 0.075) 27.2% 27.45%, transparent 27.7%),
+    linear-gradient(90deg, rgba(var(--vdcd-blue-rgb), 0.075), transparent 48%);
+}
+
+/* Thực trạng: đường đo và nhịp chẩn đoán thay cho nền trang trí chung chung. */
+#thuc-trang .presentation-deck .deck-slide {
+  background-color: var(--bg-card);
+  background-image:
+    repeating-linear-gradient(0deg, transparent 0 47px, rgba(var(--vdcd-blue-rgb), 0.055) 48px 49px),
+    linear-gradient(112deg, rgba(var(--vdcd-blue-rgb), 0.11), transparent 51%),
+    radial-gradient(circle at 85% 24%, rgba(var(--vdcd-gold-rgb), 0.13), transparent 28%);
+}
+
+/* Giải pháp: đường chéo tiến về phía trước, tạo cảm giác định hướng hành động. */
+#giai-phap .presentation-deck .deck-slide {
+  background-color: var(--bg-card);
+  background-image:
+    repeating-linear-gradient(135deg, transparent 0 76px, rgba(var(--vdcd-red-rgb), 0.043) 77px 79px),
+    linear-gradient(108deg, rgba(var(--vdcd-red-rgb), 0.11), transparent 48%),
+    radial-gradient(circle at 86% 18%, rgba(var(--vdcd-blue-rgb), 0.13), transparent 30%);
+}
+
+/* Ảnh minh họa vẫn là lớp ưu tiên; họa tiết chỉ hiện ở vùng chữ và khoảng thở. */
+:is(#nang-luc, #he-sinh-thai, #thuc-trang, #giai-phap)
+.presentation-deck .deck-slide.has-slide-image::after {
+  background-image:
+    linear-gradient(
+      90deg,
+      rgba(var(--slide-overlay-rgb), 1) 0%,
+      rgba(var(--slide-overlay-rgb), 0.97) 21%,
+      rgba(var(--slide-overlay-rgb), 0.79) 48%,
+      rgba(var(--slide-overlay-rgb), 0.25) 79%,
+      transparent 100%
+    ),
+    var(--slide-image);
+}
+
+/* Những chương không dùng deck vẫn có nhịp nhận diện riêng. */
+#noi-dung .content-overview-card:nth-child(odd) {
+  box-shadow:
+    inset 5px 0 0 rgba(var(--vdcd-red-rgb), 0.72),
+    0 24px 60px rgba(4, 8, 22, 0.10);
+}
+#noi-dung .content-overview-card:nth-child(even) {
+  box-shadow:
+    inset 5px 0 0 rgba(var(--vdcd-blue-rgb), 0.72),
+    0 24px 60px rgba(4, 8, 22, 0.10);
+}
+#noi-dung .content-overview-card:nth-child(even) .content-overview-number {
+  color: rgba(var(--vdcd-blue-rgb), 0.45);
+}
+#du-an .case-card {
+  border-color: rgba(var(--vdcd-gold-rgb), 0.28);
+  box-shadow:
+    inset 0 4px 0 rgba(var(--vdcd-gold-rgb), 0.64),
+    0 22px 58px rgba(4, 8, 22, 0.10);
+}
+.partners-section .partners-stack {
+  padding-block: clamp(16px, 2vh, 28px);
+  border-top: 3px solid rgba(var(--vdcd-blue-rgb), 0.50);
+  border-bottom: 3px solid rgba(var(--vdcd-red-rgb), 0.44);
+}
+.contact-section {
+  background-image:
+    linear-gradient(118deg, rgba(var(--vdcd-red-rgb), 0.11), transparent 43%),
+    linear-gradient(298deg, rgba(var(--vdcd-blue-rgb), 0.13), transparent 45%);
+}
+
+@media (max-width: 900px) {
+  .has-deck-cover .presentation-deck > .deck-viewport::before {
+    height: 4px;
+  }
+  .has-deck-cover .presentation-deck > .deck-viewport::after {
+    display: none;
+  }
+  #trung-tam-cong-nghe .presentation-deck .deck-slide,
+  #he-sinh-thai .presentation-deck .deck-slide {
+    background-size: 52px 52px, auto, auto;
+  }
+}
 </style>
 </head>
 <body>
@@ -6590,17 +7898,58 @@ body.beyond-hero .nav-links.open { display: none !important; }
 
 <!-- ═══════════ HERO ═══════════ -->
 <section class="hero hero-minimal" id="home" data-scroll-chapter>
-  <div class="hero-background" aria-hidden="true">
-    <div class="hero-background-slide"></div>
-    <div class="hero-background-slide"></div>
-    <div class="hero-background-slide"></div>
-  </div>
-  <div class="hero-grid">
-    <div class="hero-copy">
-      <h1 class="hero-wordmark reveal visible" aria-label="VDCD Group">
-        <span class="hero-wordmark-main">VDCD</span>
-        <span class="hero-wordmark-group">Group</span>
-      </h1>
+  <div class="hero-tech-backdrop" aria-hidden="true"></div>
+  <div class="hero-tech-shell">
+    <div class="hero-tech-copy">
+      <div class="hero-brand-lockup reveal visible">
+        <img src="_resources/images/brand/vdcd-group-logo-white.png" width="199" height="102" alt="VDCD Group">
+        <span>Đối tác công nghệ toàn diện</span>
+      </div>
+      <div class="hero-service-menu" role="tablist" aria-label="Năm nhóm năng lực công nghệ của VDCD Group">
+        <button class="hero-service-item is-active" type="button" role="tab" aria-selected="true" data-hero-service="0">
+          <span class="hero-service-index">01</span>
+          <span class="hero-service-name">UAV/Drone &amp; Trắc địa số</span>
+        </button>
+        <button class="hero-service-item" type="button" role="tab" aria-selected="false" data-hero-service="1">
+          <span class="hero-service-index">02</span>
+          <span class="hero-service-name">AI &amp; Phân tích dữ liệu</span>
+        </button>
+        <button class="hero-service-item" type="button" role="tab" aria-selected="false" data-hero-service="2">
+          <span class="hero-service-index">03</span>
+          <span class="hero-service-name">Digital Twin</span>
+        </button>
+        <button class="hero-service-item" type="button" role="tab" aria-selected="false" data-hero-service="3">
+          <span class="hero-service-index">04</span>
+          <span class="hero-service-name">Nền tảng phần mềm</span>
+        </button>
+        <button class="hero-service-item" type="button" role="tab" aria-selected="false" data-hero-service="4">
+          <span class="hero-service-index">05</span>
+          <span class="hero-service-name">BIM &amp; GIS</span>
+        </button>
+      </div>
+    </div>
+    <span class="hero-service-connector" aria-hidden="true"></span>
+    <div class="hero-service-visuals" aria-label="Hình ảnh minh họa các nhóm năng lực">
+      <button class="hero-service-panel hero-service-panel-uav is-active" type="button" aria-label="UAV/Drone và Trắc địa số" aria-pressed="true" data-hero-service="0">
+        <img src="_resources/images/presentation/core-survey-uav.jpg" alt="Drone khảo sát và thu thập dữ liệu trắc địa">
+        <span>UAV/Drone &amp; Trắc địa số</span>
+      </button>
+      <button class="hero-service-panel hero-service-panel-ai" type="button" aria-label="AI và Phân tích dữ liệu" aria-pressed="false" data-hero-service="1">
+        <img src="_resources/images/presentation/core-ai-forest.jpg" alt="Dữ liệu không gian phục vụ phân tích và ra quyết định">
+        <span>AI &amp; Phân tích dữ liệu</span>
+      </button>
+      <button class="hero-service-panel hero-service-panel-twin" type="button" aria-label="Digital Twin" aria-pressed="false" data-hero-service="2">
+        <img src="_resources/images/presentation/core-digital-twin.jpg" alt="Mô hình số kết nối hiện trạng với không gian quản lý">
+        <span>Digital Twin</span>
+      </button>
+      <button class="hero-service-panel hero-service-panel-platform" type="button" aria-label="Nền tảng phần mềm" aria-pressed="false" data-hero-service="3">
+        <img src="_resources/images/presentation/core-data-platform.jpg" alt="Nền tảng phần mềm vận hành trên nhiều thiết bị">
+        <span>Nền tảng phần mềm</span>
+      </button>
+      <button class="hero-service-panel hero-service-panel-bim" type="button" aria-label="BIM và GIS" aria-pressed="false" data-hero-service="4">
+        <img src="_resources/images/presentation/core-bim-gis.jpg" alt="Mô hình BIM và dữ liệu GIS tích hợp">
+        <span>BIM &amp; GIS</span>
+      </button>
     </div>
   </div>
   <a class="hero-scroll-indicator" href="#gioi-thieu" aria-label="Xem tổng quan VDCD Group">
@@ -7700,6 +9049,7 @@ presentationDecks.forEach((deck, deckIndex) => {
   let currentIndex = 0;
   let touchStartX = 0;
   let touchStartY = 0;
+  let touchStartedInNativeArea = false;
   let paneItems = [];
 
   deck.setAttribute('role', 'region');
@@ -7847,12 +9197,37 @@ presentationDecks.forEach((deck, deckIndex) => {
   deck.addEventListener('touchstart', event => {
     touchStartX = event.changedTouches[0].clientX;
     touchStartY = event.changedTouches[0].clientY;
+    touchStartedInNativeArea = event.target instanceof Element && Boolean(
+      event.target.closest('.deck-pane-list, [data-native-scroll], video, iframe')
+    );
   }, { passive: true });
   deck.addEventListener('touchend', event => {
+    if (touchStartedInNativeArea) {
+      touchStartedInNativeArea = false;
+      return;
+    }
     const deltaX = event.changedTouches[0].clientX - touchStartX;
     const deltaY = event.changedTouches[0].clientY - touchStartY;
+
+    if (Math.abs(deltaY) >= 54 && Math.abs(deltaY) > Math.abs(deltaX)) {
+      const activeSlide = slides[currentIndex];
+      const swipingUp = deltaY < 0;
+      const canContinueInsideSlide = activeSlide && (
+        swipingUp
+          ? activeSlide.scrollTop + activeSlide.clientHeight < activeSlide.scrollHeight - 4
+          : activeSlide.scrollTop > 4
+      );
+      if (!canContinueInsideSlide) {
+        window.requestAnimationFrame(() => moveBetweenScrollChapters(swipingUp ? 1 : -1));
+      }
+      return;
+    }
+
     if (Math.abs(deltaX) < 54 || Math.abs(deltaX) < Math.abs(deltaY)) return;
     deltaX < 0 ? goNext() : goPrevious();
+  }, { passive: true });
+  deck.addEventListener('touchcancel', () => {
+    touchStartedInNativeArea = false;
   }, { passive: true });
 
   deck.presentationControls = { goNext, goPrevious, goToSlide: renderSlide };
@@ -7915,7 +9290,8 @@ function moveBetweenScrollChapters(direction) {
 
   const targetSection = scrollChapters[targetIndex];
   lastActivePresentationDeck = targetSection.querySelector('[data-deck]') || null;
-  targetSection.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth', block: 'start' });
+  const targetTop = Math.round(window.scrollY + targetSection.getBoundingClientRect().top);
+  window.scrollTo({ top: targetTop, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
   return true;
 }
 
@@ -8066,11 +9442,11 @@ backToTopButton?.addEventListener('click', () => {
 
 // Keep the navigation out of the projection canvas; move the pointer to the top edge to reveal it.
 document.addEventListener('pointermove', event => {
-  if (!document.body.classList.contains('presentation-content-active')) return;
+  if (!document.body.classList.contains('beyond-hero')) return;
   const navHeight = Number.parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--nav-height')) || 72;
-  if (event.clientY <= 18) {
+  if (event.clientY <= navHeight) {
     document.body.classList.add('presentation-nav-peek');
-  } else if (event.clientY > navHeight + 24 && !navbar?.matches(':hover')) {
+  } else if (event.clientY > navHeight + 18 && !navbar?.matches(':hover')) {
     document.body.classList.remove('presentation-nav-peek');
   }
 }, { passive: true });
@@ -8523,6 +9899,8 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
           icon: 'fa-map-location-dot',
           applicationImage: '_resources/images/applications/application-gov-spatial.webp',
           applicationImageAlt: 'Dữ liệu khảo sát hiện trạng được tích hợp trên nền bản đồ số',
+          illustrationImage: '_resources/images/topics/topic-gov-spatial.webp',
+          illustrationImageAlt: 'Thiết bị UAV thực hiện khảo sát dữ liệu không gian tại khu vực đồng ruộng',
           technologies: ['UAV & xử lý dữ liệu', 'GIS – Bản đồ số', 'Data Center', 'AI'],
           content: [
             'Xây dựng cơ sở dữ liệu không gian 2D, 3D chuyên ngành về đất đai, công trình và hạ tầng trên nền tảng UAV – GIS – AI.',
@@ -8551,6 +9929,8 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
           icon: 'fa-cubes-stacked',
           applicationImage: '_resources/images/applications/application-gov-bim.webp',
           applicationImageAlt: 'Toàn cảnh công trường phục vụ giám sát và quản lý dự án xây dựng',
+          illustrationImage: '_resources/images/topics/topic-gov-bim.webp',
+          illustrationImageAlt: 'Đội ngũ kỹ thuật chuẩn bị hệ thống UAV và thiết bị khảo sát dự án',
           technologies: ['BIM', 'UAV & Auto Timelapse', 'Nền tảng đám mây', 'AI'],
           content: [
             'Khảo sát, phân tích hiện trạng; tư vấn ý tưởng thiết kế và lập quy hoạch phân khu, quy hoạch chi tiết.',
@@ -8575,6 +9955,8 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
           icon: 'fa-tree',
           applicationImage: '_resources/images/applications/application-gov-forest.webp',
           applicationImageAlt: 'Thiết bị quan trắc tại khu vực đồi núi phục vụ giám sát tài nguyên sinh thái',
+          illustrationImage: '_resources/images/topics/topic-gov-forest.webp',
+          illustrationImageAlt: 'UAV chuyên dụng triển khai tại khu vực rừng núi phục vụ kiểm kê tài nguyên',
           technologies: ['UAV', 'GIS – Bản đồ số', 'AI sinh thái', 'Giám sát thông minh'],
           content: [
             'Bay quét UAV lập bản đồ rừng 2D, 3D và bản đồ địa hình – cao độ phục vụ quản lý, quy hoạch rừng.',
@@ -8601,6 +9983,8 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
           icon: 'fa-cloud-bolt',
           applicationImage: '_resources/images/applications/application-gov-disaster.webp',
           applicationImageAlt: 'Hiện tượng thời tiết cực đoan tại đô thị phục vụ minh họa giám sát rủi ro thiên tai',
+          illustrationImage: '_resources/images/topics/topic-gov-disaster.webp',
+          illustrationImageAlt: 'Đội khảo sát UAV triển khai tại địa hình núi phục vụ đánh giá rủi ro',
           technologies: ['UAV địa hình', 'GIS rủi ro', 'Mô phỏng', 'AI cảnh báo sớm'],
           content: [
             'Khảo sát địa hình khu vực rủi ro bằng UAV 2D, 3D đối với sạt lở, ngập lụt và lũ quét.',
@@ -8630,6 +10014,8 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
           icon: 'fa-camera-retro',
           applicationImage: '_resources/images/applications/application-gov-timelapse.webp',
           applicationImageAlt: 'Công trình trên địa hình phức tạp được theo dõi bằng Auto Timelapse',
+          illustrationImage: '_resources/images/topics/topic-gov-timelapse.webp',
+          illustrationImageAlt: 'Thiết bị ghi hình và UAV được bố trí tại hiện trường công trình',
           technologies: ['Auto Timelapse 24/7', 'Phân tích tiến độ', 'AI cảnh báo', 'Data Center'],
           content: [
             'Giám sát trực tuyến 24/7 tiến độ và hiện trạng thi công bằng hệ thống Auto Timelapse.',
@@ -8656,6 +10042,8 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
           icon: 'fa-server',
           applicationImage: '_resources/images/applications/application-gov-data-platform.webp',
           applicationImageAlt: 'Hệ thống phân tích dữ liệu giao thông phục vụ giám sát và điều hành',
+          illustrationImage: '_resources/images/topics/topic-gov-data-platform.webp',
+          illustrationImageAlt: 'Màn hình điều khiển hiện trường hiển thị đồng thời nhiều nguồn dữ liệu',
           technologies: ['Software', 'Data Center', 'IOC', 'AI hỗ trợ quyết định'],
           content: [
             'Quy hoạch, thiết kế và triển khai Data Center cùng hạ tầng lưu trữ, sao lưu, bảo mật dữ liệu cấp tỉnh, ngành.',
@@ -8687,6 +10075,8 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
           icon: 'fa-building-shield',
           applicationImage: '_resources/images/applications/application-gov-digital-transformation.webp',
           applicationImageAlt: 'Các sản phẩm công nghệ được giới thiệu trong hoạt động hợp tác và chuyển đổi số',
+          illustrationImage: '_resources/images/topics/topic-gov-digital-transformation.webp',
+          illustrationImageAlt: 'Đội ngũ công nghệ phối hợp vận hành các thiết bị số tại hiện trường',
           technologies: ['Dữ liệu nền', 'Khảo sát tiền khả thi', 'Kiến trúc tích hợp'],
           content: [
             'Đề án đô thị thông minh gắn với dữ liệu và nhu cầu điều hành của địa phương.',
@@ -8717,6 +10107,8 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
           icon: 'fa-map',
           applicationImage: '_resources/images/applications/application-business-spatial.webp',
           applicationImageAlt: 'Khảo sát toàn cảnh quỹ đất và hạ tầng dự án bằng dữ liệu không gian',
+          illustrationImage: '_resources/images/topics/topic-business-spatial.webp',
+          illustrationImageAlt: 'Hệ thống UAV và thiết bị khảo sát được triển khai trên khu đất dự án',
           technologies: ['UAV', 'Trắc địa số', 'GIS', 'Cơ sở dữ liệu không gian'],
           content: [
             'Khảo sát địa hình 2D, 3D phục vụ đầu tư, mua bán bất động sản bằng trắc địa số.',
@@ -8736,6 +10128,8 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
           icon: 'fa-clock-rotate-left',
           applicationImage: '_resources/images/applications/application-business-progress.webp',
           applicationImageAlt: 'Chuỗi hình ảnh thể hiện tiến độ thi công của dự án theo thời gian',
+          illustrationImage: '_resources/images/topics/topic-business-progress.webp',
+          illustrationImageAlt: 'Kỹ thuật viên kiểm tra thiết bị UAV phục vụ giám sát tiến độ dự án',
           technologies: ['Auto Timelapse', 'AI cảnh báo', 'Báo cáo số'],
           content: [
             'Theo dõi, giám sát tiến độ công trình bằng Auto Timelapse.',
@@ -8756,6 +10150,8 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
           icon: 'fa-cube',
           applicationImage: '_resources/images/applications/application-business-bim.webp',
           applicationImageAlt: 'Công trường xây dựng quy mô lớn phục vụ phối hợp quản lý dự án',
+          illustrationImage: '_resources/images/topics/topic-business-bim.webp',
+          illustrationImageAlt: 'Nhóm kỹ thuật phối hợp thiết bị UAV tại khu vực dự án đô thị',
           technologies: ['BIM', 'Nền tảng đám mây', 'UAV', 'Auto Timelapse'],
           content: [
             'Tư vấn, thiết lập quy chuẩn BIM cho dự án và doanh nghiệp.',
@@ -8775,6 +10171,8 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
           icon: 'fa-film',
           applicationImage: '_resources/images/applications/application-business-digital-model.webp',
           applicationImageAlt: 'Đội ngũ triển khai mô hình trực quan phục vụ trình bày và truyền thông dự án',
+          illustrationImage: '_resources/images/topics/topic-business-digital-model.webp',
+          illustrationImageAlt: 'Đội ngũ sản xuất nội dung số phối hợp máy quay và thiết bị thực tế ảo',
           technologies: ['3D & VR360', 'UAV', 'Sa bàn ảo', 'Truyền thông số'],
           content: [
             'Truyền thông tiến độ bằng dữ liệu thực tế và xây dựng những thước phim lịch sử về dự án.',
@@ -8793,6 +10191,8 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
           icon: 'fa-chart-line',
           applicationImage: '_resources/images/applications/application-business-data-platform.webp',
           applicationImageAlt: 'Dashboard phân tích dữ liệu phục vụ theo dõi và điều hành doanh nghiệp',
+          illustrationImage: '_resources/images/topics/topic-business-data-platform.webp',
+          illustrationImageAlt: 'Giao diện điều khiển trực quan trên thiết bị di động phục vụ giám sát dữ liệu',
           technologies: ['Data Center', 'Dashboard', 'Tích hợp dữ liệu', 'AI'],
           content: [
             'Xây dựng kho dữ liệu tập trung Data Center.',
@@ -8844,7 +10244,9 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
       lead: index === 0 ? solution.summary : '',
       technologies: index === 0 ? solution.technologies : [],
       items,
-      icon: solution.icon
+      icon: solution.icon,
+      image: solution.illustrationImage,
+      imageAlt: solution.illustrationImageAlt
     }));
     slides.push(
       { type: 'bullets', navLabel: 'Ứng dụng', eyebrow: 'Ứng dụng thực tế', title: 'Ứng dụng trong vận hành', lead: '', technologies: [], items: solution.applications, icon: 'fa-diagram-project', image: solution.applicationImage, imageAlt: solution.applicationImageAlt },
@@ -9072,6 +10474,144 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 /* ═══════════════════════════════════════
    THEME TOGGLE
    ═══════════════════════════════════════ */
+/* INTERACTIVE TECHNOLOGY HERO
+   Chữ và hình đồng bộ hai chiều; tự luân phiên khi không thao tác. */
+(function() {
+  const hero = document.getElementById('home');
+  const shell = hero?.querySelector('.hero-tech-shell');
+  const menu = hero?.querySelector('.hero-service-menu');
+  const connector = hero?.querySelector('.hero-service-connector');
+  const textItems = [...(hero?.querySelectorAll('.hero-service-item') || [])];
+  const imageItems = [...(hero?.querySelectorAll('.hero-service-panel') || [])];
+  const interactiveItems = [...textItems, ...imageItems];
+  if (!hero || !shell || !menu || !connector || textItems.length !== 5 || imageItems.length !== 5) return;
+
+  let activeIndex = 0;
+  let pointerPaused = false;
+  let heroVisible = true;
+  let manualPauseUntil = 0;
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function keepActiveMenuItemVisible(index) {
+    if (window.innerWidth > 900) return;
+    const item = textItems[index];
+    const targetLeft = item.offsetLeft - (menu.clientWidth - item.offsetWidth) / 2;
+    menu.scrollTo({
+      left: Math.max(0, targetLeft),
+      behavior: reducedMotion ? 'auto' : 'smooth'
+    });
+  }
+
+  function updateConnector(index) {
+    if (window.innerWidth <= 900) {
+      connector.classList.remove('is-visible');
+      return;
+    }
+
+    const label = textItems[index]?.querySelector('.hero-service-name');
+    const panel = imageItems[index];
+    const visuals = hero.querySelector('.hero-service-visuals');
+    if (!label || !panel || !visuals) return;
+
+    const shellRect = shell.getBoundingClientRect();
+    const labelRect = label.getBoundingClientRect();
+    const visualsRect = visuals.getBoundingClientRect();
+    const startX = labelRect.right - shellRect.left + 48;
+    const startY = labelRect.top - shellRect.top + labelRect.height / 2;
+    const endX = visualsRect.left - shellRect.left + panel.offsetLeft + 7;
+    const endY = visualsRect.top - shellRect.top + panel.offsetTop + panel.offsetHeight / 2;
+    const deltaX = Math.max(18, endX - startX);
+    const deltaY = endY - startY;
+    const length = Math.hypot(deltaX, deltaY);
+    const angle = Math.atan2(deltaY, deltaX) * 180 / Math.PI;
+
+    connector.classList.remove('is-visible');
+    connector.style.left = `${startX}px`;
+    connector.style.top = `${startY}px`;
+    connector.style.setProperty('--connector-length', `${length}px`);
+    connector.style.transform = `rotate(${angle}deg)`;
+    window.requestAnimationFrame(() => {
+      window.requestAnimationFrame(() => connector.classList.add('is-visible'));
+    });
+  }
+
+  function setActive(index, source = 'auto') {
+    const nextIndex = (Number(index) + textItems.length) % textItems.length;
+    activeIndex = nextIndex;
+
+    textItems.forEach((item, itemIndex) => {
+      const active = itemIndex === nextIndex;
+      item.classList.toggle('is-active', active);
+      item.setAttribute('aria-selected', String(active));
+    });
+
+    imageItems.forEach((item, itemIndex) => {
+      const active = itemIndex === nextIndex;
+      item.classList.toggle('is-active', active);
+      item.setAttribute('aria-pressed', String(active));
+    });
+
+    if (source !== 'pointer') keepActiveMenuItemVisible(nextIndex);
+    updateConnector(nextIndex);
+  }
+
+  interactiveItems.forEach(item => {
+    const index = Number(item.dataset.heroService);
+
+    item.addEventListener('pointerenter', () => {
+      pointerPaused = true;
+      setActive(index, 'pointer');
+    });
+
+    item.addEventListener('pointerleave', () => {
+      window.requestAnimationFrame(() => {
+        pointerPaused = interactiveItems.some(candidate => candidate.matches(':hover'));
+        if (!pointerPaused) manualPauseUntil = Date.now() + 900;
+      });
+    });
+
+    item.addEventListener('focus', () => setActive(index, 'focus'));
+    item.addEventListener('click', () => {
+      manualPauseUntil = Date.now() + 6500;
+      setActive(index, 'click');
+    });
+  });
+
+  menu.addEventListener('keydown', event => {
+    if (!['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
+    event.preventDefault();
+    let nextIndex = activeIndex;
+    if (event.key === 'Home') nextIndex = 0;
+    else if (event.key === 'End') nextIndex = textItems.length - 1;
+    else if (['ArrowUp', 'ArrowLeft'].includes(event.key)) nextIndex = (activeIndex - 1 + textItems.length) % textItems.length;
+    else nextIndex = (activeIndex + 1) % textItems.length;
+    manualPauseUntil = Date.now() + 6500;
+    setActive(nextIndex, 'keyboard');
+    textItems[nextIndex].focus({ preventScroll: true });
+  });
+
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(entries => {
+      heroVisible = Boolean(entries[0]?.isIntersecting);
+    }, { threshold: 0.28 });
+    observer.observe(hero);
+  }
+
+  window.addEventListener('resize', () => updateConnector(activeIndex), { passive: true });
+  window.addEventListener('load', () => updateConnector(activeIndex), { once: true });
+  document.fonts?.ready?.then(() => updateConnector(activeIndex));
+
+  if (!reducedMotion) {
+    window.setInterval(() => {
+      const focusInside = hero.contains(document.activeElement) && document.activeElement !== document.body;
+      if (!heroVisible || document.hidden || pointerPaused || focusInside || Date.now() < manualPauseUntil) return;
+      setActive(activeIndex + 1, 'auto');
+    }, 2700);
+  }
+
+  setActive(0, 'initial');
+})();
+
 (function() {
   const toggle = document.getElementById('themeToggle');
   const icon = toggle?.querySelector('i');
