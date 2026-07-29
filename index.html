@@ -5968,6 +5968,586 @@ html {
     scroll-snap-align: start;
   }
 }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   PRESENTATION REFINEMENTS · 2026-07-29
+   Tăng nhận diện ở Hero/Header, làm gọn CTA và cân lại nội dung khi trình chiếu.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Header lớn và rõ hơn trên màn trình chiếu. */
+@media (min-width: 901px) {
+  :root { --nav-height: 88px; }
+  .nav-inner {
+    width: min(1520px, 100%);
+    max-width: none;
+    padding-inline: clamp(24px, 3vw, 48px);
+  }
+  .nav-logo,
+  .nav-logo-image { width: 190px; }
+  .nav-logo-image { height: 80px; }
+  .nav-links {
+    gap: clamp(2px, 0.4vw, 7px);
+    align-items: center;
+  }
+  .nav-links a {
+    padding: 11px clamp(10px, 0.9vw, 15px);
+    font-size: clamp(14px, 1vw, 16px);
+    font-weight: 650;
+  }
+  .nav-cta { padding: 11px 22px !important; }
+  .standby-toggle {
+    min-height: 48px;
+    padding: 10px 15px;
+    font-size: 14px;
+  }
+  .theme-toggle {
+    width: 48px;
+    height: 48px;
+    font-size: 20px;
+  }
+}
+@media (min-width: 901px) and (max-width: 1100px) {
+  :root { --nav-height: 78px; }
+  .nav-inner { padding-inline: 18px; }
+  .nav-logo,
+  .nav-logo-image { width: 154px; }
+  .nav-logo-image { height: 68px; }
+  .nav-links { gap: 1px; }
+  .nav-links a {
+    padding: 9px 8px;
+    font-size: 13px;
+  }
+  .standby-toggle {
+    min-height: 42px;
+    padding: 8px 10px;
+    font-size: 12px;
+  }
+  .theme-toggle {
+    width: 42px;
+    height: 42px;
+  }
+  .nav-cta { padding: 9px 14px !important; }
+}
+
+/* Sau Hero, thanh Header rời khỏi khung trình chiếu và chỉ trở lại khi về Hero. */
+body.beyond-hero .nav {
+  opacity: 0 !important;
+  visibility: hidden;
+  pointer-events: none !important;
+  transform: translateY(calc(-100% - 8px)) !important;
+}
+body.beyond-hero .nav-links.open { display: none !important; }
+
+/* Wordmark Hero: bỏ khung cứng của GROUP, thay bằng quầng sáng mờ hai đầu. */
+.hero.hero-minimal .hero-wordmark {
+  top: -4.5svh;
+}
+.hero.hero-minimal .hero-wordmark-group {
+  position: relative;
+  isolation: isolate;
+  padding: 0.54em 0.86em 0.52em 1.05em;
+  border: 0;
+  color: #fff7f7;
+  background:
+    radial-gradient(ellipse at center, rgba(229,57,53,0.18) 0%, rgba(229,57,53,0.07) 46%, transparent 76%);
+  box-shadow: none;
+}
+.hero.hero-minimal .hero-wordmark-group::before,
+.hero.hero-minimal .hero-wordmark-group::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  left: -8%;
+  right: -8%;
+  height: 1px;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent, rgba(255,107,107,0.54) 30%, rgba(229,57,53,0.72) 50%, rgba(255,107,107,0.54) 70%, transparent);
+  filter: blur(0.35px);
+  box-shadow: 0 0 13px rgba(229,57,53,0.22);
+}
+.hero.hero-minimal .hero-wordmark-group::before { top: 0; }
+.hero.hero-minimal .hero-wordmark-group::after { bottom: 0; }
+
+/* Bản đồ nội dung: số lớn ở vùng đỏ, thông tin rõ trong vùng xanh. */
+.content-overview-card {
+  display: grid;
+  grid-template-columns: clamp(92px, 24%, 180px) minmax(0, 1fr);
+  grid-template-rows: auto auto;
+  align-content: center;
+  justify-content: initial;
+  column-gap: clamp(22px, 2.2vw, 38px);
+  overflow: hidden;
+  background:
+    linear-gradient(90deg, rgba(239,68,68,0.105) 0 29%, rgba(37,99,235,0.075) 29% 100%),
+    var(--bg-card);
+}
+.content-overview-card::after {
+  content: "";
+  position: absolute;
+  top: 12%;
+  bottom: 12%;
+  left: 29%;
+  width: 1px;
+  background: linear-gradient(180deg, transparent, rgba(var(--section-rgb),0.32), transparent);
+  pointer-events: none;
+}
+.content-overview-card > * { position: relative; z-index: 1; }
+.content-overview-card i { display: none; }
+.content-overview-number {
+  position: relative;
+  inset: auto;
+  grid-column: 1;
+  grid-row: 1 / 3;
+  align-self: center;
+  justify-self: center;
+  color: rgba(220,38,38,0.72);
+  font-size: clamp(92px, 7.2vw, 148px);
+  line-height: 0.82;
+  letter-spacing: -0.09em;
+  text-shadow: 0 12px 30px rgba(185,28,28,0.12);
+}
+.content-overview-card h3 {
+  grid-column: 2;
+  grid-row: 1;
+  align-self: end;
+  margin: 0 0 10px;
+  padding-left: clamp(20px, 1.7vw, 32px);
+  color: color-mix(in srgb, #2563eb 74%, var(--text) 26%);
+  font-size: clamp(27px, 2.05vw, 38px);
+}
+.content-overview-card p {
+  grid-column: 2;
+  grid-row: 2;
+  align-self: start;
+  max-width: 100%;
+  margin: 0;
+  padding-left: clamp(20px, 1.7vw, 32px);
+  font-size: clamp(16px, 1.08vw, 20px);
+  font-weight: 560;
+  line-height: 1.5;
+}
+
+/* Giữ trọn màn Nội dung trình bày chính trong đúng một nhịp cuộn. */
+@media (min-width: 901px) {
+  #noi-dung {
+    height: 100svh;
+    min-height: 100svh;
+    overflow: hidden;
+    padding: clamp(16px, 2.2vh, 26px) clamp(22px, 3vw, 56px);
+  }
+  .content-overview-inner {
+    height: 100%;
+    display: grid;
+    grid-template-rows: auto minmax(0, 1fr);
+    gap: clamp(18px, 2.5vh, 28px);
+  }
+  .content-overview-inner .section-header {
+    margin: 0 auto;
+  }
+  #noi-dung .section-header h2 {
+    margin-bottom: clamp(8px, 1.2vh, 14px);
+    font-size: clamp(44px, 4.3vw, 66px);
+    line-height: 1.03;
+  }
+  #noi-dung .section-sub {
+    font-size: clamp(17px, 1.15vw, 21px);
+    line-height: 1.48;
+  }
+  .content-overview-grid {
+    min-height: 0;
+    grid-template-rows: repeat(2, minmax(0, 1fr));
+  }
+  .content-overview-card {
+    min-height: 0;
+    padding: clamp(20px, 2.2vw, 34px);
+  }
+}
+
+/* Đưa phần nội dung Thực trạng và Giải pháp lên vùng nhìn chính. */
+@media (min-width: 901px) {
+  #thuc-trang .presentation-deck .issue-card,
+  #giai-phap .presentation-deck .sol-card {
+    justify-content: flex-start;
+    padding-top: clamp(42px, 5.2vh, 66px);
+    padding-bottom: clamp(70px, 8vh, 96px);
+  }
+  #thuc-trang .presentation-deck .issue-kicker,
+  #giai-phap .presentation-deck .sol-number {
+    margin-bottom: clamp(16px, 2vh, 23px);
+  }
+}
+
+/* Giữ icon trang trí ngoài luồng nội dung để tiêu đề không bị đẩy xuống thấp. */
+.has-deck-cover .presentation-deck .deck-slide.has-slide-image > :is(.issue-icon, .icon) {
+  position: absolute;
+}
+
+/* Phần Đối tác chiếm trọn một màn trình chiếu, không lộ phần Liên hệ kế tiếp. */
+@media (min-width: 901px) {
+  .partners-section {
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+  }
+}
+
+/* Nút quay về Hero nằm riêng ở góc trái, tránh ngăn slide bên phải. */
+.back-to-top {
+  left: clamp(16px, 1.6vw, 28px) !important;
+  right: auto !important;
+}
+
+/* Contact: hai email xếp rõ theo thứ tự ưu tiên. */
+.contact-email-stack {
+  display: grid;
+  gap: 3px;
+}
+.contact-email-stack a {
+  width: fit-content;
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.contact-email-stack a:hover,
+.contact-email-stack a:focus-visible {
+  color: var(--section-accent);
+  outline: none;
+}
+
+/* Danh mục giải pháp khách hàng: bỏ icon, dùng số lớn mờ phía sau nội dung. */
+.solution-explorer-card {
+  isolation: isolate;
+  padding-top: clamp(28px, 2.4vw, 38px);
+}
+.solution-explorer-card-top { display: contents; }
+.solution-explorer-card-icon { display: none !important; }
+.solution-explorer-card-index {
+  position: absolute;
+  z-index: 0;
+  top: clamp(10px, 1.2vw, 18px);
+  left: clamp(14px, 1.4vw, 22px);
+  color: rgba(var(--solution-rgb), 0.115);
+  font: 950 clamp(70px, 6.2vw, 112px)/0.82 var(--font-heading);
+  letter-spacing: -0.08em;
+  pointer-events: none;
+}
+.solution-explorer-card-title,
+.solution-explorer-card-summary,
+.solution-explorer-card-arrow {
+  position: relative;
+  z-index: 1;
+}
+.solution-explorer-card-title {
+  margin-top: clamp(18px, 2.2vh, 28px);
+}
+.solution-explorer-card-arrow {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  text-rendering: optimizeLegibility;
+}
+
+@media (max-width: 900px) {
+  .hero.hero-minimal .hero-wordmark { top: -3svh; }
+  #noi-dung {
+    min-height: auto;
+    overflow: visible;
+  }
+  .content-overview-card {
+    grid-template-columns: 84px minmax(0, 1fr);
+    min-height: 190px;
+    padding: 24px 20px;
+    column-gap: 20px;
+  }
+  .content-overview-card::after { left: 30%; }
+  .content-overview-number { font-size: clamp(60px, 11vw, 86px); }
+  .content-overview-card h3 {
+    padding-left: 14px;
+    font-size: clamp(23px, 4.4vw, 31px);
+  }
+  .content-overview-card p {
+    padding-left: 14px;
+    font-size: clamp(15px, 2.5vw, 18px);
+  }
+}
+@media (max-width: 560px) {
+  .back-to-top {
+    left: 12px !important;
+    right: auto !important;
+    bottom: 16px;
+  }
+  .content-overview-card {
+    grid-template-columns: 68px minmax(0, 1fr);
+    min-height: 176px;
+    padding: 22px 16px;
+    column-gap: 15px;
+  }
+  .content-overview-card::after { left: 29%; }
+  .content-overview-number { font-size: 58px; }
+  .content-overview-card h3 {
+    margin-bottom: 7px;
+    padding-left: 9px;
+    font-size: clamp(21px, 6vw, 27px);
+  }
+  .content-overview-card p {
+    padding-left: 9px;
+    font-size: 14px;
+    line-height: 1.45;
+  }
+  .solution-explorer-card-index {
+    top: 12px;
+    left: 15px;
+    font-size: 72px;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   VISUAL COHERENCE PASS · 2026-07-29
+   Đồng nhất nhịp chữ, vùng ảnh, mục lục slide, chuyển động và các phần kết.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Một hệ lưới nội dung chung cho bốn hạng mục trình chiếu chính. */
+@media (min-width: 901px) {
+  :is(#nang-luc, #he-sinh-thai, #thuc-trang, #giai-phap)
+  .presentation-deck .deck-slide.has-slide-image {
+    justify-content: flex-start;
+    padding:
+      clamp(50px, 6vh, 72px)
+      clamp(74px, 6vw, 112px)
+      clamp(80px, 9vh, 108px);
+  }
+  :is(#nang-luc, #he-sinh-thai, #thuc-trang, #giai-phap)
+  .presentation-deck .deck-slide.has-slide-image
+  > :is(h3, h4, p, .cap-tags, .sol-tags, .sol-links, .eco-link, .issue-kicker, .issue-impact) {
+    max-width: min(55%, 900px);
+  }
+  :is(#nang-luc, #he-sinh-thai, #thuc-trang, #giai-phap)
+  .presentation-deck .deck-slide.has-slide-image :is(h3, h4) {
+    margin: 0 0 clamp(18px, 2.2vh, 26px);
+    font-size: clamp(48px, 4.15vw, 72px);
+    line-height: 1.04;
+    text-wrap: balance;
+  }
+  :is(#nang-luc, #he-sinh-thai, #thuc-trang, #giai-phap)
+  .presentation-deck .deck-slide.has-slide-image > p {
+    font-size: clamp(22px, 1.62vw, 28px);
+    font-weight: 580;
+    line-height: 1.52;
+  }
+  :is(#nang-luc, #he-sinh-thai, #thuc-trang, #giai-phap)
+  .presentation-deck .deck-slide.has-slide-image
+  > :is(.cap-card-top, .eco-card-head, .issue-kicker, .sol-number) {
+    margin-bottom: clamp(17px, 2vh, 23px);
+  }
+}
+
+/* Ảnh minh họa giữ đúng một nhịp: khoảng nửa phải, cùng độ tương phản. */
+:is(#nang-luc, #he-sinh-thai, #thuc-trang, #giai-phap)
+.presentation-deck .deck-slide.has-slide-image::after {
+  inset: 0 0 0 52%;
+  opacity: 0.86;
+  filter: saturate(0.92) contrast(1.02) brightness(0.98);
+  transition:
+    opacity 0.42s ease,
+    filter 0.42s ease;
+}
+:is(#nang-luc, #he-sinh-thai, #thuc-trang, #giai-phap)
+.presentation-deck .deck-slide.has-slide-image.is-active::after {
+  opacity: 0.91;
+  filter: saturate(0.98) contrast(1.03) brightness(1);
+}
+
+/* Ngăn slide nhẹ hơn: mục chưa chọn phẳng, mục đang chọn rõ bằng vạch đỏ VDCD. */
+.presentation-deck > .deck-slide-pane {
+  background:
+    linear-gradient(180deg, rgba(var(--section-rgb), 0.055), transparent 26%),
+    color-mix(in srgb, var(--bg-card) 94%, transparent);
+  border-color: rgba(var(--section-rgb), 0.16);
+  box-shadow: -14px 0 38px rgba(4,8,22,0.075);
+}
+.presentation-deck .deck-pane-header {
+  padding: 21px 18px 17px;
+  border-bottom-color: rgba(var(--section-rgb), 0.12);
+}
+.presentation-deck .deck-pane-header::before {
+  color: #e53935;
+}
+.presentation-deck .deck-pane-list {
+  gap: 5px;
+  padding: 11px 10px 86px;
+}
+.presentation-deck .deck-thumbnail {
+  grid-template-columns: 43px minmax(0, 1fr);
+  gap: 11px;
+  min-height: 62px;
+  padding: 8px 9px;
+  border-color: transparent;
+  border-radius: 11px;
+  background: transparent;
+  box-shadow: none;
+  transform: none;
+}
+.presentation-deck .deck-thumbnail:hover,
+.presentation-deck .deck-thumbnail:focus-visible {
+  transform: translateX(-2px);
+  border-color: rgba(var(--section-rgb), 0.16);
+  background: rgba(var(--section-rgb), 0.055);
+}
+.presentation-deck .deck-thumbnail.is-active {
+  transform: none;
+  border-color: rgba(229,57,53,0.20);
+  background:
+    linear-gradient(90deg, rgba(229,57,53,0.10), rgba(var(--section-rgb),0.07));
+  box-shadow: inset 3px 0 0 #e53935;
+}
+.presentation-deck .deck-thumbnail-number {
+  min-height: 44px;
+  border: 1px solid rgba(var(--section-rgb), 0.16);
+  color: color-mix(in srgb, var(--section-accent) 78%, var(--text) 22%);
+  background: rgba(var(--section-rgb), 0.075);
+  font-size: 14px;
+}
+.presentation-deck .deck-thumbnail.is-active .deck-thumbnail-number {
+  border-color: transparent;
+  color: #fff;
+  background: linear-gradient(145deg, #ef4444, #b91c1c);
+  box-shadow: 0 8px 20px rgba(185,28,28,0.20);
+}
+.presentation-deck .deck-thumbnail-copy strong {
+  color: color-mix(in srgb, var(--text) 88%, var(--section-accent) 12%);
+  font-weight: 760;
+}
+.presentation-deck .deck-thumbnail.is-active .deck-thumbnail-copy strong {
+  color: color-mix(in srgb, #e53935 44%, var(--text) 56%);
+  font-weight: 850;
+}
+
+/* Một chuyển động duy nhất: mờ dần và dịch ngang nhẹ, không nảy. */
+.deck-track,
+.caps-grid.deck-track,
+.eco-grid.deck-track,
+.solutions-grid.deck-track {
+  transition: transform 0.44s cubic-bezier(0.2, 0.72, 0.2, 1);
+}
+.deck-slide > :is(
+  .cap-card-top,
+  .eco-card-head,
+  .issue-kicker,
+  .sol-number,
+  h3,
+  h4,
+  p,
+  .cap-tags,
+  .sol-tags,
+  .sol-links,
+  .eco-link,
+  .issue-impact
+) {
+  opacity: 0;
+  transform: translateX(18px);
+  transition:
+    opacity 0.36s ease,
+    transform 0.42s cubic-bezier(0.2, 0.72, 0.2, 1);
+  transition-delay: 0s;
+}
+.deck-slide.is-active > :is(
+  .cap-card-top,
+  .eco-card-head,
+  .issue-kicker,
+  .sol-number,
+  h3,
+  h4,
+  p,
+  .cap-tags,
+  .sol-tags,
+  .sol-links,
+  .eco-link,
+  .issue-impact
+) {
+  opacity: 1;
+  transform: translateX(0);
+  transition-delay: 0.055s;
+}
+
+/* Logo giữ màu thật nhưng được cân cùng một diện tích hiển thị. */
+.partner-logo {
+  padding: 16px 18px;
+  border-color: rgba(148,163,184,0.20);
+  background: rgba(255,255,255,0.985);
+  box-shadow: 0 10px 26px rgba(15,23,42,0.065);
+}
+.partner-logo img {
+  width: 100%;
+  height: 100%;
+  max-width: 82%;
+  max-height: 58px;
+  object-fit: contain;
+  filter: saturate(0.94) contrast(0.99);
+  opacity: 0.96;
+}
+.partner-logo:hover img,
+.partner-logo:focus-visible img {
+  filter: saturate(1) contrast(1);
+  opacity: 1;
+  transform: scale(1.025);
+}
+
+/* Contact thoáng hơn, giảm cảm giác nhiều khung và đưa CTA về màu thương hiệu. */
+.contact-details {
+  gap: clamp(14px, 1.25vw, 20px);
+}
+.contact-row {
+  border-color: rgba(var(--section-rgb), 0.105);
+  background:
+    linear-gradient(135deg, rgba(var(--section-rgb), 0.045), rgba(255,255,255,0.018));
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.045);
+}
+.contact-row i {
+  color: color-mix(in srgb, #ef4444 72%, #fff 28%);
+  background: rgba(229,57,53,0.105);
+  opacity: 0.88;
+}
+.contact-row .label {
+  color: color-mix(in srgb, var(--text-muted) 78%, #fff 22%);
+  letter-spacing: 0.075em;
+}
+.contact-consultation-button {
+  border-color: rgba(239,68,68,0.38);
+  background: linear-gradient(135deg, #e53935, #b91c1c);
+  box-shadow: 0 16px 34px rgba(127,29,29,0.24);
+}
+.contact-consultation-button:hover,
+.contact-consultation-button:focus-visible {
+  background: linear-gradient(135deg, #ef4444, #991b1b);
+  box-shadow: 0 20px 42px rgba(127,29,29,0.34);
+}
+
+@media (max-width: 900px) {
+  :is(#nang-luc, #he-sinh-thai, #thuc-trang, #giai-phap)
+  .presentation-deck .deck-slide.has-slide-image::after {
+    inset: 0;
+  }
+  .presentation-deck .deck-pane-list {
+    padding-bottom: 11px;
+  }
+  .partner-logo img {
+    max-width: 84%;
+    max-height: 52px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .deck-track,
+  .deck-slide > *,
+  .deck-slide::after,
+  .partner-logo,
+  .partner-logo img {
+    transition: none !important;
+    animation: none !important;
+  }
+}
 </style>
 </head>
 <body>
@@ -6099,7 +6679,6 @@ html {
           <div class="deck-intro-kicker">01 · Corporate Legal</div>
           <h3>Nền tảng <span>pháp lý minh bạch</span></h3>
           <p>Hồ sơ doanh nghiệp rõ ràng cùng các định hướng, chỉ đạo quốc gia về dữ liệu là nền tảng để VDCD Group đồng hành với cơ quan nhà nước, doanh nghiệp và các dự án quy mô lớn.</p>
-          <div class="deck-intro-note"><i class="fas fa-arrow-right" aria-hidden="true"></i> Bấm cánh phải slide để xem hồ sơ và tài liệu pháp lý</div>
         </article>
         <article class="legal-slide legal-summary-slide reveal">
           <div>
@@ -6119,7 +6698,6 @@ html {
             <div class="legal-kicker"><i class="fas fa-file-shield" aria-hidden="true"></i> 01 / 02</div>
             <h3>Giấy chứng nhận đăng ký doanh nghiệp</h3>
             <p>Mặt trước thể hiện thông tin đăng ký, mã số doanh nghiệp, vốn điều lệ và người đại diện theo pháp luật.</p>
-            <span class="legal-document-hint"><i class="fas fa-magnifying-glass-plus" aria-hidden="true"></i> Bấm vào tài liệu để phóng lớn</span>
           </div>
           <button class="legal-document-button" type="button" data-document-src="_resources/images/legal/gcn-dang-ky-doanh-nghiep-mat-truoc.png" data-document-title="Giấy chứng nhận đăng ký doanh nghiệp · Mặt trước" aria-label="Phóng lớn giấy chứng nhận đăng ký doanh nghiệp mặt trước">
             <img src="_resources/images/legal/gcn-dang-ky-doanh-nghiep-mat-truoc.png" alt="Giấy chứng nhận đăng ký doanh nghiệp VDCD Group, mặt trước">
@@ -6130,7 +6708,6 @@ html {
             <div class="legal-kicker"><i class="fas fa-stamp" aria-hidden="true"></i> 02 / 02</div>
             <h3>Thông tin xác nhận và chứng thực</h3>
             <p>Mặt sau hoàn thiện hồ sơ chứng nhận với thông tin người đại diện, dấu xác nhận và cơ quan đăng ký kinh doanh.</p>
-            <span class="legal-document-hint"><i class="fas fa-magnifying-glass-plus" aria-hidden="true"></i> Bấm vào tài liệu để phóng lớn</span>
           </div>
           <button class="legal-document-button" type="button" data-document-src="_resources/images/legal/gcn-dang-ky-doanh-nghiep-mat-sau.png" data-document-title="Giấy chứng nhận đăng ký doanh nghiệp · Mặt sau" aria-label="Phóng lớn giấy chứng nhận đăng ký doanh nghiệp mặt sau">
             <img src="_resources/images/legal/gcn-dang-ky-doanh-nghiep-mat-sau.png" alt="Giấy chứng nhận đăng ký doanh nghiệp VDCD Group, mặt sau">
@@ -6141,7 +6718,6 @@ html {
             <div class="legal-kicker"><i class="fas fa-landmark" aria-hidden="true"></i> Định hướng quốc gia</div>
             <h3>Chiến lược dữ liệu quốc gia 2026 – 2030</h3>
             <p>Quyết định số 1308/QĐ-TTg ngày 18/07/2026 phê duyệt Chiến lược dữ liệu quốc gia giai đoạn 2026 – 2030, tầm nhìn đến năm 2045.</p>
-            <span class="legal-document-hint"><i class="fas fa-magnifying-glass-plus" aria-hidden="true"></i> Bấm vào tài liệu để phóng lớn</span>
           </div>
           <button class="legal-document-button" type="button" data-document-src="_resources/images/legal/quyet-dinh-1308-chien-luoc-du-lieu-quoc-gia.png" data-document-title="Quyết định 1308/QĐ-TTg · Chiến lược dữ liệu quốc gia" aria-label="Phóng lớn Quyết định 1308 về Chiến lược dữ liệu quốc gia">
             <img src="_resources/images/legal/quyet-dinh-1308-chien-luoc-du-lieu-quoc-gia.png" alt="Quyết định 1308/QĐ-TTg phê duyệt Chiến lược dữ liệu quốc gia giai đoạn 2026 đến 2030">
@@ -6153,7 +6729,6 @@ html {
             <h3>Đẩy nhanh xây dựng cơ sở dữ liệu quốc gia về đất đai</h3>
             <p>Chỉ thị số 05/CT-TTg ngày 13/02/2026 yêu cầu khẩn trương tập trung nguồn lực đẩy nhanh đo đạc, lập bản đồ địa chính, đăng ký đất đai, lập hồ sơ địa chính và xây dựng cơ sở dữ liệu quốc gia về đất đai.</p>
             <div class="legal-document-actions">
-              <span class="legal-document-hint"><i class="fas fa-magnifying-glass-plus" aria-hidden="true"></i> Bấm vào tài liệu để phóng lớn</span>
               <a class="legal-document-source" href="https://datafiles.chinhphu.vn/cpp/files/vbpq/2026/02/05ct.signed.pdf" target="_blank" rel="noopener noreferrer"><i class="fas fa-file-pdf" aria-hidden="true"></i> Xem văn bản chính thức</a>
             </div>
           </div>
@@ -6190,7 +6765,6 @@ html {
             <div class="deck-intro-kicker">02 · Technology Centers</div>
             <h3>Hệ thống <span>12 trung tâm công nghệ</span></h3>
             <p>Mỗi trung tâm đảm nhiệm một năng lực chuyên sâu, cùng kết nối trong hệ sinh thái công nghệ và dữ liệu thống nhất của VDCD Group.</p>
-            <div class="deck-intro-note"><i class="fas fa-arrow-right" aria-hidden="true"></i> Bấm cánh phải slide để khám phá từng trung tâm</div>
           </div>
           <div class="tech-centers-mosaic" aria-hidden="true">
             <img src="_resources/images/12-trung-tam-cong-nghe-images/trung-tam-ban-do-so.jpg" alt="" loading="lazy" decoding="async">
@@ -6350,10 +6924,10 @@ html {
       <p class="section-sub">Bốn nội dung trọng tâm giúp người xem chuyển nhanh đến phần cần trình bày hoặc tiếp tục cuộn để theo dõi toàn bộ câu chuyện.</p>
     </div>
     <div class="content-overview-grid">
-      <a class="content-overview-card reveal" href="#nang-luc"><span class="content-overview-number">01</span><i class="fas fa-microchip" aria-hidden="true"></i><h3>Năng lực công nghệ lõi</h3><p>BIM, GIS, UAV, AI, Digital Twin và các nền tảng phần mềm chuyên biệt.</p></a>
-      <a class="content-overview-card reveal" href="#he-sinh-thai"><span class="content-overview-number">02</span><i class="fas fa-diagram-project" aria-hidden="true"></i><h3>Hệ sinh thái thương hiệu</h3><p>Bảy thương hiệu chuyên sâu cùng vận hành trên một nền tảng năng lực thống nhất.</p></a>
-      <a class="content-overview-card reveal" href="#thuc-trang"><span class="content-overview-number">03</span><i class="fas fa-chart-line" aria-hidden="true"></i><h3>Thực trạng chuyển đổi số</h3><p>Nhận diện nhu cầu kết nối quy trình, dữ liệu, nguồn lực và lộ trình triển khai.</p></a>
-      <a class="content-overview-card reveal" href="#giai-phap"><span class="content-overview-number">04</span><i class="fas fa-lightbulb" aria-hidden="true"></i><h3>Giải pháp theo lĩnh vực</h3><p>Những hướng triển khai phù hợp với bài toán thực tế của từng ngành và đơn vị.</p></a>
+      <a class="content-overview-card reveal" href="#nang-luc"><span class="content-overview-number">01</span><h3>Năng lực công nghệ lõi</h3><p>BIM, GIS, UAV, AI, Digital Twin và các nền tảng phần mềm chuyên biệt.</p></a>
+      <a class="content-overview-card reveal" href="#he-sinh-thai"><span class="content-overview-number">02</span><h3>Hệ sinh thái thương hiệu</h3><p>Bảy thương hiệu chuyên sâu cùng vận hành trên một nền tảng năng lực thống nhất.</p></a>
+      <a class="content-overview-card reveal" href="#thuc-trang"><span class="content-overview-number">03</span><h3>Thực trạng chuyển đổi số</h3><p>Nhận diện nhu cầu kết nối quy trình, dữ liệu, nguồn lực và lộ trình triển khai.</p></a>
+      <a class="content-overview-card reveal" href="#giai-phap"><span class="content-overview-number">04</span><h3>Giải pháp theo lĩnh vực</h3><p>Những hướng triển khai phù hợp với bài toán thực tế của từng ngành và đơn vị.</p></a>
     </div>
   </div>
 </section>
@@ -6382,7 +6956,6 @@ html {
       <div class="deck-intro-kicker">05 · Core Capabilities</div>
       <h3>Năng lực <span>công nghệ lõi</span></h3>
       <p>Làm chủ chuỗi công nghệ từ thu thập dữ liệu hiện trường, mô hình hóa không gian đến phân tích AI và vận hành trên nền tảng số.</p>
-      <div class="deck-intro-note"><i class="fas fa-arrow-right" aria-hidden="true"></i> Bấm cánh phải slide để khám phá 6 nhóm năng lực</div>
     </article>
     <article class="cap-card cap-card-featured reveal reveal-delay-1 has-slide-image" style="--slide-image:url(_resources/images/presentation/core-bim-gis.jpg)">
       <span class="cap-watermark" aria-hidden="true">BIM + GIS</span>
@@ -6452,7 +7025,6 @@ html {
         <div class="deck-intro-kicker">03 · Ecosystem</div>
         <h3>Hệ sinh thái <span>7 thương hiệu</span></h3>
         <p>Mỗi thương hiệu giải quyết một mắt xích chuyên sâu, cùng vận hành trên nền tảng dữ liệu, đội ngũ và năng lực công nghệ thống nhất của VDCD Group.</p>
-        <div class="deck-intro-note"><i class="fas fa-arrow-right" aria-hidden="true"></i> Bấm cánh phải slide để xem từng thương hiệu</div>
       </article>
       <article class="eco-card reveal reveal-delay-2 has-slide-image" style="--slide-image:url(_resources/images/presentation/eco-timelapse.jpg)">
         <div class="eco-card-head"><span class="eco-icon"><i class="fas fa-camera"></i></span><span class="eco-number">Hệ sinh thái</span></div>
@@ -6518,7 +7090,6 @@ html {
           <div class="deck-intro-kicker">06 · Current State</div>
           <h3>Thực trạng công tác <span>chuyển đổi số hiện nay chưa được tập trung</span></h3>
           <p>Nhận diện đúng thực trạng là bước đầu để lựa chọn giải pháp đúng, phù hợp với nhu cầu, nguồn lực và mục tiêu của từng đơn vị.</p>
-          <div class="deck-intro-note"><i class="fas fa-arrow-right" aria-hidden="true"></i> Bấm cánh phải slide để khám phá 4 phương diện thực trạng</div>
         </article>
         <article class="issue-card reveal has-slide-image" style="--slide-image:url(_resources/images/presentation/core-data-platform.jpg)">
           <div class="issue-kicker">THỰC TRẠNG QUY TRÌNH</div><span class="issue-icon"><i class="fas fa-file-pen" aria-hidden="true"></i></span>
@@ -6572,7 +7143,6 @@ html {
       <div class="deck-intro-kicker">07 · Industry Solutions</div>
       <h3>Giải pháp theo <span>lĩnh vực</span></h3>
       <p>“Chúng tôi mong muốn được lắng nghe những khó khăn, nhu cầu và mục tiêu thực tế của Quý đơn vị. Khi hiểu đúng vấn đề, VDCD sẽ đề xuất giải pháp phù hợp và hiệu quả nhất.”</p>
-      <div class="deck-intro-note"><i class="fas fa-arrow-right" aria-hidden="true"></i> Bấm cánh phải slide để xem giải pháp theo từng ngành</div>
     </article>
     <article class="sol-card reveal has-slide-image" style="--slide-image:url(_resources/images/presentation/solution-agriculture.jpg)">
       <span class="sol-number">GIẢI PHÁP</span><span class="icon"><i class="fas fa-leaf"></i></span>
@@ -6900,7 +7470,6 @@ html {
 <section class="contact-section" id="lien-he" data-scroll-chapter>
   <div class="contact-grid">
     <div class="contact-info reveal">
-      <div class="contact-brand-symbol" aria-hidden="true"><i class="fas fa-handshake"></i></div>
       <div class="section-tag" style="margin-bottom:12px;">Liên hệ</div>
       <h3>Kết nối cùng <span class="highlight">VDCD Group</span></h3>
       <p>Hãy để chúng tôi đồng hành cùng doanh nghiệp của bạn trên hành trình chuyển đổi số. Liên hệ ngay để được tư vấn giải pháp phù hợp.</p>
@@ -6934,7 +7503,10 @@ html {
           <i class="fas fa-envelope"></i>
           <div>
             <div class="label">Email</div>
-            <div class="value">vipcare@vdcd.vn</div>
+            <div class="value contact-email-stack">
+              <a href="mailto:vdcdmiennam@gmail.com">vdcdmiennam@gmail.com</a>
+              <a href="mailto:vipcare@vdcd.vn">vipcare@vdcd.vn</a>
+            </div>
           </div>
         </div>
 
@@ -7453,6 +8025,8 @@ function updatePageChrome() {
   const scrollTop = window.scrollY || document.documentElement.scrollTop;
   const scrollRange = document.documentElement.scrollHeight - window.innerHeight;
   const progress = scrollRange > 0 ? Math.min(scrollTop / scrollRange, 1) : 0;
+  const heroRect = document.getElementById('home')?.getBoundingClientRect();
+  const beyondHero = Boolean(heroRect && heroRect.bottom <= 1);
   const firstPresentationRect = presentationSections[0]?.getBoundingClientRect();
   const lastPresentationRect = presentationSections[presentationSections.length - 1]?.getBoundingClientRect();
   const presentationContentActive = Boolean(
@@ -7461,6 +8035,11 @@ function updatePageChrome() {
     firstPresentationRect.top <= 1 &&
     lastPresentationRect.bottom > 0
   );
+  document.body.classList.toggle('beyond-hero', beyondHero);
+  if (beyondHero) {
+    document.querySelector('.nav-links')?.classList.remove('open');
+    document.querySelector('.nav-mobile-toggle')?.setAttribute('aria-expanded', 'false');
+  }
   document.body.classList.toggle('presentation-content-active', presentationContentActive);
   if (!presentationContentActive) document.body.classList.remove('presentation-nav-peek');
   navbar?.classList.toggle('scrolled', scrollTop > 50);
@@ -8307,7 +8886,6 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
         ${catalog.solutions.map((solution, index) => `<button class="solution-explorer-card" type="button" data-explorer-solution="${index}" aria-label="Mở giải pháp ${index + 1}: ${escapeHTML(solution.title)}">
           <span class="solution-explorer-card-top">
             <span class="solution-explorer-card-index">${String(index + 1).padStart(2, '0')}</span>
-            <span class="solution-explorer-card-icon" aria-hidden="true"><i class="fas ${escapeHTML(solution.icon)}"></i></span>
           </span>
           <strong class="solution-explorer-card-title">${escapeHTML(solution.title)}</strong>
           <span class="solution-explorer-card-summary">${escapeHTML(solution.summary)}</span>
