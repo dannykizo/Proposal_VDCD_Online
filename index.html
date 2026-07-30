@@ -7856,6 +7856,49 @@ body.beyond-hero .nav-links.open { display: none !important; }
     background-size: 52px 52px, auto, auto;
   }
 }
+/* Presentation legibility refinement: chủ động nhịp chữ, làm rõ số và mở dải logo. */
+@media (min-width: 901px) {
+  .company-overview-lead-line {
+    display: block;
+    text-wrap: balance;
+  }
+  .company-overview-lead-line:nth-child(2) {
+    margin-block: 0.08em;
+  }
+
+  .partners-section {
+    width: 100%;
+    max-width: none;
+    padding-inline: clamp(28px, 3.2vw, 64px);
+  }
+  .partners-section > .section-header {
+    width: min(1120px, 100%);
+    margin-inline: auto;
+  }
+  .partners-section .partners-stack {
+    width: 100%;
+  }
+  .partners-section .partners-scroll {
+    margin-inline: calc(-1 * clamp(10px, 1vw, 20px));
+    padding-inline: clamp(10px, 1vw, 20px);
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 3.5%, #000 96.5%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 3.5%, #000 96.5%, transparent);
+  }
+}
+
+#noi-dung .content-overview-number {
+  color: color-mix(in srgb, var(--vdcd-red) 88%, var(--text) 12%);
+  opacity: 1;
+  text-shadow:
+    0 10px 24px rgba(var(--vdcd-red-rgb), 0.22),
+    0 0 1px currentColor;
+}
+#noi-dung .content-overview-card:nth-child(even) .content-overview-number {
+  color: color-mix(in srgb, var(--vdcd-blue) 86%, var(--text) 14%);
+  text-shadow:
+    0 10px 24px rgba(var(--vdcd-blue-rgb), 0.22),
+    0 0 1px currentColor;
+}
 </style>
 </head>
 <body>
@@ -7990,8 +8033,9 @@ body.beyond-hero .nav-links.open { display: none !important; }
       <div class="company-overview-eyebrow">VDCD Group · Chi nhánh TP. Hồ Chí Minh</div>
       <h2 class="company-overview-title">Đối tác công nghệ <span>toàn diện</span></h2>
       <p class="company-overview-lead">
-        Đồng hành cùng doanh nghiệp và cơ quan quản lý bằng hệ sinh thái tích hợp
-        <strong>BIM &amp; GIS, UAV/AI và Digital Twin</strong> — từ dữ liệu hiện trường đến quản trị và vận hành số.
+        <span class="company-overview-lead-line">Đồng hành cùng doanh nghiệp và cơ quan quản lý</span>
+        <span class="company-overview-lead-line">bằng hệ sinh thái tích hợp <strong>BIM &amp; GIS, UAV/AI và Digital Twin</strong></span>
+        <span class="company-overview-lead-line">— từ dữ liệu hiện trường đến quản trị và vận hành số.</span>
       </p>
       <div class="company-overview-actions">
         <a href="#phap-ly" class="btn btn-primary"><i class="fas fa-arrow-right" aria-hidden="true"></i> Bắt đầu trình bày</a>
