@@ -7899,6 +7899,66 @@ body.beyond-hero .nav-links.open { display: none !important; }
     0 10px 24px rgba(var(--vdcd-blue-rgb), 0.22),
     0 0 1px currentColor;
 }
+
+/* Overview metrics: quy mô tổ chức ở hàng trên, kết quả thị trường ở hàng dưới. */
+@media (min-width: 901px) {
+  .company-overview .stats-grid {
+    grid-template-columns: repeat(10, minmax(0, 1fr));
+    row-gap: clamp(6px, 0.8vh, 12px);
+  }
+  .company-overview .stat-item {
+    grid-column: span 2;
+  }
+  .company-overview .stat-item:nth-child(6) {
+    grid-column: 4 / span 2;
+  }
+  .company-overview .stat-item:nth-child(7) {
+    grid-column: 6 / span 2;
+  }
+  .company-overview .stat-item:nth-child(5)::after {
+    display: none;
+  }
+  .company-overview .stat-item:nth-child(n+6) {
+    padding-top: clamp(18px, 2.2vh, 26px);
+    border-top: 1px solid color-mix(in srgb, var(--border) 74%, transparent);
+  }
+}
+
+@media (max-width: 900px) {
+  .company-overview .stats-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .company-overview .stat-item {
+    grid-column: auto;
+  }
+  .company-overview .stat-item:nth-child(3)::after,
+  .company-overview .stat-item:nth-child(6)::after {
+    display: none;
+  }
+  .company-overview .stat-item:nth-child(n+4) {
+    padding-top: 28px;
+  }
+  .company-overview .stat-item:nth-child(7) {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 560px) {
+  .company-overview .stats-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .company-overview .stat-item:nth-child(3)::after {
+    display: block;
+  }
+  .company-overview .stat-item:nth-child(2)::after,
+  .company-overview .stat-item:nth-child(4)::after,
+  .company-overview .stat-item:nth-child(6)::after {
+    display: none;
+  }
+  .company-overview .stat-item:nth-child(7) {
+    grid-column: 1 / -1;
+  }
+}
 </style>
 </head>
 <body>
@@ -8044,6 +8104,8 @@ body.beyond-hero .nav-links.open { display: none !important; }
     </div>
     <div class="stats-grid reveal reveal-delay-1" aria-label="Những dấu mốc nổi bật của VDCD Group">
       <div class="stat-item"><div class="num">2006</div><div class="label">Năm thành lập</div></div>
+      <div class="stat-item"><div class="num" data-count="10">10</div><div class="label">Công ty thành viên</div></div>
+      <div class="stat-item"><div class="num" data-count="9">9</div><div class="label">Văn phòng đại diện</div></div>
       <div class="stat-item"><div class="num" data-count="12">12</div><div class="label">Trung tâm công nghệ</div></div>
       <div class="stat-item"><div class="num" data-count="7">7</div><div class="label">Thương hiệu hệ sinh thái</div></div>
       <div class="stat-item"><div class="num" data-count="250">250+</div><div class="label">Khách hàng</div></div>
