@@ -3042,19 +3042,19 @@ body.standby-active { overflow: hidden; }
   position: fixed;
   inset: 0;
   z-index: 10000;
-  display: grid;
-  place-items: center;
+  display: block;
   overflow: hidden;
-  color: #eef2ff;
+  color: #101827;
   background:
-    radial-gradient(circle at 15% 18%, rgba(229,57,53,0.13), transparent 30%),
-    radial-gradient(circle at 85% 78%, rgba(185,28,28,0.12), transparent 31%),
-    radial-gradient(circle at 68% 15%, rgba(34,211,238,0.06), transparent 28%),
-    linear-gradient(135deg, #07111f 0%, #0b1025 48%, #090815 100%);
+    radial-gradient(circle at 74% 24%, rgba(49,157,205,0.12), transparent 31%),
+    radial-gradient(circle at 85% 82%, rgba(229,37,42,0.09), transparent 29%),
+    linear-gradient(126deg, #ffffff 0%, #f7f9fb 42%, #edf3f7 100%);
+  background-size: 118% 118%, 114% 114%, 100% 100%;
+  background-position: 68% 20%, 82% 76%, center;
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  cursor: none;
+  cursor: pointer;
   transition: opacity 0.55s ease, visibility 0s linear 0.55s;
 }
 .standby-screen.active {
@@ -3062,119 +3062,547 @@ body.standby-active { overflow: hidden; }
   visibility: visible;
   pointer-events: auto;
   transition-delay: 0s;
+  animation: standbyAmbient 12s ease-in-out infinite alternate;
 }
 .standby-screen::before {
   content: '';
   position: absolute;
-  inset: -18%;
+  inset: 0;
   background:
-    linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px);
-  background-size: 64px 64px;
-  mask-image: radial-gradient(circle at center, #000 0%, transparent 66%);
-  animation: standbyGridDrift 24s linear infinite;
+    linear-gradient(120deg, transparent 0 11%, rgba(150,164,177,0.14) 11.1% 11.18%, transparent 11.28% 100%),
+    linear-gradient(152deg, transparent 0 20%, rgba(150,164,177,0.10) 20.08% 20.16%, transparent 20.24% 100%),
+    repeating-linear-gradient(90deg, transparent 0 95px, rgba(66,90,110,0.03) 96px);
+  background-size: 100% 100%, 100% 100%, 192px 100%;
+  mask-image: linear-gradient(90deg, #000 0%, rgba(0,0,0,0.5) 55%, transparent 100%);
+  pointer-events: none;
+}
+.standby-screen.active::before {
+  animation: standbyGridFlow 16s linear infinite;
 }
 .standby-screen::after {
   content: '';
   position: absolute;
-  width: min(72vw, 900px);
-  aspect-ratio: 1;
-  border-radius: 50%;
-  border: 1px solid rgba(229,57,53,0.12);
-  box-shadow:
-    0 0 120px rgba(229,57,53,0.09),
-    inset 0 0 120px rgba(185,28,28,0.04);
-  animation: standbyHalo 8s ease-in-out infinite;
+  right: -5vw;
+  bottom: -17vh;
+  width: min(34vw, 650px);
+  height: min(46vh, 470px);
+  background: linear-gradient(138deg, transparent 0 29%, #e5252a 29.2% 32%, #141820 32.2% 100%);
+  clip-path: polygon(48% 0, 100% 0, 100% 100%, 0 100%);
+  opacity: 0.96;
+  pointer-events: none;
 }
-.standby-brand {
+.standby-layout {
   position: relative;
   z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(360px, 0.82fr) minmax(540px, 1.38fr);
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+}
+.standby-copy {
+  position: relative;
+  z-index: 4;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
+  justify-content: center;
+  align-items: flex-start;
+  padding: clamp(48px, 7vh, 88px) clamp(42px, 5.4vw, 100px);
+  background: linear-gradient(90deg, rgba(255,255,255,0.99) 0%, rgba(255,255,255,0.97) 78%, rgba(255,255,255,0.52) 100%);
+  box-shadow: 22px 0 64px rgba(15,23,42,0.055);
+}
+.standby-copy::before,
+.standby-copy::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  pointer-events: none;
+}
+.standby-copy::before {
+  top: 15%;
+  width: clamp(8px, 0.7vw, 13px);
+  height: clamp(72px, 10vh, 108px);
+  border-radius: 0 99px 99px 0;
+  background: linear-gradient(180deg, #e5252a, #b8141a);
+  box-shadow: 12px 0 28px rgba(229,37,42,0.16);
+}
+.standby-copy::after {
+  bottom: 0;
+  width: min(58%, 310px);
+  height: 5px;
+  background: linear-gradient(90deg, #111722 0 63%, #e5252a 63% 82%, transparent 82%);
+}
+.standby-logo {
+  position: relative;
+  display: block;
+  width: clamp(172px, 17vw, 250px);
+  aspect-ratio: 199 / 102;
+  margin-bottom: clamp(32px, 5vh, 62px);
   user-select: none;
 }
-.standby-vdcd {
-  margin-left: 0.08em;
+.standby-logo img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: left center;
+}
+.standby-logo-base { filter: brightness(0) saturate(100%); }
+.standby-logo-accent {
+  filter: none;
+  clip-path: polygon(18% 20%, 37% 20%, 29% 64%, 18% 64%);
+}
+.standby-title {
+  max-width: 8.9em;
+  margin: 0;
   font-family: var(--font-heading);
-  font-size: clamp(4.4rem, 11vw, 9rem);
+  font-size: clamp(2.7rem, 4.8vw, 5.8rem);
   font-weight: 800;
-  line-height: 0.82;
-  letter-spacing: 0.08em;
-  animation: standbyLights 7s 0.75s linear infinite;
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+  text-transform: uppercase;
+  text-wrap: balance;
 }
-.standby-group {
-  margin-top: clamp(1rem, 2.4vw, 1.8rem);
-  font-family: var(--font-heading);
-  font-size: clamp(2.2rem, 5vw, 4.5rem);
-  font-weight: 500;
-  line-height: 1;
-  letter-spacing: 0.12em;
-  color: rgba(224,231,255,0.9);
-  text-shadow: 0 0 0.6em rgba(229,57,53,0.30);
+.standby-title span { display: block; }
+.standby-rule {
+  position: relative;
+  overflow: hidden;
+  width: clamp(96px, 9vw, 158px);
+  height: 6px;
+  margin: clamp(28px, 4vh, 48px) 0 clamp(26px, 3.6vh, 42px);
+  border-radius: 99px;
+  background: linear-gradient(90deg, #d71920 0 72%, rgba(215,25,32,0.16) 72%);
+  box-shadow: 0 8px 20px rgba(215,25,32,0.14);
 }
-.standby-hint {
+.standby-rule::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent 0 28%, rgba(255,255,255,0.92) 48%, transparent 68%);
+  transform: translateX(-130%);
+}
+.standby-screen.active .standby-rule::after {
+  animation: standbyRuleSweep 4.8s ease-in-out infinite;
+}
+.standby-subtitle {
+  margin: 0;
+  color: #596273;
+  font-size: clamp(1rem, 1.45vw, 1.35rem);
+  font-weight: 560;
+  line-height: 1.55;
+}
+.standby-subtitle strong {
+  display: block;
+  color: #222b38;
+  font-weight: 750;
+}
+.standby-visual {
+  position: relative;
+  z-index: 2;
+  min-width: 0;
+  overflow: hidden;
+  isolation: isolate;
+  background:
+    radial-gradient(circle at 58% 42%, rgba(57,177,218,0.09), transparent 36%),
+    linear-gradient(145deg, transparent 0 62%, rgba(229,37,42,0.035) 100%);
+}
+.standby-visual::before {
+  content: '';
+  position: absolute;
+  z-index: 5;
+  inset: 0 auto 0 0;
+  width: 23%;
+  background: linear-gradient(90deg, rgba(255,255,255,0.98), rgba(255,255,255,0));
+  pointer-events: none;
+}
+.standby-visual::after {
+  content: '';
+  position: absolute;
+  z-index: 4;
+  inset: 0;
+  background:
+    linear-gradient(112deg, transparent 0 43%, rgba(255,255,255,0.5) 48%, transparent 53%),
+    linear-gradient(180deg, rgba(255,255,255,0.72) 0%, transparent 18%, transparent 75%, rgba(239,244,247,0.44) 100%),
+    linear-gradient(102deg, rgba(255,255,255,0.76) 0%, transparent 34%);
+  background-size: 260% 100%, 100% 100%, 100% 100%;
+  background-position: -145% 0, center, center;
+  pointer-events: none;
+}
+.standby-screen.active .standby-visual::after {
+  animation: standbyDataSweep 7s ease-in-out infinite;
+}
+.standby-digital-twin {
+  position: absolute;
+  z-index: 1;
+  top: 4%;
+  right: -4%;
+  width: 88%;
+  height: 72%;
+  object-fit: contain;
+  object-position: right center;
+  mix-blend-mode: multiply;
+  filter: saturate(0.88) contrast(1.025) drop-shadow(0 24px 30px rgba(24,84,116,0.08));
+}
+.standby-screen.active .standby-digital-twin {
+  animation: standbyCityFloat 9s ease-in-out infinite;
+}
+.standby-bim {
   position: absolute;
   z-index: 2;
+  left: 4%;
+  right: auto;
+  bottom: -3%;
+  width: 49%;
+  height: 48%;
+  object-fit: contain;
+  object-position: right bottom;
+  mix-blend-mode: multiply;
+  clip-path: polygon(10% 6%, 94% 0, 100% 86%, 8% 100%, 0 20%);
+  filter: saturate(0.82) contrast(1.02);
+  opacity: 0.92;
+}
+.standby-screen.active .standby-bim {
+  animation: standbyLayerFloat 7.5s ease-in-out infinite -1.2s;
+}
+.standby-drone {
+  position: absolute;
+  z-index: 3;
+  top: 7%;
+  left: 3%;
+  width: clamp(180px, 21vw, 350px);
+  aspect-ratio: 1.65;
+  object-fit: cover;
+  object-position: 50% 52%;
+  clip-path: polygon(12% 0, 88% 0, 100% 50%, 88% 100%, 12% 100%, 0 50%);
+  filter: saturate(0.48) contrast(1.04) brightness(1.08);
+  opacity: 0.88;
+  box-shadow: 0 18px 42px rgba(26,52,68,0.14);
+}
+.standby-screen.active .standby-drone {
+  animation: standbyDroneFloat 6.8s ease-in-out infinite;
+}
+.standby-tech-lines {
+  position: absolute;
+  z-index: 6;
+  right: 5%;
+  bottom: 5%;
+  display: grid;
+  grid-template-columns: repeat(3, 48px);
+  gap: 8px;
+  opacity: 0.64;
+}
+.standby-tech-lines span {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  aspect-ratio: 1;
+  border: 1px solid rgba(229,37,42,0.42);
+  color: #c61f26;
+  background: rgba(255,255,255,0.76);
+  clip-path: polygon(25% 7%, 75% 7%, 100% 50%, 75% 93%, 25% 93%, 0 50%);
+  font-size: 15px;
+}
+.standby-screen.active .standby-tech-lines span {
+  animation: standbyIconPulse 4.2s ease-in-out infinite;
+}
+.standby-screen.active .standby-tech-lines span:nth-child(2) { animation-delay: -1.4s; }
+.standby-screen.active .standby-tech-lines span:nth-child(3) { animation-delay: -2.8s; }
+.standby-hint {
+  position: absolute;
+  z-index: 12;
   left: 50%;
-  bottom: clamp(24px, 5vh, 52px);
+  bottom: clamp(18px, 3.2vh, 32px);
   width: max-content;
   max-width: calc(100vw - 40px);
   transform: translateX(-50%);
-  color: rgba(203,213,225,0.48);
-  font-size: clamp(10px, 1vw, 12px);
-  font-weight: 500;
-  letter-spacing: 0.15em;
+  padding: 10px 18px;
+  border: 1px solid rgba(17,24,39,0.12);
+  border-radius: 999px;
+  color: rgba(31,41,55,0.72);
+  background: rgba(255,255,255,0.82);
+  box-shadow: 0 12px 28px rgba(15,23,42,0.08);
+  backdrop-filter: blur(10px);
+  font-size: clamp(11px, 1vw, 13px);
+  font-weight: 700;
+  letter-spacing: 0.1em;
   text-align: center;
   text-transform: uppercase;
 }
-@keyframes standbyLights {
-  0% {
-    color: #f8fafc;
-    text-shadow:
-      0 0 1em rgba(229,57,53,0.20),
-      0 0 0.125em rgba(255,107,107,0.28),
-      -1em -0.125em 0.5em rgba(185,28,28,0),
-      1em 0.125em 0.5em rgba(255,107,107,0);
+.standby-screen.active .standby-hint {
+  animation: standbyHintPulse 3.6s ease-in-out infinite;
+}
+@keyframes standbyAmbient {
+  0% { background-position: 62% 18%, 80% 78%, center; }
+  100% { background-position: 75% 25%, 88% 70%, center; }
+}
+@keyframes standbyGridFlow {
+  to { background-position: 0 0, 0 0, 192px 0; }
+}
+@keyframes standbyRuleSweep {
+  0%, 58% { transform: translateX(-130%); }
+  82%, 100% { transform: translateX(130%); }
+}
+@keyframes standbyDataSweep {
+  0%, 15% { background-position: -145% 0, center, center; }
+  62%, 100% { background-position: 145% 0, center, center; }
+}
+@keyframes standbyCityFloat {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(-5px, -9px, 0) scale(1.012); }
+}
+@keyframes standbyLayerFloat {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(-0.25deg); }
+  50% { transform: translate3d(5px, -8px, 0) rotate(0.2deg); }
+}
+@keyframes standbyDroneFloat {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(10px, -7px, 0); }
+}
+@keyframes standbyIconPulse {
+  0%, 100% { opacity: 0.62; transform: translateY(0); }
+  50% { opacity: 1; transform: translateY(-4px); }
+}
+@keyframes standbyHintPulse {
+  0%, 100% { box-shadow: 0 12px 28px rgba(15,23,42,0.08); }
+  50% { box-shadow: 0 12px 34px rgba(229,37,42,0.15); }
+}
+@media (max-width: 900px) {
+  .standby-layout {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto minmax(0, 1fr);
   }
-  30% {
-    color: #fee2e2;
-    text-shadow:
-      0 0 1em rgba(229,57,53,0.48),
-      0 0 0.125em rgba(255,107,107,0.54),
-      -0.5em -0.125em 0.25em rgba(185,28,28,0.30),
-      0.5em 0.125em 0.25em rgba(255,107,107,0.34);
+  .standby-copy {
+    justify-content: flex-start;
+    padding: clamp(36px, 6vh, 62px) clamp(28px, 8vw, 64px) 28px;
+    background: linear-gradient(180deg, #fff 0%, rgba(255,255,255,0.96) 82%, rgba(255,255,255,0.72) 100%);
+    box-shadow: 0 18px 50px rgba(15,23,42,0.05);
   }
-  40% {
-    color: #fff7f7;
-    text-shadow:
-      0 0 1em rgba(229,57,53,0.52),
-      0 0 0.125em rgba(255,228,230,0.58),
-      -0.25em -0.125em 0.125em rgba(185,28,28,0.32),
-      0.25em 0.125em 0.125em rgba(255,107,107,0.38);
+  .standby-copy::before {
+    top: 17%;
+    width: 8px;
+    height: 68px;
   }
-  70% {
-    color: #fecaca;
-    text-shadow:
-      0 0 1em rgba(185,28,28,0.50),
-      0 0 0.125em rgba(255,107,107,0.52),
-      0.5em -0.125em 0.25em rgba(229,57,53,0.28),
-      -0.5em 0.125em 0.25em rgba(255,107,107,0.36);
+  .standby-copy::after { display: none; }
+  .standby-logo {
+    width: clamp(146px, 28vw, 205px);
+    margin-bottom: clamp(18px, 3vh, 30px);
   }
-  100% {
-    color: #f8fafc;
-    text-shadow:
-      0 0 1em rgba(229,57,53,0.20),
-      0 0 0.125em rgba(255,107,107,0.28),
-      1em -0.125em 0.5em rgba(185,28,28,0),
-      -1em 0.125em 0.5em rgba(255,107,107,0);
+  .standby-title {
+    max-width: 10em;
+    font-size: clamp(2.35rem, 8vw, 4rem);
+    line-height: 1.1;
+  }
+  .standby-rule { margin: 20px 0 18px; }
+  .standby-subtitle { font-size: clamp(0.95rem, 2.7vw, 1.15rem); }
+  .standby-visual::before {
+    width: 100%;
+    height: 24%;
+    background: linear-gradient(180deg, #fff, transparent);
+  }
+  .standby-visual { min-height: 180px; }
+  .standby-digital-twin {
+    top: -7%;
+    right: -5%;
+    width: 89%;
+    height: 98%;
+  }
+  .standby-bim { display: none; }
+  .standby-drone {
+    top: 6%;
+    left: 3%;
+    width: clamp(142px, 31vw, 230px);
+  }
+  .standby-tech-lines { display: none; }
+  .standby-screen::after {
+    width: 48vw;
+    height: 24vh;
+    bottom: -9vh;
   }
 }
-@keyframes standbyGridDrift { to { transform: translate3d(64px, 64px, 0); } }
-@keyframes standbyHalo {
-  0%, 100% { opacity: 0.48; transform: scale(0.97); }
-  50% { opacity: 0.9; transform: scale(1.03); }
+@media (max-width: 560px) {
+  .standby-layout { grid-template-rows: auto minmax(0, 1fr); }
+  .standby-copy {
+    padding: 30px 24px 22px;
+  }
+  .standby-copy::before {
+    top: 13%;
+    width: 6px;
+    height: 54px;
+  }
+  .standby-logo {
+    width: 136px;
+    margin-bottom: 16px;
+  }
+  .standby-title {
+    max-width: 100%;
+    font-size: clamp(2rem, 9.5vw, 2.8rem);
+    line-height: 1.12;
+    letter-spacing: -0.025em;
+  }
+  .standby-rule {
+    width: 92px;
+    height: 5px;
+    margin: 17px 0 15px;
+  }
+  .standby-subtitle {
+    font-size: 0.92rem;
+    line-height: 1.4;
+  }
+  .standby-digital-twin {
+    top: -4%;
+    right: -10%;
+    width: 106%;
+  }
+  .standby-drone {
+    top: 7%;
+    left: 3%;
+    width: 36vw;
+  }
+  .standby-hint {
+    bottom: 14px;
+    padding: 9px 14px;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+  }
+}
+@media (max-width: 900px) and (max-height: 700px) {
+  .standby-copy {
+    padding: 20px clamp(26px, 7vw, 48px) 18px;
+  }
+  .standby-copy::before {
+    top: 14%;
+    height: 46px;
+  }
+  .standby-logo {
+    width: clamp(118px, 22vw, 150px);
+    margin-bottom: 8px;
+  }
+  .standby-title {
+    max-width: 100%;
+    font-size: clamp(2rem, 6.8vw, 3rem);
+    line-height: 1.08;
+  }
+  .standby-rule {
+    width: 84px;
+    height: 5px;
+    margin: 11px 0 10px;
+  }
+  .standby-subtitle {
+    font-size: clamp(0.82rem, 2.2vw, 0.96rem);
+    line-height: 1.32;
+  }
+  .standby-visual { min-height: 140px; }
+  .standby-digital-twin {
+    top: -9%;
+    right: -4%;
+    width: 88%;
+    height: 112%;
+  }
+  .standby-drone {
+    top: 4%;
+    width: clamp(120px, 28vw, 172px);
+  }
+  .standby-hint {
+    bottom: 9px;
+    padding: 8px 13px;
+  }
+}
+
+/* Final standby mode: use the approved 16:9 artwork as one uninterrupted canvas. */
+.standby-screen.standby-screen--image {
+  display: grid;
+  place-items: center;
+  isolation: isolate;
+  background: #eef3f7;
+}
+.standby-screen.standby-screen--image::before {
+  z-index: 0;
+  inset: -8%;
+  background: url('_resources/images/Banners/standby-thank-you-v1.png') center / cover no-repeat;
+  filter: blur(24px) saturate(0.68) brightness(1.06);
+  opacity: 0.24;
+  mask-image: none;
+  transform: scale(1.08);
+}
+.standby-screen.standby-screen--image::after {
+  z-index: 3;
+  inset: -35%;
+  right: auto;
+  bottom: auto;
+  width: 170%;
+  height: 170%;
+  background: linear-gradient(112deg, transparent 0 43%, rgba(255,255,255,0.48) 48%, transparent 53%);
+  clip-path: none;
+  opacity: 0;
+  transform: translateX(-38%);
+  pointer-events: none;
+}
+.standby-screen--image .standby-layout { display: none; }
+.standby-art {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  user-select: none;
+  pointer-events: none;
+  transform: scale(1.002);
+  filter: saturate(0.96) contrast(1.015);
+}
+.standby-screen--image.active .standby-art {
+  animation: standbyArtworkBreath 13s ease-in-out infinite;
+}
+.standby-screen.standby-screen--image.active::before {
+  animation: standbyBackdropBreath 13s ease-in-out infinite reverse;
+}
+.standby-screen.standby-screen--image.active::after {
+  animation: standbyArtworkSweep 8.5s ease-in-out infinite;
+}
+.standby-screen--image .standby-hint {
+  z-index: 5;
+  bottom: clamp(14px, 2.4vh, 26px);
+  color: rgba(255,255,255,0.94);
+  border-color: rgba(255,255,255,0.22);
+  background: rgba(15,23,34,0.72);
+  box-shadow: 0 12px 30px rgba(15,23,42,0.18);
+  backdrop-filter: blur(12px);
+}
+@keyframes standbyArtworkBreath {
+  0%, 100% { transform: scale(1.002); }
+  50% { transform: scale(1.016); }
+}
+@keyframes standbyBackdropBreath {
+  0%, 100% { transform: scale(1.08); opacity: 0.22; }
+  50% { transform: scale(1.11); opacity: 0.29; }
+}
+@keyframes standbyArtworkSweep {
+  0%, 62% { opacity: 0; transform: translateX(-38%); }
+  72% { opacity: 0.42; }
+  88%, 100% { opacity: 0; transform: translateX(38%); }
+}
+@media (max-aspect-ratio: 4 / 3) {
+  .standby-art {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transform: none;
+    filter: drop-shadow(0 20px 55px rgba(15,23,42,0.12));
+  }
+  .standby-screen--image.active .standby-art {
+    animation-name: standbyArtworkBreathContained;
+  }
+  .standby-screen--image .standby-hint {
+    bottom: 12px;
+    padding: 8px 13px;
+    font-size: 10px;
+  }
+}
+@keyframes standbyArtworkBreathContained {
+  0%, 100% { transform: scale(0.988); }
+  50% { transform: scale(0.998); }
 }
 
 /* Presentation polish: larger contents map and an always-reachable slide pane. */
@@ -3377,9 +3805,17 @@ body.standby-active { overflow: hidden; }
   .hero-wordmark-main,
   .hero-wordmark-group,
   .hero-wordmark::after,
+  .standby-screen,
   .standby-screen::before,
   .standby-screen::after,
-  .standby-vdcd { animation: none; }
+  .standby-rule::after,
+  .standby-visual::after,
+  .standby-art,
+  .standby-digital-twin,
+  .standby-bim,
+  .standby-drone,
+  .standby-tech-lines span,
+  .standby-hint { animation: none !important; }
   .hero-wordmark-main { background-position: 45% 50%; }
   :is(#nang-luc, .eco-section, #giai-phap, #du-an, .partners-section) .section-header h2::after {
     transition: none;
@@ -7971,12 +8407,9 @@ body.beyond-hero .nav-links.open { display: none !important; }
 </button>
 
 <!-- ═══════════ PRESENTATION STANDBY SCREEN ═══════════ -->
-<section class="standby-screen" id="standbyScreen" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Màn hình chờ VDCD Group" tabindex="-1">
-  <div class="standby-brand" aria-label="VDCD Group">
-    <div class="standby-vdcd">VDCD</div>
-    <div class="standby-group">Group</div>
-  </div>
-  <p class="standby-hint">Di chuyển chuột · Click · Hoặc nhấn phím để tiếp tục</p>
+<section class="standby-screen standby-screen--image" id="standbyScreen" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Màn hình chờ VDCD Group" aria-describedby="standbyHint" tabindex="-1">
+  <img class="standby-art" src="_resources/images/Banners/standby-thank-you-v1.png" width="1672" height="941" alt="VDCD Group — Xin trân trọng cảm ơn">
+  <p class="standby-hint" id="standbyHint"><i class="fas fa-computer-mouse" aria-hidden="true"></i>&nbsp; Click hoặc chạm để tiếp tục</p>
 </section>
 
 <!-- ═══════════ NAVIGATION ═══════════ -->
@@ -9680,8 +10113,8 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     standbyToggle.setAttribute('aria-pressed', 'true');
     standbyScreen.focus({ preventScroll: true });
 
-    // Prevent the pointer movement from the activating click from closing it immediately.
-    armTimer = window.setTimeout(() => { exitArmed = true; }, 900);
+    // Prevent a double click on the activating control from closing the screen immediately.
+    armTimer = window.setTimeout(() => { exitArmed = true; }, 650);
   }
 
   function exitStandby() {
@@ -9703,11 +10136,9 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   }
 
   standbyToggle.addEventListener('click', enterStandby);
-  ['pointermove', 'pointerdown', 'wheel', 'touchstart'].forEach(eventName => {
-    standbyScreen.addEventListener(eventName, exitStandby, { passive: true });
-  });
-  document.addEventListener('keydown', () => {
-    if (standbyActive) exitStandby();
+  standbyScreen.addEventListener('click', exitStandby);
+  document.addEventListener('keydown', event => {
+    if (standbyActive && event.key === 'Escape') exitStandby();
   });
 })();
 
