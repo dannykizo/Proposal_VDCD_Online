@@ -4942,29 +4942,6 @@ body.solution-explorer-active { overflow: hidden; }
   box-shadow: 0 24px 50px rgba(var(--solution-rgb), 0.13);
   outline: none;
 }
-.solution-explorer-card-top {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 14px;
-  margin-bottom: 18px;
-}
-.solution-explorer-card-index {
-  color: var(--solution-accent);
-  font: 900 15px/1 var(--font-heading);
-  letter-spacing: 0.12em;
-}
-.solution-explorer-card-icon {
-  width: 44px;
-  height: 44px;
-  display: grid;
-  place-items: center;
-  border-radius: 13px;
-  color: #fff;
-  background: linear-gradient(145deg, var(--solution-accent), var(--solution-accent2));
-  box-shadow: 0 10px 24px rgba(var(--solution-rgb), 0.20);
-}
 .solution-explorer-card-title {
   margin-bottom: 10px;
   color: var(--solution-ink);
@@ -6652,31 +6629,15 @@ body.beyond-hero .nav-links.open { display: none !important; }
   outline: none;
 }
 
-/* Danh mục giải pháp khách hàng: bỏ icon, dùng số lớn mờ phía sau nội dung. */
+/* Danh mục giải pháp khách hàng: ưu tiên tiêu đề và mô tả thoáng, dễ đọc. */
 .solution-explorer-card {
   isolation: isolate;
-  padding-top: clamp(28px, 2.4vw, 38px);
-}
-.solution-explorer-card-top { display: contents; }
-.solution-explorer-card-icon { display: none !important; }
-.solution-explorer-card-index {
-  position: absolute;
-  z-index: 0;
-  top: clamp(10px, 1.2vw, 18px);
-  left: clamp(14px, 1.4vw, 22px);
-  color: rgba(var(--solution-rgb), 0.115);
-  font: 950 clamp(70px, 6.2vw, 112px)/0.82 var(--font-heading);
-  letter-spacing: -0.08em;
-  pointer-events: none;
 }
 .solution-explorer-card-title,
 .solution-explorer-card-summary,
 .solution-explorer-card-arrow {
   position: relative;
   z-index: 1;
-}
-.solution-explorer-card-title {
-  margin-top: clamp(18px, 2.2vh, 28px);
 }
 .solution-explorer-card-arrow {
   font-family: var(--font-heading);
@@ -6731,11 +6692,6 @@ body.beyond-hero .nav-links.open { display: none !important; }
     padding-left: 9px;
     font-size: 14px;
     line-height: 1.45;
-  }
-  .solution-explorer-card-index {
-    top: 12px;
-    left: 15px;
-    font-size: 72px;
   }
 }
 
@@ -7090,7 +7046,7 @@ body.beyond-hero .nav-links.open { display: none !important; }
     drop-shadow(0 0 17px rgba(229,37,42,0.13));
 }
 .hero-brand-lockup span {
-  margin-top: -11px;
+  margin-top: 8px;
   color: rgba(255,255,255,0.58);
   font-family: var(--font-heading);
   font-size: clamp(11px, 0.78vw, 14px);
@@ -7557,7 +7513,7 @@ body.beyond-hero .nav-links.open { display: none !important; }
   }
   .hero-brand-lockup img { width: clamp(170px, 48vw, 225px); }
   .hero-brand-lockup span {
-    margin-top: -8px;
+    margin-top: 5px;
     font-size: 9px;
     letter-spacing: 0.18em;
   }
@@ -7853,9 +7809,6 @@ body.beyond-hero .nav-links.open { display: none !important; }
 .presentation-deck .deck-thumbnail.is-active .deck-thumbnail-number {
   color: #fff;
   background: linear-gradient(145deg, var(--vdcd-red), var(--vdcd-red-strong));
-}
-.solution-explorer-card-index {
-  color: rgba(var(--solution-rgb), 0.34);
 }
 .stat-item .num,
 .company-overview .stat-item .num {
@@ -8416,7 +8369,7 @@ body.beyond-hero .nav-links.open { display: none !important; }
 <nav class="nav" id="navbar">
   <div class="nav-inner">
     <a href="#home" class="nav-logo" aria-label="VDCD Group — về đầu trang">
-      <img src="_resources/images/brand/vdcd-group-logo-white.png" class="nav-logo-image" width="199" height="102" alt="VDCD Group">
+      <img src="_resources/images/brand/vdcd-group-logo-white-original.png" class="nav-logo-image" width="1200" height="335" alt="VDCD Group">
     </a>
     <button class="nav-mobile-toggle" type="button" aria-label="Mở menu điều hướng" aria-controls="primaryNavigation" aria-expanded="false" onclick="const menu=document.querySelector('.nav-links'); const isOpen=menu.classList.toggle('open'); this.setAttribute('aria-expanded', String(isOpen));"><i class="fas fa-bars" aria-hidden="true"></i></button>
     <ul class="nav-links" id="primaryNavigation">
@@ -8438,7 +8391,7 @@ body.beyond-hero .nav-links.open { display: none !important; }
   <div class="hero-tech-shell">
     <div class="hero-tech-copy">
       <div class="hero-brand-lockup reveal visible">
-        <img src="_resources/images/brand/vdcd-group-logo-white.png" width="199" height="102" alt="VDCD Group">
+        <img src="_resources/images/brand/vdcd-group-logo-white-original.png" width="1200" height="335" alt="VDCD Group">
         <span>Đối tác công nghệ toàn diện</span>
       </div>
       <div class="hero-service-menu" role="tablist" aria-label="Năm nhóm năng lực công nghệ của VDCD Group">
@@ -10822,9 +10775,6 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
       </div>
       <div class="solution-explorer-list">
         ${catalog.solutions.map((solution, index) => `<button class="solution-explorer-card" type="button" data-explorer-solution="${index}" aria-label="Mở giải pháp ${index + 1}: ${escapeHTML(solution.title)}">
-          <span class="solution-explorer-card-top">
-            <span class="solution-explorer-card-index">${String(index + 1).padStart(2, '0')}</span>
-          </span>
           <strong class="solution-explorer-card-title">${escapeHTML(solution.title)}</strong>
           <span class="solution-explorer-card-summary">${escapeHTML(solution.summary)}</span>
           <span class="solution-explorer-card-arrow">Xem chuyên đề <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
