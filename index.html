@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="vi" data-theme="light">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
 <title>VDCD Group — Chi nhánh TP.HCM | Công nghệ · BIM & GIS · Chuyển đổi số (v2)</title>
 <meta name="description" content="Brochure giới thiệu năng lực công nghệ của VDCD Group tại Chi nhánh TP.HCM — Chuyển đổi số, BIM & GIS, UAV/AI, Digital Twin.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,6 +15,7 @@
    ROOT VARIABLES
    ═══════════════════════════════════════ */
 :root {
+  color-scheme: only light;
   --bg-primary: #0a0a1a;
   --bg-secondary: #0f0f2a;
   --bg-card: #111130;
@@ -158,22 +160,6 @@ body.presentation-content-active .nav:focus-within {
   transition: all 0.2s;
 }
 .nav-links a:hover { color: var(--text); background: rgba(255,255,255,0.05); }
-.theme-toggle {
-  width: 40px; height: 40px;
-  display: flex; align-items: center; justify-content: center;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: all 0.3s;
-  color: var(--text-muted);
-  font-size: 18px;
-  border: 1px solid var(--border);
-  background: var(--bg-card);
-}
-.theme-toggle:hover {
-  color: var(--accent);
-  border-color: var(--accent);
-  background: var(--accent-glow);
-}
 .standby-toggle {
   min-height: 40px;
   display: inline-flex;
@@ -642,10 +628,12 @@ body.video-modal-active { overflow: hidden; }
   background: #000;
   box-shadow: 0 30px 100px rgba(0,0,0,0.58), 0 0 0 1px rgba(229,57,53,0.08);
 }
-.intro-video-frame video {
+.intro-video-frame video,
+.intro-video-frame iframe {
   display: block;
   width: 100%;
   height: 100%;
+  border: 0;
   object-fit: contain;
   background: #000;
 }
@@ -6413,11 +6401,6 @@ html {
     padding: 10px 15px;
     font-size: 14px;
   }
-  .theme-toggle {
-    width: 48px;
-    height: 48px;
-    font-size: 20px;
-  }
 }
 @media (min-width: 901px) and (max-width: 1100px) {
   :root { --nav-height: 78px; }
@@ -6434,10 +6417,6 @@ html {
     min-height: 42px;
     padding: 8px 10px;
     font-size: 12px;
-  }
-  .theme-toggle {
-    width: 42px;
-    height: 42px;
   }
   .nav-cta { padding: 9px 14px !important; }
 }
@@ -7579,7 +7558,7 @@ body.beyond-hero .nav-links.open { display: none !important; }
 }
 
 /* ═══════════════════════════════════════════════════════════
-   VDCD PRESENTATION PALETTE · LIGHT / DARK · PROJECTOR READY
+   VDCD PRESENTATION PALETTE · LIGHT · PROJECTOR READY
    Một hệ màu chức năng xuyên suốt, tăng tương phản cho màn chiếu.
    ═══════════════════════════════════════════════════════════ */
 :root {
@@ -7710,7 +7689,7 @@ body.beyond-hero .nav-links.open { display: none !important; }
     var(--bg-secondary);
 }
 
-/* Card, slide và ngăn slide có bề mặt nhất quán trong cả hai theme. */
+/* Card, slide và ngăn slide có bề mặt nhất quán trong giao diện sáng. */
 .has-deck-cover .presentation-deck :is(.cap-card, .eco-card, .sol-card, .issue-card),
 .has-deck-cover .presentation-deck .deck-intro-slide,
 .legal-summary-slide,
@@ -8379,7 +8358,6 @@ body.beyond-hero .nav-links.open { display: none !important; }
       <li><a href="#giai-phap">Giải pháp</a></li>
       <li><a href="#du-an">Dự án</a></li>
       <li><button class="standby-toggle" id="standbyToggle" type="button" title="Bật màn hình chờ" aria-pressed="false"><i class="fas fa-display" aria-hidden="true"></i><span>Màn hình chờ</span></button></li>
-      <li><div class="theme-toggle" id="themeToggle" title="Chuyển đổi giao diện"><i class="fas fa-moon"></i></div></li>
       <li><a href="#lien-he" class="nav-cta">Liên hệ</a></li>
     </ul>
   </div>
@@ -8454,10 +8432,7 @@ body.beyond-hero .nav-links.open { display: none !important; }
       <button class="intro-video-close" id="introVideoClose" type="button" aria-label="Đóng video giới thiệu"><i class="fas fa-xmark" aria-hidden="true"></i></button>
     </div>
     <div class="intro-video-frame">
-      <video id="introVideo" controls preload="metadata" playsinline aria-label="Video giới thiệu VDCD Group">
-        <source src="https://pub-b561b3c9dd124e10a150da6c60154ae2.r2.dev/videos/Gi%E1%BB%9Bi%20thi%E1%BB%87u%20VDCD.mp4" type="video/mp4">
-        Trình duyệt của bạn không hỗ trợ phát video. <a href="https://pub-b561b3c9dd124e10a150da6c60154ae2.r2.dev/videos/Gi%E1%BB%9Bi%20thi%E1%BB%87u%20VDCD.mp4">Mở video giới thiệu</a>.
-      </video>
+      <iframe id="introVideo" data-src="https://www.youtube.com/embed/3AY7Swc1yFE?autoplay=1&amp;rel=0" title="Video giới thiệu VDCD Group" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
     </div>
   </div>
 </section>
@@ -10102,8 +10077,8 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   const trigger = document.getElementById('heroVideoTrigger');
   const modal = document.getElementById('introVideoModal');
   const closeButton = document.getElementById('introVideoClose');
-  const video = document.getElementById('introVideo');
-  if (!trigger || !modal || !closeButton || !video) return;
+  const videoFrame = document.getElementById('introVideo');
+  if (!trigger || !modal || !closeButton || !videoFrame) return;
 
   let videoModalActive = false;
 
@@ -10115,13 +10090,13 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     modal.classList.add('active');
     modal.setAttribute('aria-hidden', 'false');
     closeButton.focus({ preventScroll: true });
-    video.play().catch(() => {});
+    videoFrame.src = videoFrame.dataset.src;
   }
 
   function closeVideoModal() {
     if (!videoModalActive) return;
     videoModalActive = false;
-    video.pause();
+    videoFrame.removeAttribute('src');
     modal.classList.remove('active');
     modal.setAttribute('aria-hidden', 'true');
     document.body.classList.remove('video-modal-active');
@@ -10957,9 +10932,6 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   });
 })();
 
-/* ═══════════════════════════════════════
-   THEME TOGGLE
-   ═══════════════════════════════════════ */
 /* INTERACTIVE TECHNOLOGY HERO
    Chữ và hình đồng bộ hai chiều; tự luân phiên khi không thao tác. */
 (function() {
@@ -11098,29 +11070,6 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   setActive(0, 'initial');
 })();
 
-(function() {
-  const toggle = document.getElementById('themeToggle');
-  const icon = toggle?.querySelector('i');
-  const html = document.documentElement;
-
-  function setTheme(theme) {
-    html.setAttribute('data-theme', theme);
-    localStorage.setItem('vdcd-theme', theme);
-    if (icon) {
-      icon.className = theme === 'light' ? 'fas fa-sun' : 'fas fa-moon';
-    }
-  }
-
-  // Restore saved theme
-  const saved = localStorage.getItem('vdcd-theme');
-  if (saved) setTheme(saved);
-
-  // Toggle on click
-  toggle?.addEventListener('click', () => {
-    const current = html.getAttribute('data-theme') || 'dark';
-    setTheme(current === 'dark' ? 'light' : 'dark');
-  });
-})();
 </script>
 
 </body>
