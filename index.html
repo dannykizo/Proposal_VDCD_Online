@@ -8559,7 +8559,7 @@ body.beyond-hero .nav-links.open { display: none !important; }
       <div class="deck-status" aria-live="polite">
         <span class="deck-counter"><strong data-deck-current>01</strong><span>/</span><span data-deck-total>06</span></span>
         <span class="deck-progress-track" aria-hidden="true"><span data-deck-progress></span></span>
-        <span class="deck-key-hint">← → đổi slide · ↑ ↓ đổi hạng mục</span>
+        <span class="deck-key-hint">↑ ↓ / PgUp PgDn đổi slide</span>
       </div>
       <button class="deck-nav deck-next" type="button" aria-label="Xem slide tiếp theo"><span data-deck-next-text>Tiếp theo</span><i class="fas fa-arrow-right"></i></button>
     </div>
@@ -8724,7 +8724,7 @@ body.beyond-hero .nav-links.open { display: none !important; }
       <div class="deck-status" aria-live="polite">
         <span class="deck-counter"><strong data-deck-current>01</strong><span>/</span><span data-deck-total>13</span></span>
         <span class="deck-progress-track" aria-hidden="true"><span data-deck-progress></span></span>
-        <span class="deck-key-hint">← → đổi slide · ↑ ↓ đổi hạng mục</span>
+        <span class="deck-key-hint">↑ ↓ / PgUp PgDn đổi slide</span>
       </div>
       <button class="deck-nav deck-next" type="button" aria-label="Xem slide tiếp theo"><span data-deck-next-text>Tiếp theo</span><i class="fas fa-arrow-right"></i></button>
     </div>
@@ -8816,7 +8816,7 @@ body.beyond-hero .nav-links.open { display: none !important; }
       <div class="deck-status" aria-live="polite">
         <span class="deck-counter"><strong data-deck-current>01</strong><span>/</span><span data-deck-total>07</span></span>
         <span class="deck-progress-track" aria-hidden="true"><span data-deck-progress></span></span>
-        <span class="deck-key-hint">← → đổi slide · ↑ ↓ đổi hạng mục</span>
+        <span class="deck-key-hint">↑ ↓ / PgUp PgDn đổi slide</span>
       </div>
       <button class="deck-nav deck-next" type="button" aria-label="Xem slide tiếp theo"><span data-deck-next-text>Tiếp theo</span><i class="fas fa-arrow-right"></i></button>
     </div>
@@ -8883,7 +8883,7 @@ body.beyond-hero .nav-links.open { display: none !important; }
         <div class="deck-status" aria-live="polite">
           <span class="deck-counter"><strong data-deck-current>01</strong><span>/</span><span data-deck-total>08</span></span>
           <span class="deck-progress-track" aria-hidden="true"><span data-deck-progress></span></span>
-          <span class="deck-key-hint">← → đổi slide · ↑ ↓ đổi hạng mục</span>
+          <span class="deck-key-hint">↑ ↓ / PgUp PgDn đổi slide</span>
         </div>
         <button class="deck-nav deck-next" type="button" aria-label="Xem slide tiếp theo"><span data-deck-next-text>Tiếp theo</span><i class="fas fa-arrow-right"></i></button>
       </div>
@@ -8937,7 +8937,7 @@ body.beyond-hero .nav-links.open { display: none !important; }
       <div class="deck-status" aria-live="polite">
         <span class="deck-counter"><strong data-deck-current>01</strong><span>/</span><span data-deck-total>05</span></span>
         <span class="deck-progress-track" aria-hidden="true"><span data-deck-progress></span></span>
-        <span class="deck-key-hint">← → đổi slide · ↑ ↓ đổi hạng mục</span>
+        <span class="deck-key-hint">↑ ↓ / PgUp PgDn đổi slide</span>
       </div>
       <button class="deck-nav deck-next" type="button" aria-label="Xem slide tiếp theo"><span data-deck-next-text>Tiếp theo</span><i class="fas fa-arrow-right"></i></button>
     </div>
@@ -9040,7 +9040,7 @@ body.beyond-hero .nav-links.open { display: none !important; }
       <div class="deck-status" aria-live="polite">
         <span class="deck-counter"><strong data-deck-current>01</strong><span>/</span><span data-deck-total>12</span></span>
         <span class="deck-progress-track" aria-hidden="true"><span data-deck-progress></span></span>
-        <span class="deck-key-hint">← → đổi slide · ↑ ↓ đổi hạng mục</span>
+        <span class="deck-key-hint">↑ ↓ / PgUp PgDn đổi slide</span>
       </div>
       <button class="deck-nav deck-next" type="button" aria-label="Xem slide tiếp theo"><span data-deck-next-text>Tiếp theo</span><i class="fas fa-arrow-right"></i></button>
     </div>
@@ -9762,6 +9762,7 @@ function moveBetweenScrollChapters(direction) {
 }
 
 document.addEventListener('keydown', event => {
+  if (event.defaultPrevented) return;
   if (
     document.body.classList.contains('standby-active') ||
     document.body.classList.contains('video-modal-active') ||
@@ -9772,20 +9773,22 @@ document.addEventListener('keydown', event => {
     document.body.classList.contains('deck-pane-active')
   ) return;
   if (event.target instanceof HTMLElement && (event.target.matches('input, textarea, select') || event.target.isContentEditable)) return;
-  if (!['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(event.key)) return;
+  const forwardKeys = ['ArrowRight', 'ArrowDown', 'PageDown'];
+  const backwardKeys = ['ArrowLeft', 'ArrowUp', 'PageUp'];
+  if (![...forwardKeys, ...backwardKeys].includes(event.key)) return;
 
-  if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
+  const activeDeck = getPresentationDeckInView();
+  if (activeDeck?.presentationControls) {
     event.preventDefault();
-    moveBetweenScrollChapters(event.key === 'ArrowDown' ? 1 : -1);
+    forwardKeys.includes(event.key)
+      ? activeDeck.presentationControls.goNext()
+      : activeDeck.presentationControls.goPrevious();
     return;
   }
 
-  const activeDeck = getPresentationDeckInView();
-  if (!activeDeck?.presentationControls) return;
+  if (!['ArrowUp', 'ArrowDown', 'PageUp', 'PageDown'].includes(event.key)) return;
   event.preventDefault();
-  event.key === 'ArrowRight'
-    ? activeDeck.presentationControls.goNext()
-    : activeDeck.presentationControls.goPrevious();
+  moveBetweenScrollChapters(forwardKeys.includes(event.key) ? 1 : -1);
 });
 
 // Một nhịp con lăn = một hạng mục, tương tự slider dọc.
@@ -10926,9 +10929,11 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
       }
       return;
     }
-    if (state.solutionIndex < 0 || !['ArrowLeft', 'ArrowRight'].includes(event.key)) return;
+    const forwardKeys = ['ArrowRight', 'ArrowDown', 'PageDown'];
+    const backwardKeys = ['ArrowLeft', 'ArrowUp', 'PageUp'];
+    if (state.solutionIndex < 0 || ![...forwardKeys, ...backwardKeys].includes(event.key)) return;
     event.preventDefault();
-    event.key === 'ArrowRight' ? goNext() : goPrevious();
+    forwardKeys.includes(event.key) ? goNext() : goPrevious();
   });
 })();
 
