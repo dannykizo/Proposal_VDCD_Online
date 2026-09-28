@@ -1257,6 +1257,38 @@ body.showcase-video-active { overflow: hidden; }
   line-height: 1.35;
   letter-spacing: -0.02em;
 }
+.solution-path-presenter-hint {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: 4px;
+  padding: 8px 12px;
+  border: 1px solid rgba(148,163,184,0.30);
+  border-radius: 999px;
+  color: var(--text-muted);
+  background: rgba(255,255,255,0.62);
+  font-size: 12px;
+  font-weight: 750;
+  line-height: 1;
+  letter-spacing: 0.02em;
+}
+.solution-path-presenter-key {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 58px;
+  padding: 5px 8px;
+  border-radius: 999px;
+  color: #fff;
+  background: linear-gradient(135deg, #e53935, #991b1b);
+  box-shadow: 0 6px 16px rgba(185,28,28,0.20);
+}
+.solution-path-business .solution-path-presenter-key {
+  background: linear-gradient(135deg, #6366f1, #4338ca);
+  box-shadow: 0 6px 16px rgba(67,56,202,0.20);
+}
 
 @media (max-width: 700px) {
   .solutions-grid { grid-template-columns: 1fr; }
@@ -9024,13 +9056,15 @@ body.beyond-hero .nav-links.open { display: none !important; }
       <div class="sol-links"><a class="sol-link" href="https://www.youtube.com/watch?v=YugKM0IW8OE" target="_blank" rel="noopener" aria-label="Xem video Khu công nghiệp thông minh"><i class="fab fa-youtube"></i> Xem video</a></div>
     </article>
         <div class="solution-paths" data-slide-title="Giải pháp theo nhóm khách hàng" aria-label="Danh mục giải pháp theo nhóm khách hàng">
-          <button class="solution-path solution-path-public" type="button" data-solution-catalog="government" aria-label="Mở 7 giải pháp dành cho quản lý nhà nước">
+          <button class="solution-path solution-path-public" type="button" data-solution-catalog="government" aria-label="Mở 7 giải pháp dành cho quản lý nhà nước; trên bút trình chiếu, bấm nút lên">
             <span class="solution-path-icon" aria-hidden="true"><i class="fas fa-landmark"></i></span>
             <span class="solution-path-title">Giải pháp dành cho Quản lý Nhà nước</span>
+            <span class="solution-path-presenter-hint"><span class="solution-path-presenter-key">↑ / PgUp</span> Bấm lên để mở</span>
           </button>
-          <button class="solution-path solution-path-business" type="button" data-solution-catalog="business" aria-label="Mở 5 giải pháp dịch vụ dành cho doanh nghiệp">
+          <button class="solution-path solution-path-business" type="button" data-solution-catalog="business" aria-label="Mở 5 giải pháp dịch vụ dành cho doanh nghiệp; trên bút trình chiếu, bấm nút xuống">
             <span class="solution-path-icon" aria-hidden="true"><i class="fas fa-building"></i></span>
             <span class="solution-path-title">Giải pháp dịch vụ dành cho Doanh nghiệp</span>
+            <span class="solution-path-presenter-hint"><span class="solution-path-presenter-key">↓ / PgDn</span> Bấm xuống để mở</span>
           </button>
         </div>
       </div>
@@ -9779,6 +9813,18 @@ document.addEventListener('keydown', event => {
 
   const activeDeck = getPresentationDeckInView();
   if (activeDeck?.presentationControls) {
+    const activeSolutionPaths = activeDeck.querySelector('.solution-paths.is-active');
+    const presenterSelectionKeys = ['ArrowUp', 'ArrowDown', 'PageUp', 'PageDown'];
+    if (activeSolutionPaths && presenterSelectionKeys.includes(event.key)) {
+      const catalogKey = forwardKeys.includes(event.key) ? 'business' : 'government';
+      const catalogTrigger = activeSolutionPaths.querySelector(`[data-solution-catalog="${catalogKey}"]`);
+      if (catalogTrigger) {
+        event.preventDefault();
+        event.stopImmediatePropagation();
+        catalogTrigger.click();
+        return;
+      }
+    }
     event.preventDefault();
     forwardKeys.includes(event.key)
       ? activeDeck.presentationControls.goNext()
@@ -10817,12 +10863,12 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     if (focusStage) requestAnimationFrame(() => stage.focus({ preventScroll: true }));
   }
 
-  function openSolution(index, focusStage = true) {
+  function openSolution(index, focusStage = true, initialSlideIndex = 0) {
     const catalog = catalogs[state.catalogKey];
     if (!catalog.solutions[index]) return;
     state.solutionIndex = index;
-    state.slideIndex = 0;
     state.slides = buildSlides(catalog.solutions[index]);
+    state.slideIndex = Math.max(0, Math.min(initialSlideIndex, state.slides.length - 1));
     renderSlide(focusStage);
   }
 
@@ -10833,11 +10879,38 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   }
 
   function goPrevious() {
-    if (state.solutionIndex >= 0 && state.slideIndex > 0) goToSlide(state.slideIndex - 1, true);
+    if (state.solutionIndex < 0) {
+      closeExplorer();
+      return;
+    }
+    if (state.slideIndex > 0) {
+      goToSlide(state.slideIndex - 1, true);
+      return;
+    }
+    if (state.solutionIndex > 0) {
+      openSolution(state.solutionIndex - 1, true, Number.MAX_SAFE_INTEGER);
+      return;
+    }
+    renderCatalog(true);
   }
 
   function goNext() {
-    if (state.solutionIndex >= 0 && state.slideIndex < state.slides.length - 1) goToSlide(state.slideIndex + 1, true);
+    if (state.solutionIndex < 0) {
+      openSolution(0, true);
+      return;
+    }
+    if (state.slideIndex < state.slides.length - 1) {
+      goToSlide(state.slideIndex + 1, true);
+      return;
+    }
+    const catalog = catalogs[state.catalogKey];
+    if (state.solutionIndex < catalog.solutions.length - 1) {
+      openSolution(state.solutionIndex + 1, true);
+      return;
+    }
+    const openerDeck = state.opener?.closest('[data-deck]');
+    closeExplorer();
+    openerDeck?.presentationControls?.goNext();
   }
 
   function goBack() {
@@ -10931,7 +11004,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     }
     const forwardKeys = ['ArrowRight', 'ArrowDown', 'PageDown'];
     const backwardKeys = ['ArrowLeft', 'ArrowUp', 'PageUp'];
-    if (state.solutionIndex < 0 || ![...forwardKeys, ...backwardKeys].includes(event.key)) return;
+    if (![...forwardKeys, ...backwardKeys].includes(event.key)) return;
     event.preventDefault();
     forwardKeys.includes(event.key) ? goNext() : goPrevious();
   });
