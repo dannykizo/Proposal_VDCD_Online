@@ -163,7 +163,7 @@ html[data-theme="light"] .has-deck-cover:is(#phap-ly, #trung-tam-cong-nghe, #he-
 .photo-slide-media--overview[data-overview-count="3"] .overview-photo:first-child,
 .photo-slide-media--overview[data-overview-count="7"] .overview-photo:first-child { grid-column: 1 / -1; }
 
-/* Twelve photos fill the canvas; the copy occupies the remaining 2 × 2 cells. */
+/* Read the copy first in the upper-left 2 × 2 cells, then the twelve photos. */
 html[data-theme="light"] #trung-tam-cong-nghe .presentation-deck .tech-centers-intro {
   padding: 0;
   background: #fff;
@@ -201,15 +201,17 @@ html[data-theme="light"] #trung-tam-cong-nghe .tech-centers-mosaic img {
   opacity: 1;
   filter: none;
 }
-.tech-centers-mosaic img:nth-child(9) { grid-area: 3 / 3; }
-.tech-centers-mosaic img:nth-child(10) { grid-area: 3 / 4; }
-.tech-centers-mosaic img:nth-child(11) { grid-area: 4 / 3; }
-.tech-centers-mosaic img:nth-child(12) { grid-area: 4 / 4; }
+.tech-centers-mosaic::before {
+  content: '';
+  grid-area: 1 / 1 / 3 / 3;
+  background: #fff;
+}
 html[data-theme="light"] #trung-tam-cong-nghe .tech-centers-intro-copy {
   position: absolute;
   z-index: 2;
   left: 0;
-  bottom: 0;
+  top: 0;
+  bottom: auto;
   width: calc(50% - 2px);
   height: calc(50% - 2px);
   display: flex;
@@ -305,16 +307,18 @@ html[data-theme="light"] .solution-explorer .solution-explorer-application-media
   html[data-theme="light"] #trung-tam-cong-nghe .tech-centers-mosaic {
     position: relative;
     flex: 0 0 auto;
+    order: 1;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     grid-template-rows: repeat(4, minmax(0, 1fr));
     height: clamp(290px, 48svh, 440px);
   }
+  .tech-centers-mosaic::before { display: none; }
   html[data-theme="light"] #trung-tam-cong-nghe .tech-centers-mosaic img { grid-area: auto; }
   html[data-theme="light"] #trung-tam-cong-nghe .tech-centers-intro-copy {
     position: relative;
     inset: auto;
     flex: 0 0 auto;
-    order: 2;
+    order: 0;
     width: 100%;
     height: auto;
     padding: 28px 44px 76px;
