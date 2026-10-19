@@ -1,0 +1,341 @@
+/* Photography stays opaque and unfiltered. A white copy rail supplies contrast. */
+html[data-theme="light"] .has-deck-cover:is(#phap-ly, #trung-tam-cong-nghe, #he-sinh-thai, #nang-luc, #thuc-trang, #giai-phap) .presentation-deck .deck-slide.photo-slide {
+  display: grid;
+  grid-template-columns: 39% minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr);
+  align-items: stretch;
+  justify-content: normal;
+  padding: 0;
+  background: #fff;
+}
+html[data-theme="light"] .has-deck-cover:is(#phap-ly, #trung-tam-cong-nghe, #he-sinh-thai, #nang-luc, #thuc-trang, #giai-phap) .presentation-deck .deck-slide.photo-slide::before,
+html[data-theme="light"] .has-deck-cover:is(#phap-ly, #trung-tam-cong-nghe, #he-sinh-thai, #nang-luc, #thuc-trang, #giai-phap) .presentation-deck .deck-slide.photo-slide::after {
+  display: none;
+  content: none;
+}
+html[data-theme="light"] .has-deck-cover:is(#phap-ly, #trung-tam-cong-nghe, #he-sinh-thai, #nang-luc, #thuc-trang, #giai-phap) .photo-slide > .photo-slide-copy {
+  position: relative;
+  inset: auto;
+  z-index: 2;
+  grid-column: 1;
+  grid-row: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 0;
+  width: 100%;
+  min-width: 0;
+  min-height: 0;
+  max-width: none;
+  margin: 0;
+  padding: clamp(58px, 7vh, 86px) clamp(30px, 3vw, 54px) clamp(74px, 9vh, 100px);
+  overflow: auto;
+  scrollbar-width: thin;
+  background: #fff;
+  border-right: 1px solid #e1e8ed;
+  opacity: 1;
+  filter: none;
+  transform: none;
+  color: #102331;
+}
+html[data-theme="light"] .has-deck-cover:is(#phap-ly, #trung-tam-cong-nghe, #he-sinh-thai, #nang-luc, #thuc-trang, #giai-phap) .photo-slide-copy > * {
+  position: relative;
+  inset: auto;
+  max-width: 100%;
+  opacity: 1;
+  transform: none;
+}
+html[data-theme="light"] .has-deck-cover:is(#phap-ly, #trung-tam-cong-nghe, #he-sinh-thai, #nang-luc, #thuc-trang, #giai-phap) .photo-slide-copy :is(h3, h4) {
+  margin: 0 0 24px;
+  color: #102331;
+  font-size: clamp(32px, 3.05vw, 56px);
+  line-height: 1.08;
+  letter-spacing: -0.045em;
+  text-shadow: none;
+  text-wrap: balance;
+}
+html[data-theme="light"] .has-deck-cover:is(#phap-ly, #trung-tam-cong-nghe, #he-sinh-thai, #nang-luc, #thuc-trang, #giai-phap) .photo-slide-copy p {
+  max-width: 100%;
+  min-height: 0;
+  margin: 0 0 24px;
+  color: #34495b;
+  font-size: clamp(17px, 1.3vw, 23px);
+  font-weight: 550;
+  line-height: 1.55;
+  text-shadow: none;
+}
+.photo-slide-copy :is(.deck-intro-kicker, .cap-card-top, .eco-card-head, .issue-kicker, .sol-number, .tech-center-index) {
+  flex-shrink: 0;
+  margin: 0 0 24px;
+  color: var(--section-accent);
+  font-size: clamp(11px, 0.95vw, 15px);
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  line-height: 1.45;
+}
+html[data-theme="light"] .has-deck-cover:is(#phap-ly, #trung-tam-cong-nghe, #he-sinh-thai, #nang-luc, #thuc-trang, #giai-phap) .photo-slide-copy :is(.cap-watermark, .cap-icon, .eco-icon, .issue-icon, .icon) { display: none; }
+html[data-theme="light"] .has-deck-cover:is(#phap-ly, #trung-tam-cong-nghe, #he-sinh-thai, #nang-luc, #thuc-trang, #giai-phap) .photo-slide-copy :is(.cap-tags, .sol-tags) {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 20px;
+}
+html[data-theme="light"] .has-deck-cover:is(#phap-ly, #trung-tam-cong-nghe, #he-sinh-thai, #nang-luc, #thuc-trang, #giai-phap) .photo-slide-copy :is(.cap-tags, .sol-tags) span {
+  padding: 7px 10px;
+  font-size: 13px;
+  line-height: 1.4;
+}
+html[data-theme="light"] #giai-phap .photo-slide-copy .sol-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+}
+html[data-theme="light"] #giai-phap .photo-slide-copy .sol-link { padding: 10px 12px; font-size: 14px; }
+.photo-slide-copy .issue-impact { margin-top: 0; font-size: clamp(15px, 1.05vw, 19px); }
+.photo-slide-copy .eco-link { margin-top: 8px; }
+.photo-slide-copy .tech-center-link {
+  color: var(--section-accent);
+  background: #f1f6f8;
+  border-color: #b9cbd5;
+  box-shadow: none;
+  backdrop-filter: none;
+}
+.photo-slide-copy .tech-center-link:hover { color: #fff; }
+html[data-theme="light"] .has-deck-cover:is(#phap-ly, #trung-tam-cong-nghe, #he-sinh-thai, #nang-luc, #thuc-trang, #giai-phap) .photo-slide > .photo-slide-media {
+  position: relative;
+  inset: auto;
+  z-index: 1;
+  grid-column: 2;
+  grid-row: 1;
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  max-width: none;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  opacity: 1;
+  filter: none;
+  background: #edf2f5;
+}
+html[data-theme="light"] .has-deck-cover:is(#phap-ly, #trung-tam-cong-nghe, #he-sinh-thai, #nang-luc, #thuc-trang, #giai-phap) .photo-slide-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  object-position: center;
+  opacity: 1;
+  filter: none;
+  transform: none;
+  border-radius: 0;
+}
+html[data-theme="light"] .has-deck-cover:is(#phap-ly, #trung-tam-cong-nghe, #he-sinh-thai, #nang-luc, #thuc-trang, #giai-phap) .photo-slide--contain .photo-slide-media img {
+  object-fit: contain;
+}
+html[data-theme="light"] .has-deck-cover:is(#phap-ly, #trung-tam-cong-nghe, #he-sinh-thai, #nang-luc, #thuc-trang, #giai-phap) .photo-slide-media .overview-photo--contain img {
+  object-fit: contain;
+}
+html[data-theme="light"] .has-deck-cover:is(#phap-ly, #trung-tam-cong-nghe, #he-sinh-thai, #nang-luc, #thuc-trang, #giai-phap) .photo-slide > .photo-slide-media--overview {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-auto-rows: minmax(0, 1fr);
+  gap: 5px;
+  padding: 5px;
+  background: #e4ebef;
+}
+.overview-photo { position: relative; min-width: 0; min-height: 0; overflow: hidden; }
+.overview-photo-label {
+  position: absolute;
+  left: 12px;
+  bottom: 12px;
+  max-width: calc(100% - 24px);
+  padding: 7px 10px;
+  border-radius: 5px;
+  color: #fff;
+  background: #102b3b;
+  font: 700 clamp(11px, 0.8vw, 14px)/1.4 var(--font);
+}
+.photo-slide-media--overview[data-overview-count="3"] .overview-photo:first-child,
+.photo-slide-media--overview[data-overview-count="7"] .overview-photo:first-child { grid-column: 1 / -1; }
+html[data-theme="light"] #phap-ly .photo-slide-media--documents .overview-photo img {
+  object-fit: contain;
+  padding: 18px 8px 56px;
+  background: #edf2f5;
+}
+
+/* Twelve photos fill the canvas; the copy occupies the remaining 2 × 2 cells. */
+html[data-theme="light"] #trung-tam-cong-nghe .presentation-deck .tech-centers-intro {
+  padding: 0;
+  background: #fff;
+}
+html[data-theme="light"] #trung-tam-cong-nghe .tech-centers-intro::before,
+html[data-theme="light"] #trung-tam-cong-nghe .tech-centers-intro::after { display: none; }
+html[data-theme="light"] #trung-tam-cong-nghe .tech-centers-mosaic {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-rows: repeat(4, minmax(0, 1fr));
+  width: 100%;
+  height: 100%;
+  gap: 5px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: #e4ebef;
+  box-shadow: none;
+  backdrop-filter: none;
+  opacity: 1;
+  filter: none;
+  transform: none;
+}
+html[data-theme="light"] #trung-tam-cong-nghe .tech-centers-mosaic img {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  aspect-ratio: auto;
+  border-radius: 0;
+  object-fit: cover;
+  opacity: 1;
+  filter: none;
+}
+.tech-centers-mosaic img:nth-child(9) { grid-area: 3 / 3; }
+.tech-centers-mosaic img:nth-child(10) { grid-area: 3 / 4; }
+.tech-centers-mosaic img:nth-child(11) { grid-area: 4 / 3; }
+.tech-centers-mosaic img:nth-child(12) { grid-area: 4 / 4; }
+html[data-theme="light"] #trung-tam-cong-nghe .tech-centers-intro-copy {
+  position: absolute;
+  z-index: 2;
+  left: 0;
+  bottom: 0;
+  width: calc(50% - 2px);
+  height: calc(50% - 2px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(24px, 3vw, 52px);
+  overflow: auto;
+  background: #fff;
+}
+html[data-theme="light"] #trung-tam-cong-nghe .tech-centers-intro-copy h3 {
+  max-width: 100%;
+  margin-bottom: 20px;
+  font-size: clamp(34px, 3.4vw, 62px);
+  line-height: 1.06;
+}
+html[data-theme="light"] #trung-tam-cong-nghe .tech-centers-intro-copy p {
+  max-width: 100%;
+  color: #34495b;
+  font-size: clamp(16px, 1.2vw, 21px);
+  line-height: 1.5;
+}
+.tech-centers-intro-copy .deck-intro-kicker { margin-bottom: 18px; font-size: 13px; }
+
+/* The nested solution slides follow the same contrast rule. */
+html[data-theme="light"] .solution-explorer .solution-explorer-slide.has-application-image {
+  display: grid;
+  grid-template-columns: 46% minmax(0, 1fr);
+  align-items: stretch;
+  padding: 0;
+  background: #fff;
+}
+html[data-theme="light"] .solution-explorer .has-application-image .solution-explorer-slide-copy {
+  grid-column: 1;
+  grid-row: 1;
+  width: 100%;
+  padding: clamp(32px, 3vw, 52px) clamp(28px, 3vw, 48px) 64px;
+  background: #fff;
+}
+html[data-theme="light"] .solution-explorer .solution-explorer-application-media {
+  position: relative;
+  inset: auto;
+  grid-column: 2;
+  grid-row: 1;
+  width: 100%;
+  min-height: 100%;
+  background: #edf2f5;
+}
+html[data-theme="light"] .solution-explorer .solution-explorer-application-media::after { display: none; }
+html[data-theme="light"] .solution-explorer .solution-explorer-application-media img {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: calc(100svh - 140px);
+  object-fit: contain;
+  opacity: 1;
+  filter: none;
+  transform: none;
+  animation: none;
+}
+.solution-explorer .has-application-image .solution-explorer-title { font-size: clamp(30px, 2.75vw, 48px); line-height: 1.1; }
+.solution-explorer .has-application-image .solution-explorer-lead { font-size: clamp(16px, 1.2vw, 21px); }
+.solution-explorer .has-application-image .solution-explorer-bullets li { font-size: clamp(16px, 1.15vw, 20px); }
+
+@media (max-width: 900px) {
+  html[data-theme="light"] .has-deck-cover:is(#phap-ly, #trung-tam-cong-nghe, #he-sinh-thai, #nang-luc, #thuc-trang, #giai-phap) .presentation-deck .deck-slide.photo-slide {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow-y: auto;
+  }
+  html[data-theme="light"] .has-deck-cover:is(#phap-ly, #trung-tam-cong-nghe, #he-sinh-thai, #nang-luc, #thuc-trang, #giai-phap) .photo-slide > .photo-slide-copy {
+    flex: 0 0 auto;
+    order: 2;
+    padding: 28px 44px 76px;
+    overflow: visible;
+    border: 0;
+  }
+  html[data-theme="light"] .has-deck-cover:is(#phap-ly, #trung-tam-cong-nghe, #he-sinh-thai, #nang-luc, #thuc-trang, #giai-phap) .photo-slide > .photo-slide-media {
+    flex: 0 0 auto;
+    order: 1;
+    height: clamp(250px, 42svh, 380px);
+  }
+  html[data-theme="light"] .has-deck-cover:is(#phap-ly, #trung-tam-cong-nghe, #he-sinh-thai, #nang-luc, #thuc-trang, #giai-phap) .photo-slide-copy :is(h3, h4) { font-size: clamp(29px, 6vw, 42px); margin-bottom: 18px; }
+  html[data-theme="light"] .has-deck-cover:is(#phap-ly, #trung-tam-cong-nghe, #he-sinh-thai, #nang-luc, #thuc-trang, #giai-phap) .photo-slide-copy p { font-size: 17px; margin-bottom: 18px; }
+  .photo-slide-copy :is(.deck-intro-kicker, .cap-card-top, .eco-card-head, .issue-kicker, .sol-number, .tech-center-index) { margin-bottom: 16px; font-size: 11px; }
+  .overview-photo-label { left: 6px; bottom: 6px; max-width: calc(100% - 12px); padding: 4px 6px; font-size: 10px; }
+  html[data-theme="light"] #he-sinh-thai .photo-slide > .photo-slide-media--overview { height: 440px; }
+  html[data-theme="light"] #trung-tam-cong-nghe .presentation-deck .tech-centers-intro {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+  }
+  html[data-theme="light"] #trung-tam-cong-nghe .tech-centers-mosaic {
+    position: relative;
+    flex: 0 0 auto;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-rows: repeat(4, minmax(0, 1fr));
+    height: clamp(290px, 48svh, 440px);
+  }
+  html[data-theme="light"] #trung-tam-cong-nghe .tech-centers-mosaic img { grid-area: auto; }
+  html[data-theme="light"] #trung-tam-cong-nghe .tech-centers-intro-copy {
+    position: relative;
+    inset: auto;
+    flex: 0 0 auto;
+    order: 2;
+    width: 100%;
+    height: auto;
+    padding: 28px 44px 76px;
+    overflow: visible;
+  }
+  html[data-theme="light"] #trung-tam-cong-nghe .tech-centers-intro-copy h3 { font-size: clamp(30px, 6vw, 42px); }
+  html[data-theme="light"] .solution-explorer .solution-explorer-slide.has-application-image { display: flex; flex-direction: column; }
+  html[data-theme="light"] .solution-explorer .solution-explorer-application-media { order: 0; flex: 0 0 auto; min-height: 0; }
+  html[data-theme="light"] .solution-explorer .solution-explorer-application-media img { position: static; height: 300px; }
+  html[data-theme="light"] .solution-explorer .has-application-image .solution-explorer-slide-copy { order: 1; padding: 28px 36px 64px; }
+}
+
+@media (max-height: 760px) and (min-width: 901px) {
+  html[data-theme="light"] .has-deck-cover:is(#phap-ly, #trung-tam-cong-nghe, #he-sinh-thai, #nang-luc, #thuc-trang, #giai-phap) .photo-slide > .photo-slide-copy { padding-top: 36px; padding-bottom: 56px; justify-content: flex-start; }
+  html[data-theme="light"] .has-deck-cover:is(#phap-ly, #trung-tam-cong-nghe, #he-sinh-thai, #nang-luc, #thuc-trang, #giai-phap) .photo-slide-copy :is(h3, h4) { font-size: clamp(30px, 2.7vw, 42px); margin-bottom: 18px; }
+  html[data-theme="light"] #trung-tam-cong-nghe .tech-centers-intro-copy { padding: 22px 32px; justify-content: flex-start; }
+  html[data-theme="light"] #trung-tam-cong-nghe .tech-centers-intro-copy h3 { font-size: 36px; margin-bottom: 14px; }
+  .tech-centers-intro-copy .deck-intro-kicker { margin-bottom: 12px; }
+}

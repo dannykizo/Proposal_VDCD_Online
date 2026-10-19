@@ -8360,6 +8360,7 @@ body.beyond-hero .nav-links.open { display: none !important; }
   }
 }
 </style>
+<link rel="stylesheet" href="_resources/css/presentation-photos.css">
 </head>
 <body>
 
@@ -9535,6 +9536,92 @@ if (solutionTrack) {
 const presentationDecks = [...document.querySelectorAll('[data-deck]')];
 let lastActivePresentationDeck = null;
 
+// Covers use the existing VDCD photo library; copy and photography occupy separate areas.
+const deckOverviewImages = {
+  'phap-ly': [
+    ['legal/gcn-dang-ky-doanh-nghiep-mat-truoc.png', 'Giấy chứng nhận đăng ký doanh nghiệp · Mặt trước'],
+    ['legal/gcn-dang-ky-doanh-nghiep-mat-sau.png', 'Giấy chứng nhận đăng ký doanh nghiệp · Mặt sau']
+  ],
+  'he-sinh-thai': [
+    ['presentation/eco-timelapse.jpg', 'Auto Timelapse'],
+    ['presentation/eco-auto-agri.jpg', 'Auto Agri'],
+    ['presentation/eco-vietflycam.jpg', 'Vietflycam'],
+    ['presentation/eco-drone-cleaning.jpg', 'Drone Cleaning'],
+    ['presentation/eco-trac-dia-so.jpg', 'Trắc địa số'],
+    ['presentation/eco-smartscale.jpg', 'Smartscale'],
+    ['presentation/eco-bimv.jpg', 'BIMV']
+  ],
+  'nang-luc': [
+    ['presentation/core-survey-uav.jpg', 'Khảo sát UAV'],
+    ['presentation/core-bim-gis.jpg', 'BIM & GIS'],
+    ['presentation/core-digital-twin.jpg', 'Mô hình số'],
+    ['presentation/core-data-platform.jpg', 'Nền tảng phần mềm']
+  ],
+  'thuc-trang': [
+    ['presentation/eco-vietflycam.jpg', 'Dữ liệu hiện trường'],
+    ['presentation/eco-timelapse.jpg', 'Giám sát tiến độ'],
+    ['presentation/core-data-platform.jpg', 'Quản trị dữ liệu']
+  ],
+  'giai-phap': [
+    ['presentation/solution-agriculture.jpg', 'Nông nghiệp & Lâm nghiệp'],
+    ['presentation/solution-industrial.jpg', 'Hạ tầng & Công nghiệp'],
+    ['presentation/solution-tourism.jpg', 'Du lịch & Di sản số'],
+    ['presentation/solution-smart-city.jpg', 'Đô thị thông minh']
+  ]
+};
+
+function preparePhotoSlide(slide, sectionId) {
+  if (slide.classList.contains('tech-centers-intro')) return;
+
+  const overview = slide.classList.contains('deck-intro-slide') ? deckOverviewImages[sectionId] : null;
+  const existingMedia = slide.querySelector('.tech-center-media');
+  const imageSource = slide.style.getPropertyValue('--slide-image').match(/url\(["']?([^"')]+)["']?\)/)?.[1];
+  if (!overview && !existingMedia && !imageSource) return;
+
+  slide.classList.add('photo-slide');
+  const copy = existingMedia ? slide.querySelector('.tech-center-slide-content') : document.createElement('div');
+  copy.classList.add('photo-slide-copy');
+  if (!existingMedia) {
+    copy.append(...slide.childNodes);
+    slide.append(copy);
+  }
+
+  const media = existingMedia || document.createElement('figure');
+  media.classList.add('photo-slide-media');
+  if (overview) {
+    slide.classList.add('photo-slide--overview');
+    media.classList.add('photo-slide-media--overview');
+    media.dataset.overviewCount = String(overview.length);
+    overview.forEach(([source, label]) => {
+      const tile = document.createElement('div');
+      tile.className = 'overview-photo';
+      if (/(core-(bim-gis|data-platform)|eco-trac-dia-so|solution-agriculture)\./.test(source)) tile.classList.add('overview-photo--contain');
+      const img = document.createElement('img');
+      img.src = `_resources/images/${source}`;
+      img.alt = label;
+      img.loading = 'lazy';
+      img.decoding = 'async';
+      const caption = document.createElement('span');
+      caption.className = 'overview-photo-label';
+      caption.textContent = label;
+      tile.append(img, caption);
+      media.append(tile);
+    });
+    if (sectionId === 'phap-ly') media.classList.add('photo-slide-media--documents');
+  } else if (imageSource) {
+    const img = document.createElement('img');
+    img.src = imageSource;
+    img.alt = copy.querySelector('h3, h4')?.textContent.trim() || '';
+    img.loading = 'lazy';
+    img.decoding = 'async';
+    media.append(img);
+    if (/(core-(ai-forest|bim-gis|data-platform)|eco-trac-dia-so|solution-(agriculture|land|mining|security))\./.test(imageSource)) {
+      slide.classList.add('photo-slide--contain');
+    }
+  }
+  if (!existingMedia) slide.append(media);
+}
+
 presentationDecks.forEach((deck, deckIndex) => {
   const track = deck.querySelector('.deck-track');
   const slides = track ? [...track.children] : [];
@@ -9557,6 +9644,7 @@ presentationDecks.forEach((deck, deckIndex) => {
   deck.setAttribute('tabindex', '0');
 
   slides.forEach((slide, index) => {
+    preparePhotoSlide(slide, deck.closest('section')?.id);
     const slideTitle = slide.dataset.slideTitle || slide.querySelector('h3, h4, .solution-path-title')?.textContent?.trim();
     slide.classList.add('deck-slide');
     slide.setAttribute('role', 'group');
@@ -10748,19 +10836,30 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   }
 
   function buildSlides(solution) {
-    const contentChunks = chunkItems(solution.content);
-    const slides = contentChunks.map((items, index) => ({
+    const contentChunks = chunkItems(solution.content, 3);
+    const slides = [{
+      type: 'overview',
+      navLabel: 'Tổng quan',
+      eyebrow: 'Tổng quan giải pháp',
+      title: solution.title,
+      lead: solution.summary,
+      technologies: solution.technologies,
+      items: [],
+      icon: solution.icon,
+      image: solution.illustrationImage,
+      imageAlt: solution.illustrationImageAlt
+    }, ...contentChunks.map((items, index) => ({
       type: 'bullets',
       navLabel: contentChunks.length > 1 ? `Giải pháp ${index + 1}/${contentChunks.length}` : 'Giải pháp',
-      eyebrow: index === 0 ? 'Phạm vi giải pháp' : 'Phạm vi giải pháp · Tiếp theo',
+      eyebrow: 'Phạm vi giải pháp',
       title: solution.title,
-      lead: index === 0 ? solution.summary : '',
-      technologies: index === 0 ? solution.technologies : [],
+      lead: '',
+      technologies: [],
       items,
       icon: solution.icon,
       image: solution.illustrationImage,
       imageAlt: solution.illustrationImageAlt
-    }));
+    }))];
     slides.push(
       { type: 'bullets', navLabel: 'Ứng dụng', eyebrow: 'Ứng dụng thực tế', title: 'Ứng dụng trong vận hành', lead: '', technologies: [], items: solution.applications, icon: 'fa-diagram-project', image: solution.applicationImage, imageAlt: solution.applicationImageAlt },
       { type: 'value', navLabel: 'Giá trị', eyebrow: 'Giá trị cốt lõi', title: 'Giá trị mang lại', items: solution.value, icon: 'fa-gem' },
@@ -10834,7 +10933,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
       body = `<ul class="solution-explorer-bullets">${slide.items.map(item => `<li>${escapeHTML(item)}</li>`).join('')}</ul>`;
     } else if (slide.type === 'value') {
       body = `<div class="solution-explorer-value-grid">${slide.items.map(item => `<p class="solution-explorer-value">${escapeHTML(item)}</p>`).join('')}</div>`;
-    } else {
+    } else if (slide.type !== 'overview') {
       body = `<div class="solution-explorer-chip-grid">${slide.items.map(item => `<div class="solution-explorer-chip"><i class="fas ${escapeHTML(slide.itemIcon)}" aria-hidden="true"></i><span>${escapeHTML(item)}</span></div>`).join('')}</div>`;
     }
     const returnButton = isFinal ? `<button class="solution-explorer-return" type="button" data-solution-action="back-to-list"><i class="fas fa-list" aria-hidden="true"></i> Quay lại danh sách giải pháp</button>` : '';
