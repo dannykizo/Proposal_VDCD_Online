@@ -9538,10 +9538,6 @@ let lastActivePresentationDeck = null;
 
 // Covers use the existing VDCD photo library; copy and photography occupy separate areas.
 const deckOverviewImages = {
-  'phap-ly': [
-    ['legal/gcn-dang-ky-doanh-nghiep-mat-truoc.png', 'Giấy chứng nhận đăng ký doanh nghiệp · Mặt trước'],
-    ['legal/gcn-dang-ky-doanh-nghiep-mat-sau.png', 'Giấy chứng nhận đăng ký doanh nghiệp · Mặt sau']
-  ],
   'he-sinh-thai': [
     ['presentation/eco-timelapse.jpg', 'Auto Timelapse'],
     ['presentation/eco-auto-agri.jpg', 'Auto Agri'],
@@ -9607,7 +9603,6 @@ function preparePhotoSlide(slide, sectionId) {
       tile.append(img, caption);
       media.append(tile);
     });
-    if (sectionId === 'phap-ly') media.classList.add('photo-slide-media--documents');
   } else if (imageSource) {
     const img = document.createElement('img');
     img.src = imageSource;

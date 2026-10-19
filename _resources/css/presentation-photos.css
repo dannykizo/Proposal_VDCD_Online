@@ -162,11 +162,6 @@ html[data-theme="light"] .has-deck-cover:is(#phap-ly, #trung-tam-cong-nghe, #he-
 }
 .photo-slide-media--overview[data-overview-count="3"] .overview-photo:first-child,
 .photo-slide-media--overview[data-overview-count="7"] .overview-photo:first-child { grid-column: 1 / -1; }
-html[data-theme="light"] #phap-ly .photo-slide-media--documents .overview-photo img {
-  object-fit: contain;
-  padding: 18px 8px 56px;
-  background: #edf2f5;
-}
 
 /* Twelve photos fill the canvas; the copy occupies the remaining 2 × 2 cells. */
 html[data-theme="light"] #trung-tam-cong-nghe .presentation-deck .tech-centers-intro {
