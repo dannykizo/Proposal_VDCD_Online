@@ -153,6 +153,13 @@ html[data-theme="light"] .has-deck-cover:is(#phap-ly, #trung-tam-cong-nghe, #he-
   grid-template-columns: minmax(0, 1fr);
   grid-template-rows: repeat(2, minmax(0, 1fr));
 }
+/* Current-state overview: one leading discussion, followed by four complementary scenes. */
+html[data-theme="light"] #thuc-trang .presentation-deck .photo-slide > .photo-slide-media--overview[data-overview-count="5"] {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: minmax(0, 2fr) repeat(2, minmax(0, 1fr));
+}
+#thuc-trang .photo-slide-media--overview[data-overview-count="5"] .overview-photo:first-child { grid-column: 1 / -1; }
+#thuc-trang .photo-slide-media--overview[data-overview-count="5"] .overview-photo:nth-child(3) img { object-position: 70% center; }
 .overview-photo-label {
   position: absolute;
   left: 12px;
@@ -303,6 +310,8 @@ html[data-theme="light"] .solution-explorer .solution-explorer-application-media
   .photo-slide-copy :is(.deck-intro-kicker, .cap-card-top, .eco-card-head, .issue-kicker, .sol-number, .tech-center-index) { margin-bottom: 16px; font-size: 11px; }
   .overview-photo-label { left: 6px; bottom: 6px; max-width: calc(100% - 12px); padding: 4px 6px; font-size: 10px; }
   html[data-theme="light"] #he-sinh-thai .photo-slide > .photo-slide-media--overview { height: 440px; }
+  html[data-theme="light"] #thuc-trang .presentation-deck .photo-slide--overview > .photo-slide-copy { order: 0; padding-bottom: 28px; }
+  html[data-theme="light"] #thuc-trang .presentation-deck .photo-slide > .photo-slide-media--overview[data-overview-count="5"] { order: 1; height: 560px; }
   html[data-theme="light"] #trung-tam-cong-nghe .presentation-deck .tech-centers-intro {
     display: flex;
     flex-direction: column;
