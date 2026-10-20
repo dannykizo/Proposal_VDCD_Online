@@ -149,6 +149,10 @@ html[data-theme="light"] .has-deck-cover:is(#phap-ly, #trung-tam-cong-nghe, #he-
   background: #e4ebef;
 }
 .overview-photo { position: relative; min-width: 0; min-height: 0; overflow: hidden; }
+html[data-theme="light"] .has-deck-cover:is(#phap-ly, #trung-tam-cong-nghe, #he-sinh-thai, #nang-luc, #thuc-trang, #giai-phap) .photo-slide > .photo-slide-media--overview[data-overview-count="2"] {
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+}
 .overview-photo-label {
   position: absolute;
   left: 12px;
