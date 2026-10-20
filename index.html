@@ -8360,7 +8360,7 @@ body.beyond-hero .nav-links.open { display: none !important; }
   }
 }
 </style>
-<link rel="stylesheet" href="_resources/css/presentation-photos.css?v=4">
+<link rel="stylesheet" href="_resources/css/presentation-photos.css?v=5">
 </head>
 <body>
 
@@ -8805,7 +8805,7 @@ body.beyond-hero .nav-links.open { display: none !important; }
       <h3>Năng lực <span>công nghệ lõi</span></h3>
       <p>Làm chủ chuỗi công nghệ từ thu thập dữ liệu hiện trường, mô hình hóa không gian đến phân tích AI và vận hành trên nền tảng số.</p>
     </article>
-    <article class="cap-card cap-card-featured reveal reveal-delay-1 has-slide-image" style="--slide-image:url(_resources/images/presentation/core-bim-gis.jpg)">
+    <article class="cap-card cap-card-featured reveal reveal-delay-1 has-slide-image" data-photo-gallery="bim-gis" style="--slide-image:url(_resources/images/presentation/core-bim-gis.jpg)">
       <span class="cap-watermark" aria-hidden="true">BIM + GIS</span>
       <div class="cap-card-top"><span class="cap-index">Năng lực công nghệ lõi</span><div class="cap-icon"><i class="fas fa-cubes"></i></div></div>
       <h3>BIM &amp; GIS</h3>
@@ -9568,10 +9568,19 @@ const deckOverviewImages = {
   ]
 };
 
+const slidePhotoGalleries = {
+  'bim-gis': [
+    ['presentation/core-bim-gis.jpg', '3D · Mô hình không gian công trình'],
+    ['presentation/core-gis-survey-map.webp', 'GIS · Bản đồ ảnh và dữ liệu cao độ']
+  ]
+};
+
 function preparePhotoSlide(slide, sectionId) {
   if (slide.classList.contains('tech-centers-intro')) return;
 
-  const overview = slide.classList.contains('deck-intro-slide') ? deckOverviewImages[sectionId] : null;
+  const overview = slide.classList.contains('deck-intro-slide')
+    ? deckOverviewImages[sectionId]
+    : slidePhotoGalleries[slide.dataset.photoGallery];
   const existingMedia = slide.querySelector('.tech-center-media');
   const imageSource = slide.style.getPropertyValue('--slide-image').match(/url\(["']?([^"')]+)["']?\)/)?.[1];
   if (!overview && !existingMedia && !imageSource) return;
